@@ -1,0 +1,212 @@
+#square_parent {
+    border: rgb(41, 28, 6) 10px double;
+    height: 300px;
+    text-align: center;
+    margin: 100px;
+}
+.red_square {
+    border: rgb(224, 9, 141) 2px solid;
+    height: 150px;
+    width: 150px;
+    display:inline-block;
+    margin: 50px 150px;
+    padding: 10px;
+}
+.red_square img {
+    width: 100%;
+    opacity: 0.9;
+    border-radius: 100px;
+    box-shadow: 50px 50px 15px rgb(rgb(0, 0, 0));
+    box-sizing: border-box;
+}
+
+#flex_parent {
+    border: rgb(65, 11, 192) 15px double;
+    height: 700px;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    align-content: flex-end;
+}
+.flex_child{
+    border: rgb(228, 83, 0) 4px double;
+    height: 100px;
+    width: 20%;
+    padding: 20px;
+}
+.flex_break{
+    flex-basis: 100%; 
+    height: 20px;
+    opacity: 0;
+}
+
+#applicat{
+    background-color: #e9eef1;
+    padding: 0 0 2.5em;
+    border: rgb(231, 1, 97) 15px ridge;
+    height: 700px;
+    text-align: center;
+    margin: 100px, 100px, 50px,50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    align-content: flex-end;
+}
+
+.gil {
+    border: 4px double black;
+    background: #fc3;
+    padding: 10px; 
+}
+
+.blokForBlok {
+    border: rgb(65, 11, 192) 15px double;
+    height: 700px;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    align-content: flex-end;
+}
+
+.blok > div {
+display: flex;
+align-items: center;
+top: 0;
+margin: 20px;
+float: left ;
+background: maroon;
+height: 30px;
+width: 100px;
+border: 2px groove rgb(0, 0, 0);
+}
+.fu {
+    background-color: pink;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    transition: 2s;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: column;
+    align-content: space-around;
+    margin-left: 880px;
+}
+.fu:hover {
+    transform: scale(0.2);
+}
+
+
+           /* .box {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                max-width: 380px;                     ШАХМАТЫ
+            }
+            .box > div {
+                height: 50px;
+                box-sizing: border-box;
+                margin-bottom: 5px;
+                flex-basis: 50px;
+            }
+            .box > div:nth-child(odd) {
+                background-color: #000;
+            }
+            .box > div:nth-child(even) {
+                background-color: #fff;
+            } */
+
+
+
+
+
+
+
+
+/* body {
+  background-color: #222;
+  text-align: center;
+  padding-top: 400px;          
+}
+a {
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+  background: #710cf2;
+  padding: 15px 30px;
+  border-radius: 10px;
+  animation: light 1.5s linear infinite alternate;    
+}
+@keyframes light {
+  0% {
+      box-shadow: 20px  rgba(190, 77, 227, 0);
+  }  
+  100% {
+      box-shadow: 20px 0 rgb(227, 77, 77, 1);
+  }
+} */
+
+/* body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #23b499;
+    font-family:  Calibri;
+    color: #fff;
+}
+select {
+    appearance: none;
+    outline: 0;
+    box-shadow: 0;
+    border: 0;
+    background: #5c6664;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    font-family: Calibri;
+}
+select::-ms-expand {
+    display: none;
+}
+.select {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #5c6664;
+    overflow: hidden;
+    border-radius: .25em;
+}
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #2b2e2e;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+.select:hover::after {
+    color: #23b499;
+} */
