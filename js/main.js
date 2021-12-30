@@ -229,7 +229,9 @@ else {
 
 
 
-// let hour = 20;
+let hour = 20;
+// test commit
+
 // if (hour < 12) {
 //     console.log("ДОБРОЕ УТРО");
 // } 
