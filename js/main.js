@@ -229,11 +229,11 @@ else {
 
 
 
-// let hour = 19
-// if (hour <= 12) {
+// let hour = 20;
+// if (hour < 12) {
 //     console.log("ДОБРОЕ УТРО");
 // } 
-// else if (hour <= 18) {
+// else if (hour < 18) {
 //     console.log("ДОБРЫЙ ДЕНЬ");
 // }
 // else {
@@ -256,3 +256,5 @@ for (let rank in myPlatoon) {
     // }    
 }
 console.log(solderCounter);
+
+
