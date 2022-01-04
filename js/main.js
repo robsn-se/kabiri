@@ -259,4 +259,63 @@ for (let rank in myPlatoon) {
 }
 console.log(solderCounter);
 
+let starCount = 8;
+switch(starCount) {
+    case 1: 
+    console.log("майор");
+    break;
+    case 2:
+    console.log("лейтенант");
+    break;
+    case 3:
+    console.log("старший лейтенант");
+    break;
+    case 4:
+    console.log("капитан");
+    break;
+    default: 
+    console.log("неизвестно");
+}
 
+// alert("hello \n world");
+// // console.log(starCount);
+// // alert("hello world 2");
+
+// // confirm("Согласны с...?");
+// if(confirm("Согласны с...?")) {
+//     alert("Вы согласились!");
+// }
+// else{
+//     alert("Вы отказались!");
+// }
+
+// let text = prompt("Введите имя");
+// alert(text);
+
+let nextWrite = true;
+let userName = "";
+let users = [];
+
+while(nextWrite){
+    if(nextWrite = confirm("Хотите ли добавить пользователя?")){
+        userName = null;
+        while(!userName){
+            userName = prompt("Введите имя пользователя");
+            if(userName === null){
+                break;
+            }
+            else if(!userName){
+                alert("Вы не ввели имя");
+            }
+            else{
+                users.push(userName);
+                alert(`${userName} успешно сохранен`);
+            }
+        }
+    }
+    else{
+        alert("ну и ладно");
+    }
+}
+
+console.log(users);
