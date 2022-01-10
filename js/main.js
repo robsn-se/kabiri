@@ -259,22 +259,22 @@ for (let rank in myPlatoon) {
 }
 console.log(solderCounter);
 
-let starCount = 8;
+let starCount = 4;
 switch(starCount) {
     case 1: 
-    console.log("майор");
+    alert ("майор");
     break;
     case 2:
-    console.log("лейтенант");
+    alert("лейтенант");
     break;
     case 3:
-    console.log("старший лейтенант");
+    alert("старший лейтенант");
     break;
     case 4:
-    console.log("капитан");
+    alert("капитан");
     break;
     default: 
-    console.log("неизвестно");
+    alert("неизвестно");
 }
 
 // alert("hello \n world");
