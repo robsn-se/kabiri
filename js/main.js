@@ -259,23 +259,23 @@ for (let rank in myPlatoon) {
 }
 console.log(solderCounter);
 
-let starCount = 4;
-switch(starCount) {
-    case 1: 
-    alert ("майор");
-    break;
-    case 2:
-    alert("лейтенант");
-    break;
-    case 3:
-    alert("старший лейтенант");
-    break;
-    case 4:
-    alert("капитан");
-    break;
-    default: 
-    alert("неизвестно");
-}
+// let starCount = 4;
+// switch(starCount) {
+//     case 1: 
+//     alert ("майор");
+//     break;
+//     case 2:
+//     alert("лейтенант");
+//     break;
+//     case 3:
+//     alert("старший лейтенант");
+//     break;
+//     case 4:
+//     alert("капитан");
+//     break;
+//     default: 
+//     alert("неизвестно");
+// }
 
 // alert("hello \n world");
 // // console.log(starCount);
@@ -297,24 +297,24 @@ let userName = "";
 let users = [];
 
 while(nextWrite){
-    if(nextWrite = confirm("Хотите ли добавить пользователя?")){
+    if(nextWrite = confirm("Хотите ли добавить происшествие?")){
         userName = null;
         while(!userName){
-            userName = prompt("Введите имя пользователя");
+            userName = prompt("Введите краткое описание происшествия");
             if(userName === null){
                 break;
             }
             else if(!userName){
-                alert("Вы не ввели имя");
+                alert("отсутствует описание");
             }
             else{
                 users.push(userName);
-                alert(`${userName} успешно сохранен`);
+                alert(`${userName}. Ваше происшествие опубликовано`);
             }
         }
     }
     else{
-        alert("ну и ладно");
+        alert("Пусть будет на Вашей совести");
     }
 }
 
