@@ -293,7 +293,7 @@ console.log(solderCounter);
 // alert(text);
 
 let nextWrite = true;
-let userName = "";
+let userName = null;
 let users = [];
 
 while(nextWrite){
