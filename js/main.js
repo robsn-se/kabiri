@@ -20,7 +20,7 @@ myChar = false;
 
 function randomMethot(min, max){
     let myRandom = Math.round(min+ Math.random() * (max - min));
-    // console.log(myRandom);
+    console.log(myRandom);
     return myRandom; 
 }
 
@@ -276,6 +276,29 @@ console.log(solderCounter);
 //     default: 
 //     alert("неизвестно");
 // }
+
+// var x = prompt("Введите первое число", 100);
+// var y = prompt("Введите второе число", 100);
+// var z = prompt("Введите 1, чтобы сработал знак +, введите 2, чтобы сработал знак -, введите 3, чтобы сработал знак *, и введите 4, чтобы сработал знак /");
+
+// var x = parseInt(x);
+// var y = parseInt(y);
+
+// var result;
+
+// switch(z) {
+//     case '1': result = x + y;
+//         break
+//     case '1': result = x - y;
+//         break
+//     case '1': result = x * y;
+//         break
+//     case '1': result = x / y;
+//         break
+//     default: alert('Вы ввели не существующую команду!');
+// }
+// alert(result);
+
 
 // alert("hello \n world");
 // // console.log(starCount);
