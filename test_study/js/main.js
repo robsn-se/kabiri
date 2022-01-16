@@ -315,30 +315,60 @@ console.log(solderCounter);
 // let text = prompt("Введите имя");
 // alert(text);
 
-let nextWrite = true;
-let userName = null;
-let users = [];
+// let nextWrite = true;
+// let userName = null;
+// let users = [];
 
-while(nextWrite){
-    if(nextWrite = confirm("Хотите ли добавить происшествие?")){
-        userName = null;
-        while(!userName){
-            userName = prompt("Введите краткое описание происшествия");
-            if(userName === null){
-                break;
-            }
-            else if(!userName){
-                alert("отсутствует описание");
+// while(nextWrite){
+//     if(nextWrite = confirm("Хотите ли добавить происшествие?")){
+//         userName = null;
+//         while(!userName){
+//             userName = prompt("Введите краткое описание происшествия");
+//             if(userName === null){
+//                 break;
+//             }
+//             else if(!userName){
+//                 alert("отсутствует описание");
+//             }
+//             else{
+//                 users.push(userName);
+//                 alert(`${userName}. Ваше происшествие опубликовано`);
+//             }
+//         }
+//     }
+//     else{
+//         alert("Пусть будет на Вашей совести");
+//     }
+// }
+
+// console.log(users);
+
+
+
+
+
+
+// РАБОТА С "DOM"
+console.log(document.body);
+
+let curentColor = document.body.style.background;
+document.getElementById("changer_color").onclick = function(){
+    setInterval(() => {
+        setTimeout(function(){
+            if(document.body.style.background == curentColor){
+    
+                curentColor = document.body.style.background;
+                document.body.style.background = document.getElementById("choose_color").value;
             }
             else{
-                users.push(userName);
-                alert(`${userName}. Ваше происшествие опубликовано`);
+                document.body.style.background = curentColor;
             }
-        }
-    }
-    else{
-        alert("Пусть будет на Вашей совести");
-    }
+        }, 2000);
+    }, 1000);
 }
 
-console.log(users);
+
+
+document.getElementById("onInputReader").oninput = function(){
+    document.getElementById("onInputWriter").innerText = document.getElementById("onInputReader").value;
+}
