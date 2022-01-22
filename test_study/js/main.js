@@ -18,6 +18,14 @@ myChar = false;
 // let myRandom = Math.round(5 + Math.random() * (20 - 5));
 // console.log(myRandom);
 
+
+
+
+
+
+
+
+// ФУНКЦИЯ "РАНДОМ ГЕНЕРАТОР ЧИСЕЛ"
 function randomMethot(min, max){
     let myRandom = Math.round(min+ Math.random() * (max - min));
     console.log(myRandom);
@@ -31,11 +39,20 @@ let sum = myRandom + myRandom2;
 console.log("Моё число: " + myRandom + " второе число: " + myRandom2 + ";\n  Сумма = " + sum);
 console.log(`Моё число: ${myRandom},\n второе число: ${myRandom2};\n\nСумма = ${sum}`);
 
+
+
+
+// pow - возводит в степень, ОБЪЕКТ MATH
 console.log (Math.pow(6,3))
-// pow - возводит в степень
 
 
 
+
+
+
+
+
+// МАССИВЫ
 let myArray = ["один", 2, "три", [4, "пять"], 50, 8.6, 9];
 console.log(myArray[3][1]);
 // myArray[7] = "77";
@@ -56,6 +73,12 @@ console.log(ages.reduce(reducer))
 
 
 
+
+
+
+
+
+// ОБЪЕКТ "ВЗВОД"
 let myPlatoon = {
     lieutenant: {
         name: "Рубен",
@@ -165,8 +188,14 @@ console.log(Object.values(myPlatoon));
 console.log()
 
 
-// let counter = 0;
 
+
+
+
+
+
+// ЦИКЛЫ while, for in, for.
+// let counter = 0;
 // while(counter < 5) {
     // counter = counter + 1;
     // counter += 1;
@@ -191,8 +220,6 @@ console.log()
 // }
 
 
-
-
 // function calculateAge (year) {
 //     return 2021 - year;
 // }
@@ -205,6 +232,15 @@ console.log()
 //     console.log(lu);
 // }
 
+
+
+
+
+
+
+
+
+// УСЛОВИЕ "if else"
 let rank = "kapitan";
 let solder = "Ruben";
 
@@ -227,8 +263,6 @@ else {
     console.log("staf");
 }
 
-
-
 let hour = 20;
 // test commit
 
@@ -242,8 +276,14 @@ let hour = 20;
 //     console.log("ДОБРЫЙ ВЕЧЕР");
 // }
 
-let solderCounter = 0;
 
+
+
+
+
+
+// ОПЕРАТОРЫ break, continue.
+let solderCounter = 0;
 for (let rank in myPlatoon) {
     solderCounter ++;
     if (rank !== "lieutenant" && rank !== "sergeant2") {
@@ -259,6 +299,15 @@ for (let rank in myPlatoon) {
 }
 console.log(solderCounter);
 
+
+
+
+
+
+
+
+
+// УСЛОВИЕ Switch case: default
 // let starCount = 4;
 // switch(starCount) {
 //     case 1: 
@@ -300,6 +349,14 @@ console.log(solderCounter);
 // alert(result);
 
 
+
+
+
+
+
+
+
+//ОКНА alert,confirm, prompt
 // alert("hello \n world");
 // // console.log(starCount);
 // // alert("hello world 2");
@@ -348,12 +405,12 @@ console.log(solderCounter);
 
 
 
-// РАБОТА С "DOM"
+// РАБОТА С "DOM";  СОБЫТИЯ "onclick, oninput";setInterval,setTimeout;getElementById.
 console.log(document.body);
 
 let curentColor = document.body.style.background;
 document.getElementById("changer_color").onclick = function(){
-    setInterval(() => {
+    // setInterval(() => {
         setTimeout(function(){
             if(document.body.style.background == curentColor){
     
@@ -363,12 +420,22 @@ document.getElementById("changer_color").onclick = function(){
             else{
                 document.body.style.background = curentColor;
             }
-        }, 2000);
-    }, 1000);
+        }, 5000);
+    // }, 3000);
 }
-
-
 
 document.getElementById("onInputReader").oninput = function(){
     document.getElementById("onInputWriter").innerText = document.getElementById("onInputReader").value;
+}
+
+
+// document.getElementsByClassName("blok");
+// console.log(document.getElementsByClassName("blok"));
+window.onload = function(){
+    console.log(document.querySelector(".blok"));
+}
+
+
+document.onclick = function(event){
+    event.target.classList.toggle("rotate_animation");
 }
