@@ -24,20 +24,19 @@ myChar = false;
 
 
 
-
 // ФУНКЦИЯ "РАНДОМ ГЕНЕРАТОР ЧИСЕЛ"
-function randomMethot(min, max){
-    let myRandom = Math.round(min+ Math.random() * (max - min));
-    console.log(myRandom);
-    return myRandom; 
-}
+// function randomMethot(min, max){
+//     let myRandom = Math.round(min+ Math.random() * (max - min));
+//     console.log(myRandom);
+//     return myRandom; 
+// }
 
-let myRandom = randomMethot(3, 36);
-let myRandom2 = randomMethot(9, 45);
-let sum = myRandom + myRandom2;
+// let myRandom = randomMethot(3, 36);
+// let myRandom2 = randomMethot(9, 45);
+// let sum = myRandom + myRandom2;
 
-console.log("Моё число: " + myRandom + " второе число: " + myRandom2 + ";\n  Сумма = " + sum);
-console.log(`Моё число: ${myRandom},\n второе число: ${myRandom2};\n\nСумма = ${sum}`);
+// console.log("Моё число: " + myRandom + " второе число: " + myRandom2 + ";\n  Сумма = " + sum);
+// console.log(`Моё число: ${myRandom},\n второе число: ${myRandom2};\n\nСумма = ${sum}`);
 
 
 
@@ -299,6 +298,26 @@ for (let rank in myPlatoon) {
 }
 console.log(solderCounter);
 
+// let userName = null;
+
+
+//         while(!userName){
+//             userName = prompt("Введите свой возраст");
+//             if(userName < 18){
+//                 alert("доступ запрещен")
+//             }
+//             else if(userName > 18){
+//                 alert("отлично");
+//                 break;
+//             }
+//             else{
+//                 push(userName);
+//                 alert(`${userName}. Ваш возраст опубликован`);
+//             }
+//         }
+  
+
+// console.log(users);
 
 
 
@@ -308,6 +327,7 @@ console.log(solderCounter);
 
 
 // УСЛОВИЕ Switch case: default
+
 // let starCount = 4;
 // switch(starCount) {
 //     case 1: 
@@ -357,6 +377,7 @@ console.log(solderCounter);
 
 
 //ОКНА alert,confirm, prompt
+
 // alert("hello \n world");
 // // console.log(starCount);
 // // alert("hello world 2");
@@ -371,6 +392,32 @@ console.log(solderCounter);
 
 // let text = prompt("Введите имя");
 // alert(text);
+
+let nextWrite = true;
+let userName = null;
+let users = [];
+while(nextWrite){
+    if(nextWrite = confirm("необходимо будет ввести возрастные данные")){
+        userName = null;
+        while(!userName){
+            userName = prompt("Введите СВОЙ возраст");
+            if(userName === null){
+                break;
+            }
+            else if(!userName){
+                alert("отсутствует запись");
+            }
+            else{
+                users.push(userName);
+                alert(`${userName}. Ваше возраст опубликовано`);
+            }
+        }
+    }
+    else{
+        alert("Пусть будет на Вашей совести");
+    }
+}
+console.log(users);
 
 // let nextWrite = true;
 // let userName = null;
@@ -397,7 +444,6 @@ console.log(solderCounter);
 //         alert("Пусть будет на Вашей совести");
 //     }
 // }
-
 // console.log(users);
 
 
@@ -406,28 +452,37 @@ console.log(solderCounter);
 
 
 // РАБОТА С "DOM";  СОБЫТИЯ "onclick, oninput";setInterval,setTimeout;getElementById.
+
 console.log(document.body);
 
-let curentColor = document.body.style.background;
-document.getElementById("changer_color").onclick = function(){
-    // setInterval(() => {
-        setTimeout(function(){
-            if(document.body.style.background == curentColor){
+// let curentColor = document.body.style.background;
+// document.getElementById("changer_color").onclick = function(){
+//     // setInterval(() => {
+//         setTimeout(function(){
+//             if(document.body.style.background == curentColor){
     
-                curentColor = document.body.style.background;
-                document.body.style.background = document.getElementById("choose_color").value;
-            }
-            else{
-                document.body.style.background = curentColor;
-            }
-        }, 5000);
-    // }, 3000);
-}
+//                 curentColor = document.body.style.background;
+//                 document.body.style.background = document.getElementById("choose_color").value;
+//             }
+//             else{
+//                 document.body.style.background = curentColor;
+//             }
+//         }, 500);
+//     // }, 3000);
+// }
 
-document.getElementById("onInputReader").oninput = function(){
-    document.getElementById("onInputWriter").innerText = document.getElementById("onInputReader").value;
-}
+// document.getElementById("onInputReader").oninput = function(){
+//     document.getElementById("onInputWriter").innerText = document.getElementById("onInputReader").value;
+// }
 
+
+
+
+
+
+
+
+// ОБЪЕКТ window; querySelector;
 
 // document.getElementsByClassName("blok");
 // console.log(document.getElementsByClassName("blok"));
@@ -435,7 +490,8 @@ window.onload = function(){
     console.log(document.querySelector(".blok"));
 }
 
-
-document.onclick = function(event){
+document.querySelector(".flex_child").onclick = function(event){
     event.target.classList.toggle("rotate_animation");
 }
+
+
