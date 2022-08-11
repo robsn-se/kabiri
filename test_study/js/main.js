@@ -511,5 +511,3 @@ window.onload = function(){
 document.onclick = function(event){
     event.target.classList.toggle("rotate_animation");
 }
-
-
