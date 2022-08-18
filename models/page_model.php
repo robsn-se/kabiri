@@ -15,7 +15,7 @@ function createConnect(){
 }
 
 function getActions($dbConnect):array {
-    $tables = mysqli_query($dbConnect, "SELECT a.`title`, u.`name` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image', a.`discription`, a.`date`, a.`address` FROM `actions` a
+    $tables = mysqli_query($dbConnect, "SELECT a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image', a.`discription`, a.`date`, a.`address` FROM `actions` a
     LEFT JOIN `users` u ON u.`id` = a.`user`
     LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`;");
     return mysqli_fetch_all($tables, MYSQLI_ASSOC);

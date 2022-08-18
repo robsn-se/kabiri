@@ -245,6 +245,10 @@ h2{
     color: #fff;
     border: 2px solid #fff;
     background: none;
+    cursor: pointer;
+}
+.btn:hover{
+    background: #ede9e95f;
 }
 
 .heder_main_blok > div:first-child{
@@ -273,12 +277,18 @@ h2{
 }
 
 .container_registration label {
+    font-size: 20px;
     color: #f2f2f2;
-     padding: 15px;
-     display: inline-block;
-     border: none;
+    padding: 10px;
+    display: inline-block;
+    border: none;
 
  }
+ .container_registration input {
+    padding: 5px 20px;
+    font-size: 16px;
+}
+
 
 h3{
     color: #fff;

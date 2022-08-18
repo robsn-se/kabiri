@@ -29,6 +29,14 @@ SELECT `id`, `title`, `discription`, `location` AS 'place' FROM `actions` WHERE 
 -- Выбор данных по условию WHERE, выбор с и-AND
 
 
+SELECT * FROM `users` WHERE `email` LIKE '%k%';
+--Поиск по содержащимуся куску значения 
+
+
+SELECT * FROM `users` WHERE `email` REGEXP '[A-z]*@[A-z]*';
+--Поиск по регулярному выражению
+
+
 SELECT * FROM `comments` WHERE `action` = 1 ORDER BY `id` DESC;
 -- ASC прямой порядок (по умолчанию) DESC обратный порядок, выдачи
 

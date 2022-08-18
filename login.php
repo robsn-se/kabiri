@@ -12,15 +12,27 @@ require_once "./controlers/page_controler.php";
 </head>
 <body>
     <div class="container_registration">
-        <form action="">
+        <form action="" method="post">
             <h3>Регистрация</h3>
-            <div class="login">
-                <label for=""><b>Логин</b></label>
-                <input placeholder="Введите логин" tabindex="1" name="username" type="text">
+            <input type="hidden" name="form_name" value="registration">
+            <div>
+                <label for="email">Email</label>
+                <input id="email" placeholder="Введите email" tabindex="1" name="email" type="email">
             </div>
-            <div class="password">
-                <label for=""><b>Пароль</b></label>
-                <input placeholder="Введите пароль" tabindex="2" name="username" type="password">
+            <div>
+                <label for="login">Логин</label>
+                <input id="login" placeholder="Введите уникальный логин" tabindex="2" name="login" type="text">
+            </div>
+            <div>
+                <label for="birthday">Дата рождения</label>
+                <input id="birthday"  tabindex="3" name="birthday" type="date">
+            </div>
+            <div>
+                <label for="password">Пароль</label>
+                <input id="password" placeholder="Введите пароль" tabindex="4" name="password" type="password">
+            </div>
+            <div>
+                <input placeholder="Повторите пароль" tabindex="5" name="password" type="password">
             </div>
             <div>
                 <button type="submit" class="btn">Зарегистрироваться</button>
