@@ -14,6 +14,7 @@ if (isset($_POST["form_name"])) {
             $connect, 
             "INSERT INTO `users` SET `email` = '{$_POST["email"]}', `login` = '{$_POST["login"]}', `password` = '{$_POST["password"]}', `birthday` = '{$_POST["birthday"]}';"
         );
+
         print_r(mysqli_insert_id($connect));
     }
 }

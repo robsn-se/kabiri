@@ -113,18 +113,24 @@ $counter = 0;
 // while($counter < count($colors)){
 //     echo $colors[$counter++];
 // }
+if (in_array('blue', $colors)) {    //isset($colors[2])
+    echo "yes";
+    
+}
 
 for($counter = 0; $counter < count($colors); $counter++){
     echo $colors[$counter];
 }
 //  исходный массив     ключи      значения или ссылки, если с &      
-// foreach($platoon as $rangKey => &$unitValue){
- 
-//     if ($unitValue["age"] > 27){
-//         continue;
-//     }
-//     $unitValue["age"] += 2;
-// }
+foreach($platoon as $rangKey => &$unitValue){
+    if (strpos($rangKey, "corporal") !== false) {
+        $unitValue["position"] = "У";
+    }
+    if ($unitValue["age"] > 27){
+        continue;
+    }
+    $unitValue["age"] += 2;
+}
 // print_r($platoon);
 
 // foreach($platoon as $rangKey => &$unitValue){
@@ -143,7 +149,7 @@ for($counter = 0; $counter < count($colors); $counter++){
 // }
 // print_r($platoon);
 
-function addAge(array $people, int $yersCount = 2):array {
+function addAge(?array $people, int|float $yersCount = 2):?array {  // | символ для указания нескольких типов значений входного параметров или выходного        ? для того чтобы указать какой-то один тип данных 
     foreach($people as $rangKey => &$unitValue){
         $unitValue["age"] += $yersCount;
     }
