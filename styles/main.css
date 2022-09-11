@@ -25,6 +25,7 @@ header{
 }
 
 .heder_main_blok {
+    height: 80px;
     position: sticky;
     padding-left: 75px;
     padding-right: 75px;
@@ -50,17 +51,26 @@ header{
 .heder_logo{
     padding-right: 30px;
     opacity: 0.9;
-    /* border-radius: 50px; */
-    box-shadow: 50px 50px 15px rgb(rgb(0, 0, 0));
     box-sizing: border-box;
 }
 
-.smol{
-    background-image: url();
+.smol h4{
+    margin: 0 30% 30px 30%;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+}
+.smol .btn{
+    margin: 0 auto 30px;
+    width: 400px;
 }
 
 
+
 h1{
+    margin: 50px;
     display: block;
     text-align: center;
     color: rgb(255, 255, 255);
@@ -225,8 +235,9 @@ h2{
     font-size: 18px;
 }
 
-.button{
-
+.button a {
+    margin: 0 auto 30px;
+    width: 400px;
 }
 
 .btn {
