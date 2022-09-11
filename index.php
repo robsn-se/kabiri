@@ -1,6 +1,4 @@
-<?php
-require_once "./controlers/page_controler.php";
-?>
+<?php require_once "./controlers/page_controler.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +17,7 @@ require_once "./controlers/page_controler.php";
 <header>
     <div class="heder_main_blok">
         <div class="">
-            <a class="heder_logo" href="file:///C:/Users/RUBEN/Desktop/kabiri%20best/test_study/test.html" target="__blank">
+            <a class="heder_logo" href="/">
                 <img src="./images/логотип.gif" alt="" width="70px">
             </a>
             <h1 style="display: inline-block;">KABERI</h1>
@@ -33,50 +31,21 @@ require_once "./controlers/page_controler.php";
             <a class="social__icon telegram-plane" href="#" title="telegram ">
                 <i class="fab fa-telegram-plane"></i>
             </a>
-            <a class="social__icon youtube" href="#" title="youtube"title="youtube">
+            <a class="social__icon youtube" href="#" title="youtube">
                 <i class="fab fa-youtube"></i>
             </a>
         </div>
     </div>
 </header>
 <article>
-    <div class="smol">
-        <h2>Место, где люди защищают друг друга</h2>
-        <div class="button">
-            <a href="https://kaberi.ru/login.php" target="_blank" class="btn">Зарегистрироваться</a>
-        </div>
-        <h4 style="text-align: center; color:  rgb(255, 255, 255); font-family: 'Roboto', sans-serif; font-weight: 200; font-size: 20px;">
-            Подключайтесь и живите в безопасности.
-            <strong>Kaberi</strong> - это приложение личной безопасности,
-            которое дает вам возможность защитить себя, а также людей и места,
-            которые вам небезразличны. Kaberi предоставляет Вам  уведомления на основе
-            местоположения и помогает избежать потенциально опасные ситуации.
-        </h4>
-          <hr>
-          <h1>Вместе строим будущее общественной безопасности</h1>
-    </div>
-    <div class="map_smolensk">
-        <div id="map"></div>
-    </div>
-    <ul class="event_list">
-        <?php foreach($actionsList as $oneAction){ ?>
-            <li>
-                <img src="<?= $oneAction["image"] ?>" alt="">
-                <div>
-                    <h3><?= $oneAction["title"] ?></h3>
-                    <h6><?= $oneAction["date"] ?></h6>
-                    <p>
-                        <?= $oneAction["discription"] ?>
-                    </p>
-                    <h5><?= $oneAction["address"] ?></h5>
-                </div>
-            </li>
-            <hr>
-        <?php } ?>
-    </ul>
-    <div class="button">
-        <a href="https://kaberi.ru/login.php" target="_blank" class="btn">Зарегистрироваться</a>
-    </div>
+    <?php
+    if (isset($_GET["page"]) && $_GET["page"] == "login") {
+        include "view_templates/login_page.php";
+    }
+    else {
+        include "view_templates/main_page.php";
+    }
+    ?>
 </article>
 <script src ="js/main.js"></script>
 <script src ="js/yandex_map.js"></script>

@@ -10,6 +10,9 @@
         <input id="password" placeholder="Введите пароль" tabindex="2" name="password" type="password">
     </div>
     <div>
-        <button type="submit" class="btn">Войти</button>
+        <button type="submit" class="btn">ВОЙТИ</button>
+    </div>
+    <div>
+        <a class="transition_link" href="/?page=login&login=registration">ЗАРЕГИСТРИРОВАТЬСЯ</a>
     </div>
 </form>

@@ -23,4 +23,7 @@
     <div>
         <button type="submit" class="btn">Зарегистрироваться</button>
     </div>
+    <div>
+        <a class="transition_link" href="/?page=login">ВОЙТИ</a>
+    </div>
 </form>
