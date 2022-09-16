@@ -20,7 +20,7 @@
             <a class="heder_logo" href="/">
                 <img src="./images/логотип.gif" alt="" width="70px">
             </a>
-            <h1 style="display: inline-block;">KABERI</h1>
+            <h1>KABERI</h1>
         </div>
         <div class="social">
             <a class="social__icon twitter" href="#" title="twitter">
@@ -39,11 +39,11 @@
 </header>
 <article>
     <?php
-    if (isset($_GET["page"]) && $_GET["page"] == "login") {
-        include "view_templates/login_page.php";
+    if (isset($_GET["page"]) && file_exists("view_templates/pages/{$_GET["page"]}.php")) {
+        include "view_templates/pages/{$_GET["page"]}.php";
     }
     else {
-        include "view_templates/main_page.php";
+        include "view_templates/pages/main.php";
     }
     ?>
 </article>

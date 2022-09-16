@@ -1,5 +1,5 @@
 <form action="" method="post">
-    <h3>Регистрация</h3>
+    <h3>Вход</h3>
     <input type="hidden" name="form_name" value="authorization">
     <div>
         <label for="login">Логин</label>

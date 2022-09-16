@@ -45,15 +45,15 @@ SELECT * FROM `comments` WHERE `action` = 1 ORDER BY `id` DESC LIMIT 5;
 -- LIMIT ограничение, (последние 5 комментариев);
 
 
-INSERT INTO `users` (`login`, `name`, `birthday`, `password`) VALUES('ssnkd', 'дима', '2003-09-05', 'jhjvjb');
+INSERT INTO `users` (`login`, `email`, `birthday`, `password`) VALUES('ssnkd', 'дима', '2003-09-05', 'jhjvjb');
 -- Вставить в "INSERT INTO"  значения "VALUES"
 
 
-INSERT INTO `users` SET `login` = 'trewq', `name` = 'рома', `password` = 'asdfg', `birthday` = '2000-11-15';
+INSERT INTO `users` SET `login` = 'trewq', `email` = 'рома', `password` = 'asdfg', `birthday` = '2000-11-15';
 -- Вставка с использованием SET
 
 
-UPDATE `users` SET `name` = 'петя', `password` = 'asdfg' WHERE `name` = '';
+UPDATE `users` SET `email` = 'петя', `password` = 'asdfg' WHERE `email` = '';
 -- Обновление данных в строках
 
 
@@ -66,7 +66,7 @@ SELECT * FROM `users` WHERE `id` = (SELECT `user` FROM `actions` WHERE `title` =
 
 
 
-SELECT a.`title` AS 'action', u.`name` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image' FROM `actions` a
+SELECT a.`title` AS 'action', u.`email` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image' FROM `actions` a
 INNER JOIN `users` u ON u.`id` = a.`user`
 INNER JOIN `actions_images` ai ON a.`id` = ai.`action`
 WHERE a.`title` = 'авария';
@@ -74,7 +74,7 @@ WHERE a.`title` = 'авария';
 
 
 
-SELECT a.`title` AS 'action', u.`name` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image' FROM `actions` a
+SELECT a.`title` AS 'action', u.`email` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image' FROM `actions` a
 LEFT JOIN `users` u ON u.`id` = a.`user`
 LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
 WHERE a.`likes` = 1 OR u.`login` = 'ruben-se'
