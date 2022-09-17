@@ -1,9 +1,12 @@
 <div class="container_registration">
-    <?php if(@$_GET["login"] == "registration") {
-        include "view_templates/registration_form.php";
+    <?php
+
+    if (isset($_GET["login"]) && file_exists("view_templates/pages/login/{$_GET["login"]}.php")) {
+        include "view_templates/pages/login/{$_GET["login"]}.php";
     }
     else {
-        include "view_templates/authorization_form.php";
+        include "view_templates/pages/login/authorization.php";
     }
     ?>
 </div>
+
