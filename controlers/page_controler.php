@@ -10,14 +10,7 @@ $actionsList = getActions($connect);
 
 if (isset($_POST["form_name"])) {
     if ($_POST["form_name"] == "registration") {
-        $result = mysqli_query(
-            $connect, 
-            "INSERT INTO `users` SET `email` = '{$_POST["email"]}', `login` = '{$_POST["login"]}', `password` = '{$_POST["password"]}', `birthday` = '{$_POST["birthday"]}';"
-        );
-
-        if(mysqli_insert_id($connect)){
-
-            }
+        print_r(setUser($_POST));
 
     }
 }
