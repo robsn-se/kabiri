@@ -201,8 +201,10 @@ h2{
     color: white;
     text-decoration: none;
 }
-
-
+.transition_link:hover {
+    background-color: #333;
+    color: yellow;
+}
 
 .event_list li > img {
     width: 18em;
@@ -241,6 +243,10 @@ h2{
     width: 400px;
 }
 
+input:focus {
+    box-shadow: 0px 0px 10px rgb(226, 216, 216);
+}
+
 .btn {
     margin: 35px auto;
     font-family: 'Oswald', sans-serif;
@@ -260,8 +266,10 @@ h2{
     cursor: pointer;
 }
 .btn:hover{
-    background: #ede9e95f;
+    background-color: #333;
+    color: yellow;
 }
+
 
 .heder_main_blok > div:first-child{
     display: flex;
