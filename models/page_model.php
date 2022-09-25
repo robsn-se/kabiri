@@ -29,3 +29,9 @@ function setUser(array $data): int|string {
     );
     return mysqli_insert_id($connect);
 }
+
+function printData(mixed $data, bool $damp = false): void {
+    echo "<br><pre>";
+    $damp ? var_dump($data) : print_r($data);
+    echo "</pre><br>";
+}

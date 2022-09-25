@@ -2,6 +2,8 @@
 require_once "./config.php";
 require_once "./models/page_model.php";
 
+session_start();
+
 $connect = createConnect();
 $actionsList = getActions($connect);
 // echo "<pre>"; 
