@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form action="/?page=cabinet" method="post">
     <h3>Вход</h3>
     <input type="hidden" name="form_name" value="authorization">
     <div>
