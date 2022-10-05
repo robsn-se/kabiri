@@ -251,8 +251,8 @@ function createConnect(){
 
 
 
-$dbConnect = createConnect();
-$tables = mysqli_query($dbConnect, "SELECT a.`title` AS 'action', u.`name` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image', a.`discription` FROM `actions` a
+$connect = createConnect();
+$tables = mysqli_query($connect, "SELECT a.`title` AS 'action', u.`name` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image', a.`discription` FROM `actions` a
 LEFT JOIN `users` u ON u.`id` = a.`user`
 LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`;");
 print_r(mysqli_fetch_all($tables, MYSQLI_ASSOC));
