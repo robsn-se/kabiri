@@ -35,3 +35,29 @@ function printData(mixed $data, bool $damp = false): void {
     $damp ? var_dump($data) : print_r($data);
     echo "</pre><br>";
 }
+
+
+//1)создаем функцию protectValue для защиты значения от специальных символов например:srlgjeorghuie
+//2)параметр т.е аргумент $value имеет 4 типа данных,
+//3) возвращает функция: не $value(то есть если другой тип данных) и is_numeric($value)
+function protectValue(string|int|float|null $value): string|int|float|null {
+    return (!$value || is_numeric($value)) ? $value : "'$value'";
+}
+//создаем функцию createFieldsString (создать строку полей)
+function createFieldsString(array $fields, string $delimiter): string {
+    $fieldsString = "";
+    foreach ($fields as $field => $value) {
+        $value = protectValue($value);
+        $fieldsString .=  "`{$field}` = {$value} {$delimiter}";
+    }
+    return substr($fieldsString, 0, -(strlen($delimiter) + 1));
+}
+//создаем функцию getTableItemsByFields() получить элементы таблицы по полям
+function getTableItemsByFields(mysqli $connect, string $table, array $fields, string $delimiter): array
+{
+    $result = mysqli_query(
+        $connect,
+        "SELECT * FROM `{$table}` WHERE " . createFieldsString($fields, $delimiter) . ";"
+    );
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
