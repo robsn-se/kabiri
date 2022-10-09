@@ -1,5 +1,6 @@
-<form action="/?page=cabinet" method="post">
+<form method="post">
     <h3>Вход</h3>
+    <h6 class="warning"><?= $statusMessage ?></h6>
     <input type="hidden" name="form_name" value="authorization">
     <div>
         <label for="login">Логин</label>

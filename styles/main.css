@@ -33,7 +33,7 @@ header{
     align-items: center;
     justify-content: space-between;
     /* border: 1px ridge rgb(0, 0, 0); */
-    padding: 10px; 
+    padding: 10px;
     /* background: #1A1A1A;
     position: -webkit-sticky;
     position: sticky;
@@ -47,7 +47,7 @@ header{
     justify-content: space-evenly;
     align-items: stretch
 }
-    
+
 .heder_logo{
     padding-right: 30px;
     opacity: 0.9;
@@ -85,10 +85,10 @@ h1{
     align-items:center;
     justify-content:flex-end;
 }
-  
-  
+
+
   /*надо задать еще position relative and overflow hidden*/
-  
+
 .social__icon{
     text-decoration: none;
     display:flex;
@@ -104,14 +104,14 @@ h1{
     position: relative;
     overflow:hidden;
 }
-  
+
 .social__icon i {
     font-size: 26px;
     color: #67798e;
     transition: all 0.3s ease;
     z-index: 1;
 }
-  
+
 .social__icon:after{
     content: "";
     width: 70px;
@@ -121,7 +121,7 @@ h1{
     border-radius: 50%;
     transition: all 0.3s ease;
 }
-  
+
 .social__icon.instagram:after{
     background-color: #833AB4;
 }
@@ -144,24 +144,24 @@ h1{
     background-color: #00acee;
 }
   .social__icon.vk:after{
-    background-color: #597da3; 
+    background-color: #597da3;
 }
   .social__icon:hover {
     transform: translateY(-4px);
     box-shadow: 0px 0px 15px #597da3;
 }
-  
+
   .social__icon:hover i{
      color: #fff;
 }
-  
+
   .social__icon:hover:after{
     transform: translate(0);
 }
 
 li{
     text-shadow: red
-} 
+}
 
 h2{
     text-align: center;
@@ -176,7 +176,7 @@ h2{
 }
 
 #map{
-    width: 80%; 
+    width: 80%;
     height: 600px;
     margin: 0 auto;
 }
@@ -314,4 +314,9 @@ h3{
     color: #fff;
     font-weight: 900;
     font-size: 40px;
+}
+.warning {
+    color: darkred;
+    font-weight: bolder;
+    text-align: center;
 }

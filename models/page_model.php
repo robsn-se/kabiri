@@ -52,7 +52,7 @@ function createFieldsString(array $fields, string $delimiter): string {
     }
     return substr($fieldsString, 0, -(strlen($delimiter) + 1));
 }
-//создаем функцию getTableItemsByFields() получить элементы таблицы по полям
+//создаем функцию getTableItemsByFields() получить элементы таблицы по полям то есть получаем все данные о пользователе
 function getTableItemsByFields(mysqli $connect, string $table, array $fields, string $delimiter): array
 {
     $result = mysqli_query(

@@ -1,7 +1,7 @@
 <div class="smol">
     <h2>Место, где люди защищают друг друга</h2>
     <div class="button">
-        <a href="/?page=login" target="_blank" class="btn">Зарегистрироваться</a>
+        <a href="/?page=login" target="_blank" class="btn">Вход / Регистрация</a>
     </div>
     <h4 style="text-align: center; color:  rgb(255, 255, 255); font-family: 'Roboto', sans-serif; font-weight: 200; font-size: 20px;">
         Подключайтесь и живите в безопасности.
@@ -33,5 +33,5 @@
     <?php } ?>
 </ul>
 <div class="button">
-    <a href="/?page=login" class="btn">ЗАРЕГИСТРИРОВАТЬСЯ</a>
+    <a href="/?page=login" class="btn">Вход / Регистрация</a>
 </div>
