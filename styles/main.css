@@ -316,7 +316,9 @@ h3{
     font-size: 40px;
 }
 .warning {
+    margin: 0;
     color: darkred;
     font-weight: bolder;
     text-align: center;
+    font-size: 15px;
 }

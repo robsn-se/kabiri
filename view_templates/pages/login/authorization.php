@@ -1,6 +1,5 @@
 <form method="post">
     <h3>Вход</h3>
-    <h6 class="warning"><?= $statusMessage ?></h6>
     <input type="hidden" name="form_name" value="authorization">
     <div>
         <label for="login">Логин</label>
@@ -10,6 +9,7 @@
         <label for="password">Пароль</label>
         <input id="password" placeholder="Введите пароль" tabindex="2" name="password" type="password">
     </div>
+    <h6 class="warning"><?= $statusMessage ?></h6>
     <div>
         <button type="submit" class="btn">ВОЙТИ</button>
     </div>
