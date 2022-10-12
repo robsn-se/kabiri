@@ -28,6 +28,7 @@ if (isset($_POST["form_name"])) {
     unset($_POST["form_name"]);
     switch($formName) {
         case "registration":
+//            [a-z\d\-_]{2,100}@[a-z\d\-_]{2,30}\.[a-z]{2,10}
             print_r(setUser($_POST));
             break;
         case "authorization":
@@ -50,3 +51,4 @@ if (isset($_POST["form_name"])) {
             echo "НЕИЗВЕСТНАЯ ФОРМА";
     }
 }
+
