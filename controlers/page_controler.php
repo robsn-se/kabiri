@@ -28,19 +28,26 @@ if (isset($_POST["form_name"])) {
     unset($_POST["form_name"]);
     switch($formName) {
         case "registration":
-//            [a-z\d\-_]{2,100}@[a-z\d\-_]{2,30}\.[a-z]{2,10}
+//            [a-z\d\-_]{2,100}@[a-z\d\-_]{2,30}\.[a-z]{2,10} Email
             print_r(setUser($_POST));
             break;
         case "authorization":
-            $userData = getTableItemsByFields($connect, "users", $_POST, "AND");
-            if (!empty($userData)) { //проверяем, что мы получаем 1 пользователя
-                $_SESSION["authorization"] = $userData[0];
-                header("Location: /?page=cabinet");
+            if (preg_match("/[a-zA-Z\d\-_]{2,50}/", $_POST["login"])) {
+                $userData = getTableItemsByFields($connect, "users", $_POST, "AND");
+                if (!empty($userData)) { //проверяем, что мы получаем 1 пользователя
+                    $_SESSION["authorization"] = $userData[0];
+                    header("Location: /?page=cabinet");
+                }
+                else {
+                    $statusMessage = "Неверный логин или пароль";
+//                echo "<script>alert('Неверный логин или пароль')</script>";
+                }
             }
             else {
-                $statusMessage = "Неверный логин или пароль";
-//                echo "<script>alert('Неверный логин или пароль')</script>";
+                $statusMessage = "ERROR";
             }
+//            [a-zA-Z\d\-_]{2,50} Логин "akep_82-QP"
+//            [a-zA-Z\d\-_]{8,30} пароль "Roma-5225_i"
             break;
         case "cabinet_exit":
             unset($_SESSION["authorization"]);
@@ -51,4 +58,3 @@ if (isset($_POST["form_name"])) {
             echo "НЕИЗВЕСТНАЯ ФОРМА";
     }
 }
-
