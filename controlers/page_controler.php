@@ -22,8 +22,22 @@ $actionsList = getActions($connect);
 //        echo "НЕ ИЗВЕСТНАЯ ФОРМА";
 //    }
 //}
+const VALIDATION_RULES = [
+    "authorization" => [
+        "login" => [
+            "required" => true,
+            "pattern" => "/[a-zA-Z\d\-_]{2,50}/",
+        ],
+        "password" => [
+            "required" => true,
+            "pattern" => "/[a-zA-Z\d\-_]{2,30}/",
+        ]
+    ]
+];
+echo  VALIDATION_RULES["authorization"]["password"]["pattern"];
 $statusMessage = "";
 if (isset($_POST["form_name"])) {
+    print_r($_POST);
     $formName = $_POST["form_name"];
     unset($_POST["form_name"]);
     switch($formName) {
@@ -32,6 +46,17 @@ if (isset($_POST["form_name"])) {
             print_r(setUser($_POST));
             break;
         case "authorization":
+            if (count($_POST) !== count(VALIDATION_RULES["authorization"])) {
+                $statusMessage = "Не соответствие количества полей";
+                exit();
+            }
+            foreach ($_POST as $fieldName => $fieldValue) {
+
+            }
+            if (@$_POST["login"] && @$_POST["password"]) {
+                $statusMessage = "Названия полей не соответствуют форме";
+                exit();
+            }
             if (preg_match("/[a-zA-Z\d\-_]{2,50}/", $_POST["login"])) {
                 $userData = getTableItemsByFields($connect, "users", $_POST, "AND");
                 if (!empty($userData)) { //проверяем, что мы получаем 1 пользователя
@@ -39,7 +64,7 @@ if (isset($_POST["form_name"])) {
                     header("Location: /?page=cabinet");
                 }
                 else {
-                    $statusMessage = "Неверный логин или пароль";
+                    $statusMessage = "Неправильно указан логин и/или пароль";
 //                echo "<script>alert('Неверный логин или пароль')</script>";
                 }
             }
