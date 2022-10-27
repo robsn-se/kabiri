@@ -35,7 +35,7 @@ const VALIDATION_RULES = [
     ]
 ];
 echo  VALIDATION_RULES["authorization"]["password"]["pattern"];
-$statusMessage = "";
+$statusMessage = [];
 if (isset($_POST["form_name"])) {
     print_r($_POST);
     $formName = $_POST["form_name"];
@@ -46,16 +46,21 @@ if (isset($_POST["form_name"])) {
             print_r(setUser($_POST));
             break;
         case "authorization":
-            if (count($_POST) !== count(VALIDATION_RULES["authorization"])) {
-                $statusMessage = "Не соответствие количества полей";
-                exit();
+            if (count($_POST) !== count(VALIDATION_RULES[$formName])) {
+                $statusMessage[] = "Не соответствие количества полей";
             }
-            foreach ($_POST as $fieldName => $fieldValue) {
-
+            printData(VALIDATION_RULES[$formName]);
+            printData($_POST);
+            foreach (VALIDATION_RULES[$formName] as $fieldName => $fieldValue) {
+                if (!isset($_POST[$fieldName])) {
+                    $statusMessage[] = "Не соответствие название полей";
+                }
+                if ($fieldValue["required"] && !$_POST[$fieldName]){
+                    $statusMessage[] = "Поле $fieldName не заполнено";
+                }
             }
             if (@$_POST["login"] && @$_POST["password"]) {
-                $statusMessage = "Названия полей не соответствуют форме";
-                exit();
+                $statusMessage[] = "Названия полей не соответствуют форме";
             }
             if (preg_match("/[a-zA-Z\d\-_]{2,50}/", $_POST["login"])) {
                 $userData = getTableItemsByFields($connect, "users", $_POST, "AND");
@@ -64,12 +69,12 @@ if (isset($_POST["form_name"])) {
                     header("Location: /?page=cabinet");
                 }
                 else {
-                    $statusMessage = "Неправильно указан логин и/или пароль";
+                    $statusMessage[] = "Неправильно указан логин и/или пароль";
 //                echo "<script>alert('Неверный логин или пароль')</script>";
                 }
             }
             else {
-                $statusMessage = "ERROR";
+                $statusMessage[] = "ERROR";
             }
 //            [a-zA-Z\d\-_]{2,50} Логин "akep_82-QP"
 //            [a-zA-Z\d\-_]{8,30} пароль "Roma-5225_i"
@@ -82,4 +87,5 @@ if (isset($_POST["form_name"])) {
         default:
             echo "НЕИЗВЕСТНАЯ ФОРМА";
     }
+    @$statusMessage = implode("<br>", $statusMessage);
 }
