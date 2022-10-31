@@ -1,5 +1,6 @@
 <?php
 require_once "./config.php";
+require_once "./validation_rules.php";
 require_once "./models/page_model.php";
 
 //session_start(["cookie_lifetime" => 5]); время работы сессии
@@ -22,47 +23,20 @@ $actionsList = getActions($connect);
 //        echo "НЕ ИЗВЕСТНАЯ ФОРМА";
 //    }
 //}
-const VALIDATION_RULES = [
-    "authorization" => [
-        "login" => [
-            "required" => true,
-            "pattern" => "/[a-zA-Z\d\-_]{2,50}/",
-        ],
-        "password" => [
-            "required" => true,
-            "pattern" => "/[a-zA-Z\d\-_]{2,30}/",
-        ]
-    ]
-];
-echo  VALIDATION_RULES["authorization"]["password"]["pattern"];
 $statusMessage = [];
 if (isset($_POST["form_name"])) {
-    print_r($_POST);
     $formName = $_POST["form_name"];
     unset($_POST["form_name"]);
+    validation($formName, $_POST, $statusMessage);
     switch($formName) {
         case "registration":
+            if (empty($statusMessage)) {
+                print_r(setUser($_POST));
+            }
 //            [a-z\d\-_]{2,100}@[a-z\d\-_]{2,30}\.[a-z]{2,10} Email
-            print_r(setUser($_POST));
             break;
         case "authorization":
-            if (count($_POST) !== count(VALIDATION_RULES[$formName])) {
-                $statusMessage[] = "Не соответствие количества полей";
-            }
-            printData(VALIDATION_RULES[$formName]);
-            printData($_POST);
-            foreach (VALIDATION_RULES[$formName] as $fieldName => $fieldValue) {
-                if (!isset($_POST[$fieldName])) {
-                    $statusMessage[] = "Не соответствие название полей";
-                }
-                if ($fieldValue["required"] && !$_POST[$fieldName]){
-                    $statusMessage[] = "Поле $fieldName не заполнено";
-                }
-            }
-            if (@$_POST["login"] && @$_POST["password"]) {
-                $statusMessage[] = "Названия полей не соответствуют форме";
-            }
-            if (preg_match("/[a-zA-Z\d\-_]{2,50}/", $_POST["login"])) {
+            if (empty($statusMessage)) {
                 $userData = getTableItemsByFields($connect, "users", $_POST, "AND");
                 if (!empty($userData)) { //проверяем, что мы получаем 1 пользователя
                     $_SESSION["authorization"] = $userData[0];
@@ -72,9 +46,6 @@ if (isset($_POST["form_name"])) {
                     $statusMessage[] = "Неправильно указан логин и/или пароль";
 //                echo "<script>alert('Неверный логин или пароль')</script>";
                 }
-            }
-            else {
-                $statusMessage[] = "ERROR";
             }
 //            [a-zA-Z\d\-_]{2,50} Логин "akep_82-QP"
 //            [a-zA-Z\d\-_]{8,30} пароль "Roma-5225_i"
@@ -87,5 +58,5 @@ if (isset($_POST["form_name"])) {
         default:
             echo "НЕИЗВЕСТНАЯ ФОРМА";
     }
-    @$statusMessage = implode("<br>", $statusMessage);
 }
+@$statusMessage = implode("<br>", $statusMessage);

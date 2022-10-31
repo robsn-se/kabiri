@@ -20,6 +20,7 @@
     <div>
         <input placeholder="Повторите пароль" tabindex="5" name="password" type="password">
     </div>
+    <h6 class="warning"><?= $statusMessage ?></h6>
     <div>
         <button type="submit" class="btn">Зарегистрироваться</button>
     </div>

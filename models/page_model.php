@@ -61,3 +61,24 @@ function getTableItemsByFields(mysqli $connect, string $table, array $fields, st
     );
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
+
+function validation(string $formName, array $formData, array &$statusMessage): void {
+    if (count($formData) !== count(VALIDATION_RULES[$formName])) {
+        $statusMessage[] = "Не соответствие количества полей";
+    }
+    foreach (VALIDATION_RULES[$formName] as $fieldName => $fieldValue) {
+        if (!isset($formData[$fieldName])) {
+            $statusMessage[] = "Не найдено поле $fieldName в форме $formName";
+        }
+        if ($fieldValue["required"] && !$formData[$fieldName]){
+            $statusMessage[] = "Поле $fieldName не заполнено";
+        }
+        if (
+            @$fieldValue["pattern"]
+            && @$formData[$fieldName]
+            && !preg_match($fieldValue["pattern"], $formData[$fieldName])
+        ) {
+            $statusMessage[] = "Поле $fieldName не корректно заполнено";
+        }
+    }
+}
