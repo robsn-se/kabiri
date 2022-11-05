@@ -1,4 +1,7 @@
 <?php
+/**
+ * @throws Exception
+ */
 function createConnect(): mysqli {
     $connect = mysqli_connect(
         DB_HOST,
@@ -7,8 +10,7 @@ function createConnect(): mysqli {
         DB_NAME
     );
     if (!$connect) {
-        print_r('<br>' . 'Ошибка подключения (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
-        exit();
+        throw new Exception('<br>' . 'Ошибка подключения (' . mysqli_connect_errno() . ') '. mysqli_connect_error(), 1);
     }
     mysqli_query($connect, "SET NAMES utf8");
     return $connect;
@@ -21,13 +23,16 @@ function getActions(mysqli $connect):array {
     return mysqli_fetch_all($tables, MYSQLI_ASSOC);
 }
 
+/**
+ * @throws Exception
+ */
 function setUser(array $data): int|string {
     global $connect;
     mysqli_query(
         $connect,
         "INSERT INTO `users` SET `email` = '{$data["email"]}', `login` = '{$data["login"]}', `password` = '{$data["password"]}', `birthday` = '{$data["birthday"]}';"
     );
-    return mysqli_insert_id($connect);
+    return mysqli_insert_id($connect) || throw new Exception("Ошибка при создании пользователя");
 }
 
 function printData(mixed $data, bool $damp = false): void {
@@ -62,7 +67,11 @@ function getTableItemsByFields(mysqli $connect, string $table, array $fields, st
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
-function validation(string $formName, array $formData, array &$statusMessage): void {
+/**
+ * @throws Exception
+ */
+function validation(string $formName, array $formData): void {
+    $statusMessage = [];
     if (count($formData) !== count(VALIDATION_RULES[$formName])) {
         $statusMessage[] = "Не соответствие количества полей";
     }
@@ -80,5 +89,20 @@ function validation(string $formName, array $formData, array &$statusMessage): v
         ) {
             $statusMessage[] = "Поле $fieldName не корректно заполнено";
         }
+    }
+    if (!empty($statusMessage)) {
+        throw new Exception(implode("<br>", $statusMessage));
+    }
+}
+
+/**
+ * @throws Exception
+ */
+function checkAge(string $birthday): void {
+    if ((time() - SECONDS_OF_YEAR * MIN_USER_AGE) < strtotime($birthday)) {
+        throw new Exception("К сожалению, Вы слишком молоды");
+    }
+    elseif ((time() - SECONDS_OF_YEAR * MAX_USER_AGE) > strtotime($birthday)) {
+        throw new Exception("К сожалению, Вы слишком старый");
     }
 }

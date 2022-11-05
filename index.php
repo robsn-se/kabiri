@@ -45,6 +45,9 @@
     else {
         include "view_templates/pages/main.php";
     }
+    if ($statusMessage){
+        echo "<script>alert(\"{$statusMessage}\");</script>";
+    }
     ?>
 </article>
 <script src ="js/main.js"></script>

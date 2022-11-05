@@ -21,13 +21,11 @@ const VALIDATION_RULES = [
         ],
         "birthday" => [
             "required" => true,
-            "pattern" => "/[a-zA-Z\d\-_]{2,50}/",
+            "pattern" => "/[0-9]{4}-[0-9]{2}-[0-9]{2}/",
         ],
         "password" => [
             "required" => true,
-            "pattern" => "/[a-zA-Z\d\-_]{2,30}/",
+            "pattern" => "/[a-zA-Z\d\-_]{2,30}/"
         ]
     ]
-
-
 ];

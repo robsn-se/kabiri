@@ -18,7 +18,7 @@
         <input id="password" placeholder="Введите пароль" tabindex="4" name="password" type="password">
     </div>
     <div>
-        <input placeholder="Повторите пароль" tabindex="5" name="password" type="password">
+        <input placeholder="Повторите пароль" tabindex="5" type="password">
     </div>
     <h6 class="warning"><?= $statusMessage ?></h6>
     <div>
