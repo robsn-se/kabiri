@@ -9,26 +9,8 @@ session_start();
 $statusMessage = "";
 $actionsList = [];
 try {
-
     $connect = createConnect();
     $actionsList = getActions($connect);
-    // echo "<pre>";
-    // print_r($actionsList);
-    // print_r($_POST);
-
-    //if (isset($_POST["form_name"])) {
-    //    if ($_POST["form_name"] == "registration") {
-    //        print_r(setUser($_POST));
-    //    }
-    //    elseif ($_POST["form_name"] == "authorization") {
-    //        print_r(setUser($_POST));
-    //    }
-    //    else {
-    //        echo "НЕ ИЗВЕСТНАЯ ФОРМА";
-    //    }
-    //}
-    //printData($_POST["birthday"]);
-    //print_r($_POST["form_name"]);
     if (isset($_POST["form_name"])) {
         $formName = $_POST["form_name"];
         unset($_POST["form_name"]);
@@ -47,8 +29,6 @@ try {
                 else {
                     throw new Exception("Неправильно указан логин и/или пароль");
                 }
-    //            [a-zA-Z\d\-_]{2,50} Логин "akep_82-QP"
-    //            [a-zA-Z\d\-_]{8,30} пароль "Roma-5225_i"
                 break;
             case "cabinet_exit":
                 unset($_SESSION["authorization"]);
@@ -60,12 +40,15 @@ try {
         }
     }
 } catch (Throwable $e) {
-    $statusMessage = $e->getMessage();
-//    echo "<script>alert(\"{$e->getCode()}\");</script>";
-//    echo "<script>alert(\"{$e->getFile()}\");</script>";
-//    echo "<script>alert(\"{$e->getLine()}\");</script>";
-//    echo "<script>alert(\"{$e->getTrace()}\");</script>";
-//    echo "<script>alert(\"{$e->getTraceAsString()}\");</script>";
-
+    if (!$e->getCode()){
+        $statusMessage = $e->getMessage();
+    }
+    else{
+        file_put_contents(
+            "logs/log.log",
+            date("d-m-Y H:i:s") . " ==> {$e->getMessage()} | {$e->getFile()}({$e->getLine()}) \n{$e->getTraceAsString()} \n\n",
+            FILE_APPEND
+        );
+        $statusMessage = "Ой, что то пошло не так!\n Повторите действие позднее или обратитесь к администратору";
+    }
 }
-

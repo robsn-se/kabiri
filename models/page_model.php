@@ -70,11 +70,13 @@ function getTableItemsByFields(mysqli $connect, string $table, array $fields, st
 /**
  * @throws Exception
  */
+
 function validation(string $formName, array $formData): void {
     $statusMessage = [];
     if (count($formData) !== count(VALIDATION_RULES[$formName])) {
         $statusMessage[] = "Не соответствие количества полей";
     }
+
     foreach (VALIDATION_RULES[$formName] as $fieldName => $fieldValue) {
         if (!isset($formData[$fieldName])) {
             $statusMessage[] = "Не найдено поле $fieldName в форме $formName";
