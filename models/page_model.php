@@ -28,9 +28,13 @@ function getActions(mysqli $connect):array {
  */
 function setUser(array $data): int|string {
     global $connect;
+    if (mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM `users` WHERE `email` = '{$data["email"]}' OR `login` = '{$data["login"]}'"))){
+        throw new Exception("Пользователь с таким именем логином или email уже существует!");
+    }
+    $password = password_hash($data["password"],PASSWORD_DEFAULT);
     mysqli_query(
         $connect,
-        "INSERT INTO `users` SET `email` = '{$data["email"]}', `login` = '{$data["login"]}', `password` = '{$data["password"]}', `birthday` = '{$data["birthday"]}';"
+        "INSERT INTO `users` SET `email` = '{$data["email"]}', `login` = '{$data["login"]}', `password` = '{$password}', `birthday` = '{$data["birthday"]}';"
     );
     return mysqli_insert_id($connect) || throw new Exception("Ошибка при создании пользователя");
 }

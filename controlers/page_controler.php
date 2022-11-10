@@ -21,8 +21,9 @@ try {
                 print_r(setUser($_POST));
                 break;
             case "authorization":
-                $userData = getTableItemsByFields($connect, "users", $_POST, "AND");
-                if (!empty($userData)) { //проверяем, что мы получаем 1 пользователя
+
+                $userData = getTableItemsByFields($connect, "users", [$_POST["login"]], "");
+                if (password_verify($_POST["password"], $userData[0]["password"])){
                     $_SESSION["authorization"] = $userData[0];
                     header("Location: /?page=cabinet");
                 }
