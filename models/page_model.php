@@ -26,8 +26,8 @@ function getActions(mysqli $connect):array {
 /**
  * @throws Exception
  */
-function setUser(array $data): int|string {
-    global $connect;
+function userRegistration(mysqli $connect, array $data): string {
+    checkAge($data["birthday"]);
     if (mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM `users` WHERE `email` = '{$data["email"]}' OR `login` = '{$data["login"]}'"))){
         throw new Exception("Пользователь с таким именем логином или email уже существует!");
     }
@@ -36,9 +36,11 @@ function setUser(array $data): int|string {
         $connect,
         "INSERT INTO `users` SET `email` = '{$data["email"]}', `login` = '{$data["login"]}', `password` = '{$password}', `birthday` = '{$data["birthday"]}';"
     );
-    return mysqli_insert_id($connect) || throw new Exception("Ошибка при создании пользователя");
+    if (mysqli_insert_id($connect)) {
+        return "Пользователь с логином {$_POST["login"]} успешно создан";
+    }
+    throw new Exception("Ошибка при создании пользователя");
 }
-
 function printData(mixed $data, bool $damp = false): void {
     echo "<br><pre>";
     $damp ? var_dump($data) : print_r($data);
@@ -53,7 +55,7 @@ function protectValue(string|int|float|null $value): string|int|float|null {
     return (!$value || is_numeric($value)) ? $value : "'$value'";
 }
 //создаем функцию createFieldsString (создать строку полей)
-function createFieldsString(array $fields, string $delimiter): string {
+function createFieldsString(array $fields, string $delimiter = ""): string {
     $fieldsString = "";
     foreach ($fields as $field => $value) {
         $value = protectValue($value);
@@ -64,17 +66,36 @@ function createFieldsString(array $fields, string $delimiter): string {
 //создаем функцию getTableItemsByFields() получить элементы таблицы по полям то есть получаем все данные о пользователе
 function getTableItemsByFields(mysqli $connect, string $table, array $fields, string $delimiter): array
 {
+    $where = !empty($fields) ? (" WHERE " . createFieldsString($fields, $delimiter)) : "";
     $result = mysqli_query(
         $connect,
-        "SELECT * FROM `{$table}` WHERE " . createFieldsString($fields, $delimiter) . ";"
+        "SELECT * FROM `{$table}`{$where};"
     );
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+function authorization(mysqli $connect, array $authorizationData): void {
+    $password = $authorizationData["password"];
+    unset($authorizationData["password"]);
+    $userData = getTableItemsByFields($connect, "users", $authorizationData, "");
+    if (password_verify($password, $userData[0]["password"])){
+        $_SESSION["authorization"] = $userData[0];
+        header("Location: /?page=cabinet");
+    }
+    else {
+        throw new Exception("Неправильно указан логин и/или пароль");
+    }
+}
+
+function cabinet_exit(): void {
+    unset($_SESSION["authorization"]);
+    session_destroy();
+    header("Location: /");
 }
 
 /**
  * @throws Exception
  */
-
 function validation(string $formName, array $formData): void {
     $statusMessage = [];
     if (count($formData) !== count(VALIDATION_RULES[$formName])) {

@@ -27,5 +27,6 @@ const VALIDATION_RULES = [
             "required" => true,
             "pattern" => "/[a-zA-Z\d\-_]{2,30}/"
         ]
-    ]
+    ],
+    "cabinet_exit" => [],
 ];

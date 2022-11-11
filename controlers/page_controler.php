@@ -14,27 +14,16 @@ try {
     if (isset($_POST["form_name"])) {
         $formName = $_POST["form_name"];
         unset($_POST["form_name"]);
-        validation($formName, $_POST, $statusMessage);
+        validation($formName, $_POST);
         switch($formName) {
             case "registration":
-                checkAge($_POST["birthday"]);
-                print_r(setUser($_POST));
+                $statusMessage = userRegistration($connect, $_POST);
                 break;
             case "authorization":
-
-                $userData = getTableItemsByFields($connect, "users", [$_POST["login"]], "");
-                if (password_verify($_POST["password"], $userData[0]["password"])){
-                    $_SESSION["authorization"] = $userData[0];
-                    header("Location: /?page=cabinet");
-                }
-                else {
-                    throw new Exception("Неправильно указан логин и/или пароль");
-                }
+                authorization($connect, $_POST);
                 break;
             case "cabinet_exit":
-                unset($_SESSION["authorization"]);
-                session_destroy();
-                header("Location: /");
+                cabinet_exit();
                 break;
             default:
                 throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
