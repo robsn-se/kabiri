@@ -163,6 +163,17 @@ li{
     text-shadow: red
 }
 
+.user_img {
+    display: block;
+}
+.user_img img{
+    width: 200px;
+    border-radius: 100px;
+    height: 220px;
+    box-shadow: 9px 2px 20px 0px;
+    box-shadow: #833AB4;
+    margin: 40px;
+}
 h2{
     text-align: center;
     color: rgb(255, 255, 255);
@@ -179,6 +190,44 @@ h2{
     width: 80%;
     height: 600px;
     margin: 0 auto;
+}
+
+form {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+}
+.event_search {
+    /* background: #A3D0C3; */
+    margin: 100px auto;
+    width: 20%;
+}
+.event_search input {
+    width: 95%;
+    height: 42px;
+    padding-left: 10px;
+    border: 2px solid #373838;
+    border-radius: 5px;
+    outline: none;
+    background: #414141;
+    color: #ffffff;
+}
+.event_search button {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 45px;
+    height: 47px;
+    border: none;
+    background: #7BA7AB;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+.event_search button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #F9F0DA;
 }
 
 .event_list {
