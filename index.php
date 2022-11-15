@@ -15,27 +15,7 @@
 </head>
 <body>
 <header>
-    <div class="heder_main_blok">
-        <div class="">
-            <a class="heder_logo" href="/">
-                <img src="./images/логотип.gif" alt="" width="70px">
-            </a>
-            <h1>KABERI</h1>
-        </div>
-        <div class="social">
-            <a class="social__icon twitter" href="#" title="twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a class="social__icon vk" href="https://vk.com/id608634445" target="__blank" title="vk">
-                <i class="fab fa-vk"></i>
-            <a class="social__icon telegram-plane" href="#" title="telegram">
-                <i class="fab fa-telegram-plane"></i>
-            </a>
-            <a class="social__icon youtube" href="#" title="youtube">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </div>
-    </div>
+    <?php include "view_templates/header.php"; ?>
 </header>
 <article>
     <?php

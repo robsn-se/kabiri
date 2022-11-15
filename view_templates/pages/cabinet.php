@@ -1,46 +1,61 @@
 <?php require_once "./controlers/cabinet_controler.php";?>
 
 <?php if (@$_SESSION["authorization"]) { ?>
-    <div class="user_img">
-        <img src="myFoto.JPG" alt="">
+        <details class="settings container_registration">
+            <summary>Настройки</summary>
+            <div>
+                <label for="email">Email</label>
+                <input id="email" placeholder="Введите email" tabindex="1" name="email" type="email">
+                <button type="submit" class="btn">Изменить</button>
+            </div>
+            <div>
+                <label for="login">Логин</label>
+                <input id="login" placeholder="Введите уникальный логин" tabindex="2" name="login" type="text">
+                <button type="submit" class="btn">Изменить</button>
+            </div>
+            <div>
+                <label for="birthday">Дата рождения</label>
+                <input id="birthday"  tabindex="3" name="birthday" type="date">
+                <button type="submit" class="btn">Изменить</button>
+            </div>
+            <div>
+                <label for="password">Пароль</label>
+                <input id="password" placeholder="Введите пароль" tabindex="4" name="password" type="password">
+                <button type="submit" class="btn">Изменить</button>
+            </div>
+            <div>
+                <label for="avatar">Аватар</label>
+                <input id="avatar" placeholder="Изменить" tabindex="5" name="avatar" type="file">
+            </div>
+        </details>
+    <div class="main_info">
+        <h1>РАССКАЗАТЬ О СОБЫТИИ</h1>
+        <button type="submit" class="btn">ДОБАВИТЬ СОБЫТИЕ</button>
     </div>
-    <div>
-        <div class="welcome">
-            <strong>Добро пожаловать, <?= $_SESSION["authorization"]["login"] ?>!</strong>
-        </div>
-        <form method="post">
-            <input type="hidden" name="form_name" value="cabinet_exit">
-            <button type="submit" class="btn">Выйти</button>
+    <div class="add_action">
+        <form action="">
+            <div>
+                <label for="action_title">Название события</label>
+                <input type="text" name="title" id="action_title">
+            </div>
+            <div>
+                <label for="description">Описание происшествия</label>
+                <textarea name="description" id="description"></textarea>
+            </div>
+            <div>
+                <label for="location">Местоположение</label>
+                <input type="text" name="location" id="location">
+            </div>
+            <div>
+                <label for="type">Тип происшествия</label>
+                <input type="text" name="type" id="type">
+            </div>
+            <div>
+                <button type="submit" class="btn">Отправить событие</button>
+            </div>
         </form>
     </div>
-    <div>
-        <h1>Личный кабинет пользователя</h1>
-    </div>
-    <div class="map_smolensk">
-        <div id="map"></div>
-    </div>
-    <div class="event_search">
-        <form>
-            <input type="text" placeholder="Поиск события">
-            <button type="submit"></button>
-        </form>
-    </div>
-    <ul class="event_list">
-        <?php foreach($actionsList as $oneAction){ ?>
-            <li>
-                <img src="<?= $oneAction["image"] ?>" alt="">
-                <div>
-                    <h3><?= $oneAction["title"] ?></h3>
-                    <h6><?= $oneAction["date"] ?></h6>
-                    <p>
-                        <?= $oneAction["discription"] ?>
-                    </p>
-                    <h5><?= $oneAction["address"] ?></h5>
-                </div>
-            </li>
-            <hr>
-        <?php } ?>
-    </ul>
 <?php } else { ?>
     <strong>СТРАНИЦА НЕ ДОСТУПНА</strong>
 <?php } ?>
+
