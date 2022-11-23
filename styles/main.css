@@ -285,6 +285,10 @@ input:focus {
     box-shadow: 0px 0px 10px rgb(226, 216, 216);
 }
 
+textarea:focus{
+    box-shadow: 0px 0px 10px rgb(226, 216, 216);
+}
+
 .btn {
     font-family: 'Oswald', sans-serif;
     padding: 10px 30px;
@@ -355,14 +359,54 @@ h3{
     text-align: center;
     font-size: 15px;
 }
-.settings{
+.add_action{
     display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-content: center;
-    align-items: flex-end;
+    text-align: center;
+}
+.add_action label{
+    font-size: 20px;
+    color: #f2f2f2;
+    padding: 10px;
+    display: inline-block;
+    border: none;
+}
+.add_action form{
+    padding: 35px;
+    width: min-content;
+    margin: 20px auto;
+}
+.add_action form > div{
+    padding: 10px;
+}
+.settings{
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
     color: white;
     cursor: pointer;
+}
+.settings form{
+    padding: 35px;
+    width: min-content;
+    margin: 20px auto;
+}
+.settings form div{
+    padding: 20px;
+    flex-direction: column;
+}
+.settings label{
+    font-size: 20px;
+    color: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    align-content: center;
+    border: none;
+    justify-content: space-around
+}
+.settings input{
+    margin: 15px;
 }
 .welcome {
     display: flex;
