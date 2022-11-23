@@ -3,7 +3,7 @@
 <?php if (@$_SESSION["authorization"]) { ?>
         <details class="settings">
             <summary>
-                <img src="settings.png" alt="" width="40px">
+                <img src="settings.png" alt="" width="18px">
                 Настройки
             </summary>
             <form action="">

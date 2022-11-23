@@ -352,6 +352,12 @@ h3{
     font-weight: 900;
     font-size: 40px;
 }
+summary::marker {
+    content: "";
+}
+summary img{
+
+}
 .warning {
     margin: 0;
     color: #ff5b5b;
