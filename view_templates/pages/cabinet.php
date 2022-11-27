@@ -3,7 +3,7 @@
 <?php if (@$_SESSION["authorization"]) { ?>
         <details class="settings">
             <summary>
-                <img src="settings.png" alt="" width="18px">
+                <i class="fa-solid fa-gear"></i>
                 Настройки
             </summary>
             <form action="">
@@ -34,10 +34,11 @@
             </form>
         </details>
     <div class="main_info">
-        <h1>РАССКАЗАТЬ О СОБЫТИИ</h1>
-<!--        <button type="submit" class="btn">ДОБАВИТЬ СОБЫТИЕ</button>-->
+        <button type="button" class="btn">ДОБАВИТЬ СОБЫТИЕ</button>
     </div>
-    <div class="add_action">
+    <div class="add_action modal_window is_visible">
+        <i class="closer fa-solid fa-xmark"></i>
+        <h4>РАССКАЗАТЬ О СОБЫТИИ</h4>
         <form action="">
             <div>
                 <label for="action_title">Название события</label>
@@ -63,4 +64,3 @@
 <?php } else { ?>
     <strong>СТРАНИЦА НЕ ДОСТУПНА</strong>
 <?php } ?>
-

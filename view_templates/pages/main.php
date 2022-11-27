@@ -21,9 +21,12 @@
 <div class="event_search">
     <form>
         <input type="text" placeholder="Поиск события">
+        <span class="text-field__aicon">
+            <i class="fa-solid fa-magnifying-glass"></i
+        </span>
     </form>
 </div>
-<ul class="event_list">
+<ul class="event_list" id="style-2">
     <?php foreach($actionsList as $oneAction){ ?>
         <li>
             <img src="<?= $oneAction["image"] ?>" alt="">
