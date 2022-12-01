@@ -34,9 +34,9 @@
             </form>
         </details>
     <div class="main_info">
-        <button type="button" class="btn">ДОБАВИТЬ СОБЫТИЕ</button>
+        <button type="button" class="btn open_modal" data-modal_id="add_action">ДОБАВИТЬ СОБЫТИЕ</button>
     </div>
-    <div class="add_action modal_window is_visible">
+    <div class="modal_window" id="add_action">
         <i class="closer fa-solid fa-xmark"></i>
         <h4>РАССКАЗАТЬ О СОБЫТИИ</h4>
         <form action="">

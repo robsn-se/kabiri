@@ -435,21 +435,21 @@ summary::marker {
         opacity: 1;
     }
 }
-.add_action {
+#add_action {
     width: 40%;
     top: 50px;
 }
-.add_action h4{
+.modal_window h4 {
     color: white;
 }
-.add_action label{
+.modal_window label{
     font-size: 20px;
     color: #f2f2f2;
     padding: 10px;
     display: inline-block;
     border: none;
 }
-.add_action form{
+.modal_window form{
     display: flex;
     padding: 0 35px;
     margin: 20px auto;
@@ -458,18 +458,18 @@ summary::marker {
     align-content: center;
     justify-content: center;
 }
-.add_action form > div{
+.modal_window form > div{
     padding: 10px;
 }
-.add_action input,.add_action textarea{
+.modal_window input,.modal_window textarea{
     width: 80%;
     padding: 10px 20px;
 }
-.add_action textarea{
+.modal_window textarea{
     resize: none;
     height: 200px;
 }
-.add_action form > div:last-child{
+.modal_window form > div:last-child{
     margin-top: 20px;
 }
 .closer{
