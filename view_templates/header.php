@@ -9,7 +9,7 @@
        <div class="welcome">
             <div>
                 <a href="/?page=cabinet">
-                    <img src="myFoto.JPG" alt="">
+                    <img src="<?= $_SESSION["authorization"]["avatar"] ?>" alt="">
                 </a>
             </div>
             <div>

@@ -9,17 +9,17 @@
             <form action="">
                 <div>
                     <label for="email">Email</label>
-                    <input id="email" placeholder="Введите email" tabindex="1" name="email" type="email">
+                    <input id="email" placeholder="Введите email" tabindex="1" name="email" type="email" value="<?= $_SESSION["authorization"]["email"] ?>">
                     <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
                     <label for="login">Логин</label>
-                    <input id="login" placeholder="Введите уникальный логин" tabindex="2" name="login" type="text">
+                    <input id="login" placeholder="Введите уникальный логин" tabindex="2" name="login" type="text" value="<?= $_SESSION["authorization"]["login"] ?>">
                     <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
                     <label for="birthday">Дата рождения</label>
-                    <input id="birthday"  tabindex="3" name="birthday" type="date">
+                    <input id="birthday"  tabindex="3" name="birthday" type="date" value="<?= $_SESSION["authorization"]["birthday"] ?>">
                     <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
