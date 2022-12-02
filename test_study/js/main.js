@@ -17,8 +17,10 @@ myChar = false;
 
 // let myRandom = Math.round(5 + Math.random() * (20 - 5));
 // console.log(myRandom);
-
-
+const students = ['Петя', 'Вася', 'Коля', 'Максим'];
+for (let i = 0, length = students.length; i < length; i++) {
+  console.log( students[i] );
+}
 
 
 
@@ -202,6 +204,22 @@ console.log()
 //     console.log(`counter: ${counter}`);
 // }
 // console.log(counter);
+
+// объявим переменную а и присвоим ей значение 0
+let a = 0;
+//цикл while с условием a <= 8
+while (a <= 8) {
+  // увеличим значение переменной a на 1
+  a++;
+  // если число нечётное (остаток от деления на 2 не равен 0), то...
+  if (a % 2 !== 0) {
+    // пропустим дальнейшее выполнение текущей итерации и перейдём к следующей
+    continue;
+  }
+  // выведем значение переменной a в консоль
+  console.log(a);
+}
+
 
 
 // let myArray = ["один", 2, "три", [4, "пять"], 50, 8.6, 9];
@@ -490,8 +508,6 @@ window.onload = function(){
     console.log(document.querySelector(".blok"));
 }
 
-document.querySelector(".flex_child").onclick = function(event){
+document.onclick = function(event){
     event.target.classList.toggle("rotate_animation");
 }
-
-

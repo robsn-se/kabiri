@@ -1,0 +1,84 @@
+/* 
+  .social{
+    width: 100%;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+  } */
+  
+  
+  /*надо задать еще position relative and overflow hidden*/
+  
+  /* .social__icon{
+    text-decoration: none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+    background-color: #f2f2f2;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px #00000080;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow:hidden;
+  }
+  
+  .social__icon i {
+    font-size: 26px;
+    color: #67798e;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+  
+  .social__icon:after{
+    content: "";
+    width: 70px;
+    height: 70px;
+    position:absolute;
+    transform: translate(0, 70px);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .social__icon.instagram:after{
+    background-color: #833AB4;
+  }
+  .social__icon.facebook:after{
+    background-color: #3b5998;
+  }
+  .social__icon.git:after{
+    background-color: #333;
+  }
+  .social__icon.twitter:after{
+    background-color: #00acee;
+  }
+  .social__icon.linkedin:after{
+    background-color: #0e76a8;
+  }
+  .social__icon.telegram-plane:after{
+    background-color: #00acee;
+  }
+  .social__icon.vk:after{
+    background-color: #00acee; 
+  }
+  .social__icon.youtube:after{
+    background-color: #e40a27; 
+  }
+  .social__icon:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 0px 15px #597da3;
+  }
+  
+  .social__icon:hover i{
+     color: #fff;
+  }
+  
+  .social__icon:hover:after{
+    transform: translate(0);
+  }
+
+li{
+  text-shadow: red
+} */

@@ -9,7 +9,7 @@
             <form action="">
                 <div>
                     <label for="email">Email</label>
-                    <input id="email" placeholder="Введите email" tabindex="1" name="email" type="email" va>
+                    <input id="email" placeholder="Введите email" tabindex="1" name="email" type="email">
                     <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>

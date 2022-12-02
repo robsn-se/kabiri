@@ -1,0 +1,189 @@
+body{
+                                                              /* background: #222;
+                                                              text-align: center;
+                                                              padding-top: 40px; */
+
+    margin: 0;
+    background: #d3d3d3; 
+    /* font-size: 16px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif; 
+    font: normal 16px 'Roboto', sans-serif; */
+  }
+                                                        /* 
+                                                          a {
+                                                            color: #fff;
+                                                            font-size: 20px;
+                                                            text-decoration: none;
+                                                            padding: 15px 30px;
+                                                            background: #710cf2;
+                                                            border-radius: 10px;
+                                                            animation: light 1.5s; linear infinite alternate;
+                                                          }
+
+                                                          @keyframes light {
+                                                            0% {
+                                                              box-shadow: 0 0 20px 0 rgda(190, 77, 277, 0);
+                                                            }
+                                                            100% {
+                                                              box-shadow: 0 0 20px 0 rgda(190, 77, 277, 0);
+                                                            }
+                                                          } */
+
+.info p {
+color: rgb(3, 40, 151);
+margin: 0;
+font-style: italic;
+/* text-transform: uppercase; */
+/* letter-spacing: 5px; */
+/* word-spacing: 10px; */
+
+}
+img {
+  width: 200px;
+  border-radius: 100px;
+  height: 220px;
+  box-shadow: 9px 2px 20px 0px;
+  box-shadow: #833AB4;
+ margin: 40px;
+}  
+/* 
+.maysoc {
+background: rgb(0, 233, 58);
+padding: 15px 20px 25px 30px;
+margin: 5px;
+border: black solid 5px;
+border-bottom-style: dashed;
+border-top-width: 15px;
+border-right-color: blue;
+} */
+
+.conta {
+  max-width: 750px;
+  margin: auto;
+
+
+}
+
+  .social{
+    width: 100%;
+    height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  
+  /*надо задать еще position relative and overflow hidden*/
+  
+  .social__icon{
+    text-decoration: none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+    background-color: #f2f2f2;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px #00000080;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow:hidden;
+  }
+  
+  .social__icon i {
+    font-size: 26px;
+    color: #67798e;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+  
+  .social__icon:after{
+    content: "";
+    width: 70px;
+    height: 70px;
+    position:absolute;
+    transform: translate(0, 70px);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .social__icon.instagram:after{
+    background-color: #833AB4;
+  }
+  .social__icon.facebook:after{
+    background-color: #3b5998;
+  }
+  .social__icon.git:after{
+    background-color: #333;
+  }
+  .social__icon.twitter:after{
+    background-color: #00acee;
+  }
+  .social__icon.linkedin:after{
+    background-color: #0e76a8;
+  }
+  .social__icon.telegram-plane:after{
+    background-color: #00acee;
+  }
+  .social__icon.vk:after{
+    background-color: #00acee; 
+  }
+  .social__icon:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 0px 15px #597da3;
+  }
+  
+  .social__icon:hover i{
+     color: #fff;
+  }
+  
+  .social__icon:hover:after{
+    transform: translate(0);
+  }
+
+li{
+  text-shadow: red
+}
+
+/* .box {
+  background-color: lightcoral;
+  width: 100px;
+  height: 200px;
+  margin: auto;
+  position: relative;
+} */
+
+.box::after {
+  content: '';
+  background-color: #fff;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 0;
+  top: calc(20%-20%);
+  transform: rotate(45deg);
+
+}
+
+/* .box {
+  display: block;
+  background-color: deepskyblue;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px 30px 100px 30px; */
+}
+
+/* .boxmodel > div {
+  float: left;
+  background: black;
+  height: 200px;
+  border: red solid 4px;
+  width: 700px;
+  box-sizing: border-box;
+} */
+
+.card.yellow {
+  color: #fff9dc;
+}
