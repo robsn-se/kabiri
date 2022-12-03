@@ -10,27 +10,27 @@
                 <div>
                     <label for="email">Email</label>
                     <input id="email" tabindex="1" name="email" type="email" value="<?= $_SESSION["authorization"]["email"] ?>">
-                    <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
                     <label for="login">Логин</label>
                     <input id="login" tabindex="2" name="login" type="text" value="<?= $_SESSION["authorization"]["login"] ?>">
-                    <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
                     <label for="birthday">Дата рождения</label>
                     <input id="birthday"  tabindex="3" name="birthday" type="date" value="<?= $_SESSION["authorization"]["birthday"] ?>">
-                    <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
                     <label for="password">Пароль</label>
+                    <input id="password" placeholder="Введите текущий пароль" tabindex="4" name="password" type="password">
                     <input id="password" placeholder="Введите новый пароль" tabindex="4" name="password" type="password">
-                    <button type="submit" class="btn">Изменить</button>
+                    <input placeholder="Повторите новый пароль" tabindex="5" type="password">
                 </div>
                 <div>
                     <label for="avatar">Аватар</label>
                     <input id="avatar" tabindex="5" name="avatar" type="file">
+                    <img src=<?= $_SESSION["authorization"]["avatar"] ?>" alt="">
                 </div>
+                <button type="submit" class="btn">Изменить</button>
             </form>
         </details>
     <div class="main_info">

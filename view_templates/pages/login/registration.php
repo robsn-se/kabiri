@@ -20,6 +20,10 @@
     <div>
         <input placeholder="Повторите пароль" tabindex="5" type="password">
     </div>
+    <div>
+        <label for="avatar">Аватар</label>
+        <input id="avatar" tabindex="6" name="avatar" type="file">
+    </div>
     <h6 class="warning"><?= $statusMessage ?></h6>
     <div>
         <button type="submit" class="btn">Зарегистрироваться</button>

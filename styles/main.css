@@ -360,11 +360,13 @@ textarea:focus{
     padding: 35px;
     width: min-content;
     margin: 20px auto;
+    color: white;
 }
 
 .container_registration form > div{
-
+    display: flex;
     padding: 10px;
+    flex-direction: column;
 }
 
 .container_registration label {
@@ -559,7 +561,7 @@ summary::marker {
     animation: fadeInFromNone .5s ease-in-out;
 }
 .settings form div{
-    padding: 20px;
+    /*padding: 20px;*/
     flex-direction: column;
 }
 .settings label{
