@@ -24,13 +24,12 @@
                 </div>
                 <div>
                     <label for="password">Пароль</label>
-                    <input id="password" tabindex="4" name="password" type="password" value="<?= $_SESSION["authorization"]["password"] ?>">>
                     <input id="password" placeholder="Введите новый пароль" tabindex="4" name="password" type="password">
                     <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
                     <label for="avatar">Аватар</label>
-                    <input id="avatar" placeholder="Изменить" tabindex="5" name="avatar" type="file">
+                    <input id="avatar" tabindex="5" name="avatar" type="file">
                 </div>
             </form>
         </details>

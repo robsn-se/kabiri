@@ -484,7 +484,7 @@ summary::marker {
         opacity: 1;
     }
 }
-.add_action {
+#add_action {
     width: 40%;
     top: 50px;
 }
@@ -537,7 +537,7 @@ summary::marker {
 }
 .settings{
     opacity: 0;
-    animation: settings 2.5s forwards;
+    animation: settings .5s forwards;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -554,6 +554,9 @@ summary::marker {
     padding: 35px;
     width: min-content;
     margin: 20px auto;
+    border: #adadad 5px solid;
+    background: #212020;
+    animation: fadeInFromNone .5s ease-in-out;
 }
 .settings form div{
     padding: 20px;
