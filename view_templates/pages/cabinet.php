@@ -9,12 +9,12 @@
             <form action="">
                 <div>
                     <label for="email">Email</label>
-                    <input id="email" placeholder="Введите email" tabindex="1" name="email" type="email" value="<?= $_SESSION["authorization"]["email"] ?>">
+                    <input id="email" tabindex="1" name="email" type="email" value="<?= $_SESSION["authorization"]["email"] ?>">
                     <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
                     <label for="login">Логин</label>
-                    <input id="login" placeholder="Введите уникальный логин" tabindex="2" name="login" type="text" value="<?= $_SESSION["authorization"]["login"] ?>">
+                    <input id="login" tabindex="2" name="login" type="text" value="<?= $_SESSION["authorization"]["login"] ?>">
                     <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
@@ -24,7 +24,8 @@
                 </div>
                 <div>
                     <label for="password">Пароль</label>
-                    <input id="password" placeholder="Введите пароль" tabindex="4" name="password" type="password">
+                    <input id="password" tabindex="4" name="password" type="password" value="<?= $_SESSION["authorization"]["password"] ?>">>
+                    <input id="password" placeholder="Введите новый пароль" tabindex="4" name="password" type="password">
                     <button type="submit" class="btn">Изменить</button>
                 </div>
                 <div>
