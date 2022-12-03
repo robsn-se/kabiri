@@ -21,8 +21,12 @@
         <input placeholder="Повторите пароль" tabindex="5" type="password">
     </div>
     <div>
-        <label for="avatar">Аватар</label>
-        <input id="avatar" tabindex="6" name="avatar" type="file">
+        <label class="label_avatar" for="avatar">
+            <span>Аватар</span>
+            <input class="input_avatar" id="avatar" name="avatar" type="file" tabindex="7">
+            <span class="input_file">Выберите файл</span>
+        </label>
+        <img src=<?= $_SESSION["authorization"]["avatar"] ?>" alt="">
     </div>
     <h6 class="warning"><?= $statusMessage ?></h6>
     <div>

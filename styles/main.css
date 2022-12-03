@@ -15,7 +15,6 @@ body{
     background-color: rgb(39, 43, 43);
 }
 
-
 header{
     background: rgb(37, 33, 33, 1);
     position: sticky;
@@ -486,6 +485,36 @@ summary::marker {
         opacity: 1;
     }
 }
+
+.input_avatar {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+.input_file {
+    display: inline-block;
+    font-size: 14px;
+    color: rgb(255 255 255);
+    text-align: center;
+    border-radius: 4px;
+    background-color: #464646;
+    line-height: 22px;
+    height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: white 2px solid;
+    margin: 30px;
+}
+
+.label_avatar{
+    position: relative;
+    display: inline-block;
+}
+
 #add_action {
     width: 40%;
     top: 50px;
@@ -571,10 +600,12 @@ summary::marker {
     display: flex;
     align-content: center;
     border: none;
-    justify-content: space-around
+    justify-content: space-around;
+    flex-direction: column;
 }
 .settings input{
     margin: 15px;
+    font-size: 16px;
 }
 .welcome {
     display: flex;

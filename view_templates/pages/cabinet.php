@@ -22,12 +22,15 @@
                 <div>
                     <label for="password">Пароль</label>
                     <input id="password" placeholder="Введите текущий пароль" tabindex="4" name="password" type="password">
-                    <input id="password" placeholder="Введите новый пароль" tabindex="4" name="password" type="password">
-                    <input placeholder="Повторите новый пароль" tabindex="5" type="password">
+                    <input id="password" placeholder="Введите новый пароль" tabindex="5" name="password" type="password">
+                    <input placeholder="Повторите новый пароль" tabindex="6" type="password">
                 </div>
                 <div>
-                    <label for="avatar">Аватар</label>
-                    <input id="avatar" tabindex="5" name="avatar" type="file">
+                    <label class="label_avatar" for="avatar">
+                        <span>Аватар</span>
+                        <input class="input_avatar" id="avatar" name="avatar" type="file" tabindex="7">
+                        <span class="input_file">Выберите файл</span>
+                    </label>
                     <img src=<?= $_SESSION["authorization"]["avatar"] ?>" alt="">
                 </div>
                 <button type="submit" class="btn">Изменить</button>
