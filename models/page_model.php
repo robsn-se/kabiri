@@ -34,7 +34,7 @@ function userRegistration(mysqli $connect, array $data): string {
     $password = password_hash($data["password"],PASSWORD_DEFAULT);
     mysqli_query(
         $connect,
-        "INSERT INTO `users` SET `email` = '{$data["email"]}', `login` = '{$data["login"]}', `password` = '{$password}', `birthday` = '{$data["birthday"]}';"
+        "INSERT INTO `users` SET `email` = '{$data["email"]}', `login` = '{$data["login"]}', `password` = '{$password}', `birthday` = '{$data["birthday"]}', `avatar` = '{$data["avatar"]}';"
     );
     if (mysqli_insert_id($connect)) {
         return "Пользователь с логином {$_POST["login"]} успешно создан";

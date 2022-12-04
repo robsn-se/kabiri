@@ -7,30 +7,42 @@
                 Настройки
             </summary>
             <form action="">
-                <div>
+                <div class="change_input">
                     <label for="email">Email</label>
-                    <input id="email" placeholder="Введите email" tabindex="1" name="email" type="email">
-                    <button type="submit" class="btn">Изменить</button>
+                    <input id="email" tabindex="1" name="email" type="email" data-old_value="<?= $_SESSION["authorization"]["email"] ?>" value="<?= $_SESSION["authorization"]["email"] ?>">
+                    <div class="change_buttons">
+                        <button>Сохранить</button>
+                        <button type="reset" class="fa-solid fa-xmark"></button>
+                    </div>
                 </div>
-                <div>
+                <div class="change_input">
                     <label for="login">Логин</label>
-                    <input id="login" placeholder="Введите уникальный логин" tabindex="2" name="login" type="text">
-                    <button type="submit" class="btn">Изменить</button>
+                    <input id="login" tabindex="2" name="login" type="text" data-old_value="<?= $_SESSION["authorization"]["login"] ?>" value="<?= $_SESSION["authorization"]["login"] ?>">
+                    <div class="change_buttons">
+                        <button>Сохранить</button>
+                        <button type="reset" class="fa-solid fa-xmark"></button>
+                    </div>
                 </div>
-                <div>
+                <div class="change_input">
                     <label for="birthday">Дата рождения</label>
-                    <input id="birthday"  tabindex="3" name="birthday" type="date">
-                    <button type="submit" class="btn">Изменить</button>
+                    <input id="birthday"  tabindex="3" name="birthday" type="date" data-old_value="<?= $_SESSION["authorization"]["birthday"] ?>" value="<?= $_SESSION["authorization"]["birthday"] ?>">
+                    <div class="change_buttons">
+                        <button>Сохранить</button>
+                        <button type="reset" class="fa-solid fa-xmark"></button>
+                    </div>
                 </div>
                 <div>
                     <label for="password">Пароль</label>
-                    <input id="password" placeholder="Введите пароль" tabindex="4" name="password" type="password">
-                    <button type="submit" class="btn">Изменить</button>
+                    <input placeholder="Введите текущий пароль" tabindex="4" name="password" type="password">
+                    <input id="password" placeholder="Введите новый пароль" tabindex="5" name="password" type="password">
+                    <input placeholder="Повторите новый пароль" tabindex="6" type="password">
                 </div>
                 <div>
                     <label for="avatar">Аватар</label>
-                    <input id="avatar" placeholder="Изменить" tabindex="5" name="avatar" type="file">
+                    <img src="<?= $_SESSION["authorization"]["avatar"] ?>" alt="">
+                    <input id="avatar" tabindex="7" name="avatar" type="file">
                 </div>
+                <button type="submit" class="btn">Изменить</button>
             </form>
         </details>
     <div class="main_info">

@@ -449,14 +449,51 @@ summary::marker {
     display: inline-block;
     border: none;
 }
-.modal_window form{
-    display: flex;
-    padding: 0 35px;
-    margin: 20px auto;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+.warning {
+    margin: 0;
+    color: #ff5b5b;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 15px;
+}
+.modal_window {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    transform: translateX(70%);
+    width: 70%;
+    text-align: center;
+    border: #adadad 5px solid;
+    background: #212020;
+    z-index: 2;
+}
+
+.modal_window.is_visible {
+    display: block;
+    opacity: 1;
+    animation: fadeInFromNone .5s ease-in-out;
+}
+
+@keyframes fadeInFromNone {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+#add_action {
+    width: 40%;
+    top: 50px;
 }
 .modal_window form > div{
     padding: 10px;
@@ -495,7 +532,6 @@ summary::marker {
     text-align: center;
     padding: 25px;
     color: white;
-    cursor: pointer;
 }
 @keyframes settings {
     0% {opacity: 0;}
@@ -504,10 +540,14 @@ summary::marker {
 .settings form{
     padding: 35px;
     width: min-content;
+    min-width: 350px;
     margin: 20px auto;
+    border: #adadad 5px solid;
+    background: #212020;
+    animation: fadeInFromNone .5s ease-in-out;
 }
 .settings form div{
-    padding: 20px;
+    /*padding: 20px;*/
     flex-direction: column;
 }
 .settings label{
@@ -517,10 +557,22 @@ summary::marker {
     display: flex;
     align-content: center;
     border: none;
-    justify-content: space-around
+    justify-content: space-around;
+    flex-direction: column;
+}
+.settings img {
+    width: 60%;
 }
 .settings input{
     margin: 15px;
+    font-size: 16px;
+}
+.change_input button {
+    margin: 0;
+    font-size: 12px;
+}
+.change_buttons {
+    display: none;
 }
 .welcome {
     display: flex;
