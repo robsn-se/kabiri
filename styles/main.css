@@ -486,57 +486,9 @@ summary::marker {
     }
 }
 
-.input_avatar {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    display: block;
-    width: 0;
-    height: 0;
-}
-
-.input_file {
-    display: inline-block;
-    font-size: 14px;
-    color: rgb(255 255 255);
-    text-align: center;
-    border-radius: 4px;
-    background-color: #464646;
-    line-height: 22px;
-    height: 40px;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    border: white 2px solid;
-    margin: 30px;
-}
-
-.label_avatar{
-    position: relative;
-    display: inline-block;
-}
-
 #add_action {
     width: 40%;
     top: 50px;
-}
-.add_action h4{
-    color: white;
-}
-.add_action label{
-    font-size: 20px;
-    color: #f2f2f2;
-    padding: 10px;
-    display: inline-block;
-    border: none;
-}
-.add_action form{
-    display: flex;
-    padding: 0 35px;
-    margin: 20px auto;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
 }
 .modal_window form > div{
     padding: 10px;
@@ -566,7 +518,7 @@ summary::marker {
 .closer:hover{
     border-color: white;
 }
-.settings{
+.settings {
     opacity: 0;
     animation: settings .5s forwards;
     border-radius: 20px;
@@ -575,7 +527,6 @@ summary::marker {
     text-align: center;
     padding: 25px;
     color: white;
-    cursor: pointer;
 }
 @keyframes settings {
     0% {opacity: 0;}
@@ -584,6 +535,7 @@ summary::marker {
 .settings form{
     padding: 35px;
     width: min-content;
+    min-width: 350px;
     margin: 20px auto;
     border: #adadad 5px solid;
     background: #212020;
@@ -603,9 +555,19 @@ summary::marker {
     justify-content: space-around;
     flex-direction: column;
 }
+.settings img {
+    width: 60%;
+}
 .settings input{
     margin: 15px;
     font-size: 16px;
+}
+.change_input button {
+    margin: 0;
+    font-size: 12px;
+}
+.change_buttons {
+    display: none;
 }
 .welcome {
     display: flex;
