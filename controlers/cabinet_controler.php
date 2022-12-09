@@ -1,24 +1,37 @@
 <?php
-require_once "./models/page_model.php";
-$cabinetData = null;
-//if (isset($_POST["form_name"]))
+require_once "../config.php";
+require_once "../validation_rules.php";
+require_once "../models/page_model.php";
 
-
-
-
-
-
-
-
-
-
-//количество посещений
-//$visit_count = null;
-//if (isset($_SESSION["visit_count"])) {
-//    $visit_count = $_SESSION["visit_count"] + 1;
-//}
-//$_SESSION["visit_count"] = $visit_count;
-//print("Количество посещений: " . $visit_count);
-//
-//
-//printData($_SESSION);
+//session_start(["cookie_lifetime" => 5]); время работы сессии
+//session_start();
+$statusMessage = "";
+$actionsList = [];
+try {
+    $connect = createConnect();
+    $actionsList = getActions($connect);
+    if (isset($_POST["form_name"])) {
+        $formName = $_POST["form_name"];
+        unset($_POST["form_name"]);
+//        validation($formName, $_POST);
+        switch($formName) {
+            case "setting":
+                echo json_encode($_POST);
+                break;
+            default:
+                throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
+        }
+    }
+} catch (Throwable $e) {
+    if (!$e->getCode()){
+        $statusMessage = $e->getMessage();
+    }
+    else{
+        file_put_contents(
+            "logs/log.log",
+            date("d-m-Y H:i:s") . " ==> {$e->getMessage()} | {$e->getFile()}({$e->getLine()}) \n{$e->getTraceAsString()} \n\n",
+            FILE_APPEND
+        );
+        $statusMessage = "Ой, что то пошло не так!\n Повторите действие позднее или обратитесь к администратору";
+    }
+}

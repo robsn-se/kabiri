@@ -363,13 +363,13 @@ textarea:focus{
 }
 
 .container_registration form{
-    padding: 35px;
     width: min-content;
+    min-width: 350px;
+    padding: 35px;
     margin: 20px auto;
 }
 
 .container_registration form > div{
-
     padding: 10px;
 }
 

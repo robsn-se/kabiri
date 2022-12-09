@@ -1,5 +1,3 @@
-<?php require_once "./controlers/cabinet_controler.php";?>
-
 <?php if (@$_SESSION["authorization"]) { ?>
         <details class="settings">
             <summary>
@@ -7,28 +5,29 @@
                 Настройки
             </summary>
             <form action="">
+                <input type="hidden" name="form_name" value="setting">
                 <div class="change_input">
                     <label for="email">Email</label>
                     <input id="email" tabindex="1" name="email" type="email" data-old_value="<?= $_SESSION["authorization"]["email"] ?>" value="<?= $_SESSION["authorization"]["email"] ?>">
                     <div class="change_buttons">
-                        <button>Сохранить</button>
-                        <button type="reset" class="fa-solid fa-xmark"></button>
+                        <button class="save_button">Сохранить</button>
+                        <button class="fa-solid fa-xmark"></button>
                     </div>
                 </div>
                 <div class="change_input">
                     <label for="login">Логин</label>
                     <input id="login" tabindex="2" name="login" type="text" data-old_value="<?= $_SESSION["authorization"]["login"] ?>" value="<?= $_SESSION["authorization"]["login"] ?>">
                     <div class="change_buttons">
-                        <button>Сохранить</button>
-                        <button type="reset" class="fa-solid fa-xmark"></button>
+                        <button class="save_button">Сохранить</button>
+                        <button class="fa-solid fa-xmark"></button>
                     </div>
                 </div>
                 <div class="change_input">
                     <label for="birthday">Дата рождения</label>
                     <input id="birthday"  tabindex="3" name="birthday" type="date" data-old_value="<?= $_SESSION["authorization"]["birthday"] ?>" value="<?= $_SESSION["authorization"]["birthday"] ?>">
                     <div class="change_buttons">
-                        <button>Сохранить</button>
-                        <button type="reset" class="fa-solid fa-xmark"></button>
+                        <button class="save_button">Сохранить</button>
+                        <button class="fa-solid fa-xmark"></button>
                     </div>
                 </div>
                 <div>

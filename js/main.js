@@ -21,15 +21,24 @@ document.querySelectorAll(".change_input input").forEach(item => {
     });
 });
 
-document.querySelectorAll(".change_buttons button").forEach(item => {
+document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item => {
     item.addEventListener("click", event => {
-        if (item.dataset.old_value) {
-            event.target.parentElement.querySelector(".fa-solid").style.display = "block";
-        } else {
-            event.target.parentElement.querySelector(".fa-solid").style.display = "none";
-        }
+        let input = event.target.parentElement.parentElement.querySelector("input");
+        input.value = input.dataset.old_value;
     });
 });
+
+document.querySelector(".settings form").addEventListener("submit", event => {
+    event.preventDefault();
+    let formData = new FormData(event.target);
+    fetch("controlers/cabinet_controler.php", {
+        method: "post",
+        body: formData
+    }).then(response => response.json().then(result => {
+        console.log(result);
+    }))
+})
+
 
 // const elementById = document.getElementById("open");
 // console.log(elementById);
