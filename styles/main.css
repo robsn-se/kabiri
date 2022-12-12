@@ -415,12 +415,6 @@ summary::marker {
     z-index: 2;
 }
 
-.modal_window.is_visible {
-    display: block;
-    opacity: 1;
-    animation: fadeInFromNone .5s ease-in-out;
-}
-
 @keyframes fadeInFromNone {
     0% {
         display: none;
