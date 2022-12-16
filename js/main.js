@@ -12,6 +12,8 @@ document.querySelectorAll(".open_modal").forEach(item => {
 
 document.querySelectorAll(".change_input input").forEach(item => {
     item.addEventListener("input", event => {
+        // console.log(item.value.trim());
+        // console.log(item.dataset.old_value);
         if (item.value.trim() && item.value.trim() !== item.dataset.old_value) {
             event.target.parentElement.querySelector(".change_buttons").style.display="inline-block";
         }
@@ -23,6 +25,7 @@ document.querySelectorAll(".change_input input").forEach(item => {
 
 document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item => {
     item.addEventListener("click", event => {
+        console.log(event);
         let input = event.target.parentElement.parentElement.querySelector("input");
         input.value = input.dataset.old_value;
     });
