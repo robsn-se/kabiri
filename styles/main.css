@@ -570,6 +570,14 @@ summary::marker {
 .change_buttons {
     display: none;
 }
+
+.wrong_input {
+    background-color: darkred;
+}
+.true_input {
+    background-color: lightgreen;
+}
+
 .welcome {
     display: flex;
     align-items: center;
