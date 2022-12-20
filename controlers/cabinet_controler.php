@@ -16,13 +16,7 @@ try {
 //        validation($formName, $_POST);
         switch($formName) {
             case "setting":
-                $params = "";
-                foreach ($_POST as $field => $value) {
-                    $params .= "`{$field}` = '{$value}', ";
-                }
-                $params = substr($params, 0, -2);
-                $update = mysqli_query($connect, "UPDATE `users` SET {$params} WHERE `id` = {$_SESSION["authorization"]["id"]}");
-                echo json_encode(mysqli_affected_rows($connect) ? "ok" : "error");
+                dataChange($connect);
                 break;
             default:
                 throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");

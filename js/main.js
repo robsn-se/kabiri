@@ -28,6 +28,7 @@ document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item =>
         console.log(event);
         let input = event.target.parentElement.parentElement.querySelector("input");
         input.value = input.dataset.old_value;
+        console.log(input.value);
     });
 });
 
@@ -42,53 +43,4 @@ document.querySelector(".settings form").addEventListener("submit", event => {
     }))
 })
 
-
-// const elementById = document.getElementById("open");
-// console.log(elementById);
-// const button = document.querySelectorAll('.btn');
-// const form = document.querySelectorAll('.modal_window');
-//
-// button.addEventListener('click', () => {
-//     form.classList.add("is_visible");
-// });
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const button = document.querySelectorAll('.btn');
-//     const rect = document.querySelectorAll('.modal_window');
-//
-//     button.addEventListener('click', () => {
-//         rect.classList.toggle('is_visible');
-//     });
-// });
-
-// document.getElementById(".open").forEach(i => {
-//     i.addEventListener("click", e => {
-//         document.querySelectorAll(".modal_window").display = "block";
-//     });
-// });
-
-// function viewDiv(){
-//     document.getElementById("modal_window").style.display = "block";
-// }
-
-// document.addEventListener('DOMContentLoaded', (e) => {
-//     document.querySelectorAll('.main_info').addEventListener("click", (e) => {
-//         document.querySelectorAll('is_visible').classList.add('openSearchForm');
-//     });
-// });
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const button = document.querySelectorAll(".btn");
-//     const rect = document.querySelectorAll(".modal_window");
-//
-//     button.addEventListener('click', () => {
-//         rect.classList.toggle('is-visible');
-//     });
-// });
-
-// document.querySelectorAll(".main_info").forEach(item => {
-//     item.addEventListener("click",  e => {
-//         e.target.parentElement.classList.add("is_visible");
-//     });
-// });
 

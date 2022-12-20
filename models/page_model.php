@@ -29,7 +29,7 @@ function getActions(mysqli $connect):array {
 function userRegistration(mysqli $connect, array $data): string {
     checkAge($data["birthday"]);
     if (mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM `users` WHERE `email` = '{$data["email"]}' OR `login` = '{$data["login"]}'"))){
-        throw new Exception("Пользователь с таким именем логином или email уже существует!");
+        throw new Exception("Пользователь с таким логином или email уже существует!");
     }
     $password = password_hash($data["password"],PASSWORD_DEFAULT);
     mysqli_query(
@@ -132,4 +132,14 @@ function checkAge(string $birthday): void {
     elseif ((time() - SECONDS_OF_YEAR * MAX_USER_AGE) > strtotime($birthday)) {
         throw new Exception("К сожалению, Вы слишком старый");
     }
+}
+
+function dataChange(mysqli $connect): void {
+    $params = "";
+    foreach ($_POST as $field => $value) {
+        $params .= "`{$field}` = '{$value}', ";
+    }
+    $params = substr($params, 0, -2);
+    $update = mysqli_query($connect, "UPDATE `users` SET {$params} WHERE `id` = {$_SESSION["authorization"]["id"]}");
+    echo json_encode(mysqli_affected_rows($connect) ? "ok" : "error");
 }
