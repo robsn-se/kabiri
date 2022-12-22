@@ -16,7 +16,8 @@ try {
 //        validation($formName, $_POST);
         switch($formName) {
             case "setting":
-                dataChange($connect);
+                dataChange($connect, $_POST);
+
                 break;
             default:
                 throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");

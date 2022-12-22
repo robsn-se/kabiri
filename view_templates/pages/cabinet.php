@@ -30,9 +30,9 @@
                         <button class="fa-solid fa-xmark"></button>
                     </div>
                 </div>
-                <div>
+                <div class="change_input">
                     <label for="password">Пароль</label>
-                    <input placeholder="Введите текущий пароль" tabindex="4" data-name="password" type="password">
+                    <input placeholder="Введите текущий пароль" tabindex="4" data-name="old_password" type="password">
                     <input class="check_target" id="password" placeholder="Введите новый пароль" tabindex="5" data-name="password" type="password">
                     <input class="check_input" placeholder="Повторите новый пароль" tabindex="6" type="password">
                 </div>

@@ -11,6 +11,9 @@ document.querySelectorAll(".open_modal").forEach(item => {
  });
 
 document.querySelectorAll(".change_input input").forEach(item => {
+    if (item.dataset.name === undefined) {
+        return true
+    }
     item.addEventListener("input", event => {
         if (item.value.trim() && item.value.trim() !== item.dataset.old_value) {
             item.name = item.dataset.name;

@@ -134,9 +134,23 @@ function checkAge(string $birthday): void {
     }
 }
 
-function dataChange(mysqli $connect): void {
+/**
+ * @throws Exception
+ */
+function dataChange(mysqli $connect, array $data): void {
+    if (isset($data["birthday"])) {
+        checkAge($data["birthday"]);
+    }
+    if (isset($data["password"], $data["old_password"])) {
+        $checkUser = getTableItemsByFields($connect, "users", ["id" => $_SESSION["authorization"]["id"]], "");
+        if (!password_verify($data["old_password"], $checkUser[0]["password"])){
+            throw new Exception("Не совпадает старый пароль");
+        }
+        $data["password"] = password_hash($data["password"],PASSWORD_DEFAULT);
+        unset($data["old_password"]);
+    }
     $params = "";
-    foreach ($_POST as $field => $value) {
+    foreach ($data as $field => $value) {
         $params .= "`{$field}` = '{$value}', ";
     }
     $params = substr($params, 0, -2);
