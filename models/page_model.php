@@ -100,11 +100,12 @@ function validation(string $formName, array $formData, bool $checkFieldExist = t
     if (!isset(VALIDATION_RULES[$formName])) {
         throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
     }
-    if ($checkFieldExist && count($formData) !== count(VALIDATION_RULES[$formName])) {
+    $formRules = VALIDATION_RULES[$formName];
+    if ($checkFieldExist && count($formData) !== count($formRules)) {
         throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
     }
     foreach ($formData as $fieldName => $fieldValue) {
-        if(!isset(VALIDATION_RULES[$formName][$fieldName])) {
+        if(!isset($formRules[$fieldName])) {
             throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
         }
     }
