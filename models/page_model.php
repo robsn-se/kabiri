@@ -96,17 +96,24 @@ function cabinet_exit(): void {
 /**
  * @throws Exception
  */
-function validation(string $formName, array $formData): void {
-    $statusMessage = [];
-    if (count($formData) !== count(VALIDATION_RULES[$formName])) {
-        $statusMessage[] = "Не соответствие количества полей";
+function validation(string $formName, array $formData, bool $checkFieldExist = true): void {
+    if (!isset(VALIDATION_RULES[$formName])) {
+        throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
     }
-
-    foreach (VALIDATION_RULES[$formName] as $fieldName => $fieldValue) {
-        if (!isset($formData[$fieldName])) {
-            $statusMessage[] = "Не найдено поле $fieldName в форме $formName";
+    if ($checkFieldExist && count($formData) !== count(VALIDATION_RULES[$formName])) {
+        throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
+    }
+    foreach ($formData as $fieldName => $fieldValue) {
+        if(!isset(VALIDATION_RULES[$formName][$fieldName])) {
+            throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
         }
-        if ($fieldValue["required"] && !$formData[$fieldName]){
+    }
+    $statusMessage = [];
+    foreach (VALIDATION_RULES[$formName] as $fieldName => $fieldValue) {
+        if ($checkFieldExist && !isset($formData[$fieldName])) {
+            throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
+        }
+        if (isset($fieldValue["required"]) && $fieldValue["required"] && !$formData[$fieldName]){
             $statusMessage[] = "Поле $fieldName не заполнено";
         }
         if (

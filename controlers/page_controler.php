@@ -29,15 +29,28 @@ try {
         }
     }
 } catch (Throwable $e) {
+    file_put_contents(
+        "logs/log.log",
+        date("d-m-Y H:i:s") . " ==> {$e->getMessage()} | {$e->getFile()}({$e->getLine()}) \n{$e->getTraceAsString()} \n\n",
+        FILE_APPEND
+    );
     if (!$e->getCode()){
         $statusMessage = $e->getMessage();
     }
     else{
-        file_put_contents(
-            "logs/log.log",
-            date("d-m-Y H:i:s") . " ==> {$e->getMessage()} | {$e->getFile()}({$e->getLine()}) \n{$e->getTraceAsString()} \n\n",
-            FILE_APPEND
-        );
         $statusMessage = "Ой, что то пошло не так!\n Повторите действие позднее или обратитесь к администратору";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
