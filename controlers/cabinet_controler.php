@@ -13,7 +13,7 @@ try {
     if (isset($_POST["form_name"])) {
         $formName = $_POST["form_name"];
         unset($_POST["form_name"]);
-//        validation($formName, $_POST, $formName != "setting");
+        validation($formName, $_POST, $formName != "setting");
         switch($formName) {
             case "setting":
                 dataChange($connect, $_POST);
