@@ -31,7 +31,6 @@ function userRegistration(mysqli $connect, array $data): string {
     if (mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM `users` WHERE `email` = '{$data["email"]}' OR `login` = '{$data["login"]}'"))){
         throw new Exception("Пользователь с таким логином или email уже существует!");
     }
-    $password = password_hash($data["password"],PASSWORD_DEFAULT);
     mysqli_query(
         $connect,
         "INSERT INTO `users` SET `email` = '{$data["email"]}', `login` = '{$data["login"]}', `password` = '{$password}', `birthday` = '{$data["birthday"]}', `avatar` = '{$data["avatar"]}';"
@@ -162,6 +161,24 @@ function dataChange(mysqli $connect, array $data): void {
         $params .= "`{$field}` = '{$value}', ";
     }
     $params = substr($params, 0, -2);
-    $update = mysqli_query($connect, "UPDATE `users` SET {$params} WHERE `id` = {$_SESSION["authorization"]["id"]}");
-    echo json_encode(mysqli_affected_rows($connect) ? "ok" : "error");
+    mysqli_query($connect, "UPDATE `users` SET {$params} WHERE `id` = {$_SESSION["authorization"]["id"]}");
+    if ($update = mysqli_affected_rows($connect)) {
+
+        $_SESSION["authorization"] = getTableItemsByFields(
+            $connect,
+            "users",
+            ["id" => $_SESSION["authorization"]["id"]],
+            ""
+        )[0];
+
+
+//        $userData = getTableItemsByFields(
+//            $connect,
+//            "users",
+//            ["id" => $_SESSION["authorization"]["id"]],
+//            ""
+//        );
+//        $_SESSION["authorization"] = $userData[0];
+    }
+    echo json_encode($update ? "ok" : "error");
 }
