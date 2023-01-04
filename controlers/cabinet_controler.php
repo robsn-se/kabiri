@@ -16,7 +16,11 @@ try {
         validation($formName, $_POST, $formName != "setting");
         switch($formName) {
             case "setting":
-                dataChange($connect, $_POST);
+                printAnswer(
+                    API_STATUS_OK,
+                    "Данные успешно обновлены",
+                    dataChange($connect, $_POST)
+                );
                 break;
             default:
                 throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
@@ -34,4 +38,5 @@ try {
         date("d-m-Y H:i:s") . " ==> {$e->getMessage()} | {$e->getFile()}({$e->getLine()}) \n{$e->getTraceAsString()} \n\n",
         FILE_APPEND
     );
+    printError($statusMessage);
 }

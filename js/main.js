@@ -37,13 +37,31 @@ document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item =>
 document.querySelector(".settings form").addEventListener("submit", event => {
     event.preventDefault();
     let formData = new FormData(event.target);
-    fetch("controlers/cabinet_controler.php", {
-        method: "post",
-        body: formData
-    }).then(response => response.json().then(result => {
-        console.log(result);
-    }))
+    sendAPIRequest("controlers/cabinet_controler.php", formData, alert);
 })
+
+function sendAPIRequest(url, data, callback) {
+    fetch(url, {
+        method: "post",
+        body: data
+    }).then(response => response.json().then(result => {
+        // console.log(result);
+        if (result.status === "ok") {
+            if (result.message) {
+                console.log(result.data);
+                callback(result.message);
+            } else {
+                callback(result.data);
+            }
+        }
+        else {
+            alert(result.message);
+        }
+    })).catch((error) => {
+        console.log(error);
+        alert("Внезапная ошибка");
+    })
+}
 
 document.querySelectorAll(".check_input, .check_target").forEach(item => {
     item.addEventListener("input", event => {

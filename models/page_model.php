@@ -62,7 +62,7 @@ function createFieldsString(array $fields, string $delimiter = ""): string {
     }
     return substr($fieldsString, 0, -(strlen($delimiter) + 1));
 }
-//создаем функцию getTableItemsByFields() получить элементы таблицы по полям то есть получаем все данные о пользователе
+//создаем функцию getTableItemsByFields() получить элементы таблицы по полям, то есть получаем все данные о пользователе
 function getTableItemsByFields(mysqli $connect, string $table, array $fields, string $delimiter): array
 {
     $where = !empty($fields) ? (" WHERE " . createFieldsString($fields, $delimiter)) : "";
@@ -73,6 +73,9 @@ function getTableItemsByFields(mysqli $connect, string $table, array $fields, st
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+/**
+ * @throws Exception
+ */
 function authorization(mysqli $connect, array $authorizationData): void {
     $password = $authorizationData["password"];
     unset($authorizationData["password"]);
@@ -144,7 +147,7 @@ function checkAge(string $birthday): void {
 /**
  * @throws Exception
  */
-function dataChange(mysqli $connect, array $data): void {
+function dataChange(mysqli $connect, array $data): int|string {
     if (isset($data["birthday"])) {
         checkAge($data["birthday"]);
     }
@@ -162,23 +165,26 @@ function dataChange(mysqli $connect, array $data): void {
     }
     $params = substr($params, 0, -2);
     mysqli_query($connect, "UPDATE `users` SET {$params} WHERE `id` = {$_SESSION["authorization"]["id"]}");
-    if ($update = mysqli_affected_rows($connect)) {
-
-        $_SESSION["authorization"] = getTableItemsByFields(
-            $connect,
-            "users",
-            ["id" => $_SESSION["authorization"]["id"]],
-            ""
-        )[0];
-
-
-//        $userData = getTableItemsByFields(
-//            $connect,
-//            "users",
-//            ["id" => $_SESSION["authorization"]["id"]],
-//            ""
-//        );
-//        $_SESSION["authorization"] = $userData[0];
+    updateSessionAuthorization($connect);
+    if (($update = mysqli_affected_rows($connect)) < 1) {
+        throw new Exception("Неудачное обновление");
     }
-    echo json_encode($update ? "ok" : "error");
+    return $update;
+}
+
+function updateSessionAuthorization(mysqli $connect): void {
+    $_SESSION["authorization"] = getTableItemsByFields(
+        $connect,
+        "users",
+        ["id" => $_SESSION["authorization"]["id"]],
+        ""
+    )[0];
+}
+
+function printAnswer(string $status, ?string $message = null, array|string|int|null $data = null): void {
+    echo json_encode(["status" => $status, "message" => $message, "data" => $data]);
+}
+
+function printError(string $message = "Что-то пошло не так", ?array $trace = null) {
+    printAnswer(API_STATUS_ERROR, $message, $trace);
 }

@@ -2,6 +2,9 @@
 const SECONDS_OF_YEAR = 31556926;
 const MIN_USER_AGE = 16;
 const MAX_USER_AGE = 100;
+const API_STATUS_OK = "ok";
+const API_STATUS_ERROR = "error";
+
 
 const DB_HOST = "31.31.198.123";
 const DB_USER = "u1571961_kaberi";
