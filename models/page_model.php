@@ -106,11 +106,11 @@ function validation(string $formName, array $formData, bool $checkFieldExist = t
     if ($checkFieldExist && count($formData) !== count($formRules)) {
         throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
     }
-    foreach ($formData as $fieldName => $fieldValue) {
-        if(!isset($formRules[$fieldName])) {
-            throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
-        }
-    }
+//    foreach ($formData as $fieldName => $fieldValue) {
+//        if(!isset($formRules[$fieldName])) {
+//            throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
+//        }
+//    }
     $statusMessage = [];
     foreach (VALIDATION_RULES[$formName] as $fieldName => $fieldValue) {
         if ($checkFieldExist && !isset($formData[$fieldName])) {
@@ -150,6 +150,16 @@ function checkAge(string $birthday): void {
 function dataChange(mysqli $connect, array $data): int|string {
     if (isset($data["birthday"])) {
         checkAge($data["birthday"]);
+    }
+    if (isset($data["email"])) {
+        if (mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM `users` WHERE `email` = '{$data["email"]}'"))) {
+            throw new Exception("Пользователь с таким email уже существует!");
+        }
+    }
+    if (isset($data["login"])) {
+        if (mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM `users` WHERE `login` = '{$data["login"]}'"))){
+            throw new Exception("Пользователь с таким логином уже существует!");
+        }
     }
     if (isset($data["password"], $data["old_password"])) {
         $checkUser = getTableItemsByFields($connect, "users", ["id" => $_SESSION["authorization"]["id"]], "");

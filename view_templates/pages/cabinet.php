@@ -11,7 +11,7 @@
                     <input id="email" tabindex="1" type="email" data-name="email" data-old_value="<?= $_SESSION["authorization"]["email"] ?>" value="<?= $_SESSION["authorization"]["email"] ?>">
                     <div class="change_buttons">
                         <button class="save_button">Сохранить</button>
-                        <button class="fa-solid fa-xmark"></button>
+                        <button type="button" class="fa-solid fa-xmark"></button>
                     </div>
                 </div>
                 <div class="change_input">
@@ -19,7 +19,7 @@
                     <input id="login" tabindex="2" type="text" data-name="login" data-old_value="<?= $_SESSION["authorization"]["login"] ?>" value="<?= $_SESSION["authorization"]["login"] ?>">
                     <div class="change_buttons">
                         <button class="save_button">Сохранить</button>
-                        <button class="fa-solid fa-xmark"></button>
+                        <button type="button" class="fa-solid fa-xmark"></button>
                     </div>
                 </div>
                 <div class="change_input">
@@ -27,7 +27,7 @@
                     <input id="birthday" tabindex="3" data-name="birthday" type="date" data-old_value="<?= $_SESSION["authorization"]["birthday"] ?>" value="<?= $_SESSION["authorization"]["birthday"] ?>">
                     <div class="change_buttons">
                         <button class="save_button">Сохранить</button>
-                        <button class="fa-solid fa-xmark"></button>
+                        <button type="button" class="fa-solid fa-xmark"></button>
                     </div>
                 </div>
                 <div class="change_input">
