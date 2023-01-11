@@ -31,9 +31,6 @@ const VALIDATION_RULES = [
         "password" => [
             "required" => true,
             "pattern" => PASSWORD_PATTERN
-        ],
-        "avatar" => [
-            "required" => true,
         ]
     ],
     "cabinet_exit" => [],
@@ -49,7 +46,6 @@ const VALIDATION_RULES = [
         ],
         "password" => [
             "pattern" => PASSWORD_PATTERN
-        ],
-        "avatar" => []
+        ]
     ]
 ];

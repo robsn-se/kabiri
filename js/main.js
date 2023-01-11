@@ -37,7 +37,10 @@ document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item =>
 document.querySelector(".settings form").addEventListener("submit", event => {
     event.preventDefault();
     let formData = new FormData(event.target);
-    sendAPIRequest("controlers/cabinet_controler.php", formData, alert);
+    sendAPIRequest("controlers/cabinet_controler.php", formData, result => {
+        alert(result)
+        location.reload()
+    });
 })
 
 function sendAPIRequest(url, data, callback) {

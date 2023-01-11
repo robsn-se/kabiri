@@ -152,13 +152,17 @@ function dataChange(mysqli $connect, array $data): int|string {
         checkAge($data["birthday"]);
     }
     if (isset($data["email"])) {
-        if (mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM `users` WHERE `email` = '{$data["email"]}'"))) {
+        $result = mysqli_query($connect,"SELECT * FROM `users` WHERE `email` = '{$data["email"]}'");
+        $resultEmail = mysqli_fetch_assoc($result);
+        if (!empty($resultEmail)) {
             throw new Exception("Пользователь с таким email уже существует!");
         }
     }
     if (isset($data["login"])) {
-        if (mysqli_fetch_assoc(mysqli_query($connect,"SELECT * FROM `users` WHERE `login` = '{$data["login"]}'"))){
-            throw new Exception("Пользователь с таким логином уже существует!");
+        $end = mysqli_query($connect,"SELECT * FROM `users` WHERE `login` = '{$data["login"]}'");
+        $endLogin = mysqli_fetch_assoc($end);
+        if (!empty($endLogin)) {
+            throw new Exception("Пользователь с таким email уже существует!");
         }
     }
     if (isset($data["password"], $data["old_password"])) {
@@ -169,6 +173,12 @@ function dataChange(mysqli $connect, array $data): int|string {
         $data["password"] = password_hash($data["password"],PASSWORD_DEFAULT);
         unset($data["old_password"]);
     }
+//    if (isset($_FILES["avatar"])) {
+//        $data["avatar"] = AVATAR_IMAGES . "/" . basename($_FILES["avatar"]["tmp_name"]);
+//        if (!move_uploaded_file($_FILES["avatar"]["tmp_name"], "../" . $data["avatar"])) {
+//            throw new Exception("Проблема с загрузкой фото");
+//        }
+//    }
     $params = "";
     foreach ($data as $field => $value) {
         $params .= "`{$field}` = '{$value}', ";

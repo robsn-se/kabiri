@@ -4,7 +4,7 @@
                 <i class="fa-solid fa-gear"></i>
                 Настройки
             </summary>
-            <form action="">
+            <form action="" enctype="multipart/form-data">
                 <input type="hidden" name="form_name" value="setting">
                 <div class="change_input">
                     <label for="email">Email</label>
@@ -39,7 +39,7 @@
                 <div>
                     <label for="avatar">Аватар</label>
                     <img src="<?= $_SESSION["authorization"]["avatar"] ?>" alt="">
-                    <input id="avatar" tabindex="7" data-name="avatar" type="file">
+                    <input id="avatar" tabindex="7" name="avatar" type="file">
                 </div>
                 <button type="submit" class="btn">Изменить</button>
             </form>
