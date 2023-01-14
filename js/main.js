@@ -37,10 +37,24 @@ document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item =>
 document.querySelector(".settings form").addEventListener("submit", event => {
     event.preventDefault();
     let formData = new FormData(event.target);
-    sendAPIRequest("controlers/cabinet_controler.php", formData, result => {
+    sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
         alert(result)
         location.reload()
     });
+})
+
+document.querySelector("#add_action form").addEventListener("submit", event => {
+    event.preventDefault();
+    let formData = new FormData(event.target)
+    sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
+        alert(result)
+        location.reload()
+    })
+})
+
+document.querySelector("#add_action input[name='action_images']").addEventListener("change", event => {
+    let images = event.target.files;
+
 })
 
 function sendAPIRequest(url, data, callback) {

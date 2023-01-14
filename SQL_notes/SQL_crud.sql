@@ -17,15 +17,15 @@
 -- Выборка всех полей из таблиц
 
 
-SELECT `title`, `discription`, `location` AS 'place' FROM `actions`;
+SELECT `title`, description, `location` AS 'place' FROM `actions`;
 -- Запрос из нескольких полей и переименование поля 'AS'
 
 
-SELECT `id`, `title`, `discription`, `location` AS 'place' FROM `actions` WHERE `id` = 1 OR `title` = 'авария';
+SELECT `id`, `title`, description, `location` AS 'place' FROM `actions` WHERE `id` = 1 OR `title` = 'авария';
 -- Выбор данных по условию WHERE, выбор с или-OR
 
 
-SELECT `id`, `title`, `discription`, `location` AS 'place' FROM `actions` WHERE `id` = 1 AND `title` = 'авария';
+SELECT `id`, `title`, description, `location` AS 'place' FROM `actions` WHERE `id` = 1 AND `title` = 'авария';
 -- Выбор данных по условию WHERE, выбор с и-AND
 
 

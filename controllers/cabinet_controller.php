@@ -2,6 +2,9 @@
 require_once "../config.php";
 require_once "../validation_rules.php";
 require_once "../models/page_model.php";
+require_once "../models/action_model.php";
+require_once "../models/cabinet_model.php";
+require_once "../models/validation_model.php";
 
 //session_start(["cookie_lifetime" => 5]); время работы сессии
 session_start();
@@ -20,6 +23,12 @@ try {
                     API_STATUS_OK,
                     "Данные успешно обновлены",
                     dataChange($connect, $_POST)
+                );
+                break;
+            case "add_action":
+                printAnswer(
+                    API_STATUS_OK,
+                    addAction($connect, $_POST),
                 );
                 break;
             default:

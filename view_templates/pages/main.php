@@ -34,7 +34,7 @@
                 <h3><?= $oneAction["title"] ?></h3>
                 <h6><?= $oneAction["date"] ?></h6>
                 <p>
-                    <?= $oneAction["discription"] ?>
+                    <?= $oneAction["description"] ?>
                 </p>
                 <h5><?= $oneAction["address"] ?></h5>
             </div>

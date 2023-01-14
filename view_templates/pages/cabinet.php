@@ -39,7 +39,7 @@
                 <div>
                     <label for="avatar">Аватар</label>
                     <img src="<?= $_SESSION["authorization"]["avatar"] ?>" alt="">
-                    <input id="avatar" tabindex="7" name="avatar" type="file">
+                    <input id="avatar" accept=".jpg, .png"" tabindex="7" name="avatar" type="file">
                 </div>
                 <button type="submit" class="btn">Изменить</button>
             </form>
@@ -50,7 +50,8 @@
     <div class="modal_window" id="add_action">
         <i class="closer fa-solid fa-xmark"></i>
         <h4>РАССКАЗАТЬ О СОБЫТИИ</h4>
-        <form action="">
+        <form enctype="multipart/form-data">
+            <input type="hidden" name="form_name" value="add_action">
             <div>
                 <label for="action_title">Название события</label>
                 <input type="text" placeholder="Пример: Массовая драка" name="title" id="action_title">
@@ -68,6 +69,11 @@
                 <input type="text" placeholder="Пример: Драка" name="type" id="type">
             </div>
             <div>
+                <label for="action_images">Фото события</label>
+                <img src="" alt="">
+                <input type="file" name="action_images" id="action_images" accept=".jpg, .png" multiple>
+            </div>
+            <div>
                 <button type="submit" class="btn">Отправить событие</button>
             </div>
         </form>
@@ -75,3 +81,4 @@
 <?php } else { ?>
     <strong>СТРАНИЦА НЕ ДОСТУПНА</strong>
 <?php } ?>
+

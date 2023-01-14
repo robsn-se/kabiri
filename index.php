@@ -1,4 +1,4 @@
-<?php require_once "./controlers/page_controler.php"; ?>
+<?php require_once "./controllers/page_controller.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
