@@ -62,11 +62,3 @@ function cabinet_exit(): void {
     header("Location: /");
 }
 
-function getTableItemsByFields(mysqli $connect, string $table, array $fields, string $delimiter): array {
-    $where = !empty($fields) ? (" WHERE " . createSQLSet($fields, $delimiter)) : "";
-    $result = mysqli_query(
-        $connect,
-        "SELECT * FROM `{$table}`{$where};"
-    );
-    return mysqli_fetch_all($result, MYSQLI_ASSOC);
-}

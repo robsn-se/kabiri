@@ -53,8 +53,19 @@ document.querySelector("#add_action form").addEventListener("submit", event => {
 })
 
 document.querySelector("#add_action input[name='action_images']").addEventListener("change", event => {
-    let images = event.target.files;
-
+    let images = event.target.files
+    let actionImages = ""
+    // let fileReader
+    Array.from(images).forEach(item => {
+        let fileReader = new FileReader()
+        fileReader.onloadend = function showImages() {
+            let img = document.createElement("img")
+            img.src = fileReader.result
+            event.target.parentElement.querySelector(".action_images").appendChild(img)
+        }
+        fileReader.readAsDataURL(item)
+    })
+    event.target.parentElement.querySelector(".action_images").innerHTML = actionImages
 })
 
 function sendAPIRequest(url, data, callback) {
@@ -105,3 +116,7 @@ document.querySelectorAll(".check_input, .check_target").forEach(item => {
         }
     })
 })
+
+
+
+

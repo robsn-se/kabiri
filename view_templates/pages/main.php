@@ -20,8 +20,8 @@
 </div>
 <div class="event_search">
     <form>
-        <input type="text" placeholder="Поиск события">
-        <span class="text-field__aicon">
+        <input class="search_action" type="text" placeholder="Поиск события">
+        <span>
             <i class="fa-solid fa-magnifying-glass"></i
         </span>
     </form>

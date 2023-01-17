@@ -62,6 +62,15 @@ function authorization(mysqli $connect, array $authorizationData): void {
     }
 }
 
+function getTableItemsByFields(mysqli $connect, string $table, array $fields, string $delimiter): array {
+    $where = !empty($fields) ? (" WHERE " . createSQLSet($fields, $delimiter)) : "";
+    $result = mysqli_query(
+        $connect,
+        "SELECT * FROM `{$table}`{$where};"
+    );
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
 
 function printAnswer(string $status, ?string $message = null, array|string|int|null $data = null): void {
     echo json_encode(["status" => $status, "message" => $message, "data" => $data]);

@@ -70,7 +70,7 @@
             </div>
             <div>
                 <label for="action_images">Фото события</label>
-                <img src="" alt="">
+                <div class="action_images"></div>
                 <input type="file" name="action_images" id="action_images" accept=".jpg, .png" multiple>
             </div>
             <div>

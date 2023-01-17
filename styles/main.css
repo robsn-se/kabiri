@@ -210,6 +210,21 @@ h2{
 .event_search form span:hover{
     color: yellow;
 }
+
+.action_images {
+    width: 95%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 20px 20px 15px;
+}
+
+.action_images img {
+    width: calc(28% - 43px);
+    margin: 10px;
+    height: 100px;
+    border-radius: 10px;
+}
+
 .event_search input {
     display: block;
     width: 97%;
@@ -625,4 +640,32 @@ summary::marker {
 /*    100% {*/
 /*        opacity:1;*/
 /*    }*/
+/*}*/
+
+
+
+
+
+
+/*.action_images {*/
+/*    width: 95%;*/
+/*    max-height: 200px;*/
+/*    overflow-y: auto;*/
+/*    margin: 20px 20px 15px;*/
+/*}*/
+
+/*.action_images img {*/
+/*    width: calc(28% - 43px);*/
+/*    margin: 10px;*/
+/*    height: 100px;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*.action_images span {*/
+/*    position: relative;*/
+/*    top: -91px;*/
+/*    right: -116px;*/
+/*    font-size: 23px;*/
+/*    cursor: pointer;*/
+/*    color: red;*/
 /*}*/
