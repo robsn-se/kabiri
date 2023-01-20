@@ -22,6 +22,8 @@
                         <button type="button" class="fa-solid fa-xmark"></button>
                     </div>
                 </div>
+                userAddImages.splice(userAddImages.length, index)
+
                 <div class="change_input">
                     <label for="birthday">Дата рождения</label>
                     <input id="birthday" tabindex="3" data-name="birthday" type="date" data-old_value="<?= $_SESSION["authorization"]["birthday"] ?>" value="<?= $_SESSION["authorization"]["birthday"] ?>">

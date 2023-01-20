@@ -211,19 +211,19 @@ h2{
     color: yellow;
 }
 
-.action_images {
-    width: 95%;
-    max-height: 200px;
-    overflow-y: auto;
-    margin: 20px 20px 15px;
-}
+/*.action_images {*/
+/*    width: 95%;*/
+/*    max-height: 200px;*/
+/*    overflow-y: auto;*/
+/*    margin: 20px 20px 15px;*/
+/*}*/
 
-.action_images img {
-    width: calc(28% - 43px);
-    margin: 10px;
-    height: 100px;
-    border-radius: 10px;
-}
+/*.action_images img {*/
+/*    width: calc(28% - 43px);*/
+/*    margin: 10px;*/
+/*    height: 100px;*/
+/*    border-radius: 10px;*/
+/*}*/
 
 .event_search input {
     display: block;
@@ -642,30 +642,31 @@ summary::marker {
 /*    }*/
 /*}*/
 
+.action_images {
+    width: 95%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 20px 20px 15px;
+}
 
+.image_closer {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    color: red;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: rgba(0, 0, 0, 0) 2px solid;
+    line-height: 20px;
+}
 
-
-
-
-/*.action_images {*/
-/*    width: 95%;*/
-/*    max-height: 200px;*/
-/*    overflow-y: auto;*/
-/*    margin: 20px 20px 15px;*/
-/*}*/
-
-/*.action_images img {*/
-/*    width: calc(28% - 43px);*/
-/*    margin: 10px;*/
-/*    height: 100px;*/
-/*    border-radius: 10px;*/
-/*}*/
-
-/*.action_images span {*/
-/*    position: relative;*/
-/*    top: -91px;*/
-/*    right: -116px;*/
-/*    font-size: 23px;*/
-/*    cursor: pointer;*/
-/*    color: red;*/
-/*}*/
+.action_images > div {
+    position: relative;
+    background-size: cover;
+    width: calc(28% - 43px);
+    margin: 10px;
+    height: 100px;
+    border-radius: 10px;
+    display: inline-block;
+}
