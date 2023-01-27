@@ -54,23 +54,6 @@ document.querySelector("#add_action form").addEventListener("submit", event => {
     })
 })
 
-
-
-async function addUserTmpInputFiles(inputElement) {
-    for (const item of inputElement.files) {
-        userTmpInputFiles.push(await getBase64Url(item))
-    }
-    return userTmpInputFiles
-}
-
-async function getUrlsFromFileList(fileList) {
-    let base64Urls = []
-    for (const item of fileList) {
-        base64Urls.push(await getBase64Url(item))
-    }
-    return base64Urls
-}
-
 function getBase64Url(file) {
     return new Promise((resolve, reject) => {
         let reader = new FileReader();
@@ -82,30 +65,36 @@ function getBase64Url(file) {
     })
 }
 
-function loadedImagesRender(imagesBox, Base64Urls) {
-    imagesBox.innerHTML = ""
-    Base64Urls.forEach((item, index) => {
-        let div = document.createElement("div")
-        let i = document.createElement("i")
-        i.classList.add("fa-solid", "fa-xmark", "image_closer")
-        i.dataset.index = index
-        i.addEventListener("click", event => {
-            event.target.parentElement.remove()
-            userTmpInputFiles.splice(Number(event.target.dataset.index), 1)
-            loadedImagesRender(imagesBox, userTmpInputFiles)
-        })
-        div.style.backgroundImage = `url(${item})`
-        div.appendChild(i)
-        imagesBox.appendChild(div)
+function imageRender(imagesBox, index, Base64Url, inputElement) {
+    let div = document.createElement("div")
+    let i = document.createElement("i")
+    i.classList.add("fa-solid", "fa-xmark", "image_closer")
+    i.dataset.index = index
+    i.addEventListener("click", event => {
+        userTmpInputFiles.splice(Number(event.target.dataset.index), 1)
+        updateUserTmpInputFiles(imagesBox, inputElement)
     })
+    div.style.backgroundImage = `url(${Base64Url})`
+    div.appendChild(i)
+    imagesBox.appendChild(div)
 }
 
-document.querySelector("#add_action input[name='action_images']").addEventListener("change", event => {
-        // addUserTmpInputFiles(event.target)
-        // userTmpInputFiles = [...userTmpInputFiles, ...event.target.files]
-        addUserTmpInputFiles(event.target).then(base64Urls => {
-        loadedImagesRender(event.target.parentElement.querySelector(".action_images"), base64Urls)
-    })
+function updateUserTmpInputFiles(imagesBox, inputElement) {
+    const dataTransfer = new DataTransfer()
+    imagesBox.innerHTML = ""
+    for (let index = 0; index < userTmpInputFiles.length; index++) {
+        dataTransfer.items.add(userTmpInputFiles[index])
+        getBase64Url(userTmpInputFiles[index]).then(base64Url => {
+            imageRender(imagesBox, index, base64Url, inputElement)
+        })
+    }
+    inputElement.files = dataTransfer.files
+}
+
+document.querySelector("#add_action input[id='action_images']").addEventListener("change", event => {
+    userTmpInputFiles = [...userTmpInputFiles, ...event.target.files]
+    const imagesBox = event.target.parentElement.querySelector(".action_images")
+    updateUserTmpInputFiles(imagesBox, event.target)
 })
 
 function sendAPIRequest(url, data, callback) {
@@ -155,10 +144,3 @@ document.querySelectorAll(".check_input, .check_target").forEach(item => {
         }
     })
 })
-
-
-// document.querySelector(".image_closer").forEach(item => {
-//     item.addEventListener("click", () => {
-//         delete(userTmpInputFiles[event.target.dataset.index])
-//     })
-// })
