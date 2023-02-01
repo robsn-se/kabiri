@@ -1,5 +1,10 @@
 let userTmpInputFiles = []
 
+toggleLoader()
+window.onload = function () {
+    toggleLoader()
+}
+
 document.querySelectorAll(".closer").forEach(item => {
     item.addEventListener("click", event => {
         event.target.parentElement.classList.remove("is_visible");
@@ -28,16 +33,22 @@ document.querySelectorAll(".change_input input").forEach(item => {
     });
 });
 
+function toggleLoader() {
+    const cover = document.getElementById("cover")
+    const loader = document.getElementById('loader')
+    loader.classList.toggle('hidden')
+    cover.classList.toggle('hidden')
+}
+
 document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item => {
     item.addEventListener("click", event => {
         let input = event.target.parentElement.parentElement.querySelector("input");
         input.value = input.dataset.old_value;
-        console.log(input.value);
     });
 });
 
 document.querySelector(".settings form").addEventListener("submit", event => {
-    event.preventDefault();
+    event.preventDefault()
     let formData = new FormData(event.target);
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
         alert(result)
@@ -46,7 +57,8 @@ document.querySelector(".settings form").addEventListener("submit", event => {
 })
 
 document.querySelector("#add_action form").addEventListener("submit", event => {
-    event.preventDefault();
+    event.preventDefault()
+    toggleLoader()
     let formData = new FormData(event.target)
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
         alert(result)
@@ -91,6 +103,30 @@ function updateUserTmpInputFiles(imagesBox, inputElement) {
     inputElement.files = dataTransfer.files
 }
 
+function imagesCompressor(file, quality){
+
+    // var file = fileToUpload.files[0];
+    let fileName = file.name.split('.')[0];
+    let img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = function(){
+        let canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(function(blob){
+            console.info(blob.size);
+            let file = new File([blob], fileName + ".jpeg");
+            // var xhr = new XMLHttpRequest();
+            // var form = new FormData();
+            // form.append("fileToUpload", f2);
+            // xhr.open("POST", "upload.php");
+            // xhr.send(form);
+        }, 'image/jpeg', 0.5);
+    }
+}
+
 document.querySelector("#add_action input[id='action_images']").addEventListener("change", event => {
     userTmpInputFiles = [...userTmpInputFiles, ...event.target.files]
     const imagesBox = event.target.parentElement.querySelector(".action_images")
@@ -115,6 +151,7 @@ function sendAPIRequest(url, data, callback) {
         }
     })).catch((error) => {
         console.log(error);
+        toggleLoader()
         alert("Внезапная ошибка");
     })
 }

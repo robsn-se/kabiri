@@ -642,6 +642,18 @@ summary::marker {
 /*    }*/
 /*}*/
 
+#cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.26);
+    z-index: 3;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
 .action_images {
     width: 95%;
     max-height: 200px;
@@ -669,4 +681,28 @@ summary::marker {
     height: 100px;
     border-radius: 10px;
     display: inline-block;
+}
+
+.hidden {
+    display: none;
+}
+
+#loader {
+    position: absolute;
+    left: 48%;
+    top: 43vh;
+    z-index: 5;
+    margin: auto;
+    width: 75px;
+    height: 75px;
+    border:10px solid rgba(13, 71, 161, 0.6);
+    border-radius: 50%;
+    border-left-color:#0D47A1;
+    animation: loader 1.3s linear infinite;
+}
+@keyframes loader {
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
 }

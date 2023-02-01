@@ -62,7 +62,7 @@
             </div>
             <div>
                 <label for="location">Местоположение</label>
-                <input type="text" placeholder="Пример: г.Москва, ул. Гагарина д.3" name="location" id="location">
+                <input type="text" placeholder="Пример: г. Москва, ул. Гагарина д.3" name="location" id="location">
             </div>
             <div>
                 <label for="type">Тип происшествия</label>
