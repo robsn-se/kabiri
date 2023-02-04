@@ -61,6 +61,7 @@ document.querySelector("#add_action form").addEventListener("submit", event => {
     toggleLoader()
     let formData = new FormData(event.target)
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
+        toggleLoader()
         alert(result)
         location.reload()
     })
@@ -74,6 +75,7 @@ function getBase64Url(file) {
         };
         reader.onerror = reject;
         reader.readAsDataURL(file);
+        console.log(reader)
     })
 }
 
@@ -94,35 +96,48 @@ function imageRender(imagesBox, index, Base64Url, inputElement) {
 function updateUserTmpInputFiles(imagesBox, inputElement) {
     const dataTransfer = new DataTransfer()
     imagesBox.innerHTML = ""
+    let fileName, compressorResult
     for (let index = 0; index < userTmpInputFiles.length; index++) {
         dataTransfer.items.add(userTmpInputFiles[index])
         getBase64Url(userTmpInputFiles[index]).then(base64Url => {
-            imageRender(imagesBox, index, base64Url, inputElement)
+            fileName = userTmpInputFiles[index].name.split('.')[0];
+            // imageRender(imagesBox, index, compressorResult.url, inputElement)
+            imagesCompressor(base64Url, fileName, "image/jpeg", 0.3, imagesBox, index, inputElement)
         })
     }
     inputElement.files = dataTransfer.files
 }
 
-function imagesCompressor(file, quality){
+function imagesCompressor(base64Url, fileName, imageType, quality, imagesBox, index, inputElement) {
+    let image, file, canvas, ctx, newDataUrl;
+    image = new Image();
+    image.src = base64Url;
+    canvas = document.createElement("canvas");
+    canvas.width = image.width;
+    canvas.height = image.height;
+    ctx = canvas.getContext("2d");
+    ctx.drawImage(image, 0, 0, image.width, image.height);
+    newDataUrl = canvas.toDataURL(imageType, quality);
+    canvas.toBlob(function (blob) {
+        file = new File([blob], fileName + ".jpeg");
+        imageRender(imagesBox, index, newDataUrl, inputElement)
+    }, 'image/jpeg', 0.5);
+}
 
-    // var file = fileToUpload.files[0];
+
+function imagesCompressor1(file, quality, base64Url) {
     let fileName = file.name.split('.')[0];
     let img = new Image();
-    img.src = URL.createObjectURL(file);
+    img.src = base64Url  //URL.createObjectURL(file);
     img.onload = function(){
         let canvas = document.createElement('canvas');
         canvas.width = img.width;
         canvas.height = img.height;
         let ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
-        canvas.toBlob(function(blob){
+        canvas.toBlob(async function(blob){
             console.info(blob.size);
             let file = new File([blob], fileName + ".jpeg");
-            // var xhr = new XMLHttpRequest();
-            // var form = new FormData();
-            // form.append("fileToUpload", f2);
-            // xhr.open("POST", "upload.php");
-            // xhr.send(form);
         }, 'image/jpeg', 0.5);
     }
 }
@@ -151,7 +166,6 @@ function sendAPIRequest(url, data, callback) {
         }
     })).catch((error) => {
         console.log(error);
-        toggleLoader()
         alert("Внезапная ошибка");
     })
 }
