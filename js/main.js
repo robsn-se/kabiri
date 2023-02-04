@@ -1,258 +1,197 @@
-"use strict";
-// console.log("HELLO");
+let userTmpInputFiles = []
 
-const MY_NAME = "Ruben";
-console.log(MY_NAME);
-console.log(MY_NAME.length);
-console.log(MY_NAME.charAt(4));
-console.log(MY_NAME.indexOf ('en'));
-
-let myChar;
-myChar = "1" - 1;
-myChar = null;
-myChar = true;
-myChar = false;
-// console.log(myChar);
-
-
-// let myRandom = Math.round(5 + Math.random() * (20 - 5));
-// console.log(myRandom);
-
-function randomMethot(min, max){
-    let myRandom = Math.round(min+ Math.random() * (max - min));
-    // console.log(myRandom);
-    return myRandom; 
+toggleLoader()
+window.onload = function () {
+    toggleLoader()
 }
 
-let myRandom = randomMethot(3, 36);
-let myRandom2 = randomMethot(9, 45);
-let sum = myRandom + myRandom2;
+document.querySelectorAll(".closer").forEach(item => {
+    item.addEventListener("click", event => {
+        event.target.parentElement.classList.remove("is_visible");
+    });
+});
 
-console.log("Моё число: " + myRandom + " второе число: " + myRandom2 + ";\n  Сумма = " + sum);
-console.log(`Моё число: ${myRandom},\n второе число: ${myRandom2};\n\nСумма = ${sum}`);
+document.querySelectorAll(".open_modal").forEach(item => {
+    item.addEventListener("click", event => {
+        document.getElementById(event.target.dataset.modal_id).classList.add("is_visible");
+    })
+ });
 
-console.log (Math.pow(6,3))
-// pow - возводит в степень
-
-
-
-let myArray = ["один", 2, "три", [4, "пять"], 50, 8.6, 9];
-console.log(myArray[3][1]);
-// myArray[7] = "77";
-
-// let car = ["BMW", "LADA", "VOLVO"];
-// console.log(car);
-// let newCar = ["HAVAL", "CHERRY",];
-// console.log(newCar);
-// let myCar = car.concat(newCar);
-// console.log(myCar);
-
-let aaggee = [33, 47 , 78, 14, 6, 45, 23];
-console.log(aaggee.filter((ag)=>  ag<20));
-
-const ages = [33, 32, 16.5, 58, 4.6];
-const reducer = (first, second) => first + second;
-console.log(ages.reduce(reducer))
-
-
-
-let myPlatoon = {
-    lieutenant: {
-        name: "Рубен",
-        position: "КВ",
-        age: 23
-    },
-    elderSergeant1:  {
-        name: "Илья",
-        position: "ЗКВ",
-        age: 35
-    },    
-    elderSergeant2:  {
-        name: "Роман",
-        position: "С-И",
-        age: 29
-    },     
-    sergeant1:  {
-        name: "Женёк",
-        position: "С-И",
-        age: 27       
-    },    
-    sergeant2:  {
-        name: "Балон",
-        position: "С-И",
-        age: 31
-    },     
-    sergeant3:  {
-        name: "Артем",
-        position: "С-И",
-        age: 29
-    },     
-    elderSergeant3: {
-        name: "Старый",
-        position: "И",
-        age: 42
-    },
-    corporal1: {
-        name: "Валера",
-        position: "И",
-        age: 26
-    },
-    corporal2: {
-        name: "Саня Баф",
-        position: "И",
-        age: 31
-    },
-    corporal3: {
-        name: "Усач",
-        position: "И",
-        age: 27
-    },
-    lanceSergeant1: {
-        name: "Димон",
-        position: "И",
-        age: 26
-    },
-    corporal4: {
-        name: "Саня Баф",
-        position: "И",
-        age: 31
-    },
-    corporal5: {
-        name: "Лысый",
-        position: "И",
-        age: 25
-    },
-    sergeantMajor: {
-        name: "Фил",
-        position: "И-В",
-        age: 42     
-    },
-    lanceSergeant2: {
-        name: "Дрозд",
-        position: "И-В",
-        age: 30  
-    },   
-    corporal6: {
-        name: "Артурио",
-        position: "И-В",
-        age: 32  
-    },      
-    corporal7: {
-        name: "Толя",
-        position: "И-В",
-        age: 30
-    },
-    corporal8: {
-        name: "Шава",
-        position: "И-В",
-        age: 30
-    },  
-    corporal9: {
-        name: "Кондрат",
-        position: "И-В",
-        age: 24
-    },   
-    corporal10: {
-        name: "Юрчик",
-        position: "И-В",
-        age: 41
-    },
-};
-console.log(myPlatoon["lieutenant"].position);
-console.log(myPlatoon.lanceSergeant1.name);
-console.log(Object.keys(myPlatoon));
-console.log(Object.values(myPlatoon));
-console.log()
-
-
-// let counter = 0;
-
-// while(counter < 5) {
-    // counter = counter + 1;
-    // counter += 1;
-//     console.log(++ counter);
-//     console.log(`counter: ${counter}`);
-// }
-// console.log(counter);
-
-
-// let myArray = ["один", 2, "три", [4, "пять"], 50, 8.6, 9];
-// console.log(myArray);
-// for(let i = 0; i < myArray.length; i ++) {
-//     console.log(myArray[i]);
-// }
-
-// for (let rank in myPlatoon) {
-//     if (rank == "lieutenant" || rank == "sergeant2") {
-//         for (let paramKey in myPlatoon[rank]){
-//             console.log(myPlatoon[rank][paramKey]);
-//         }       
-//     }
-// }
-
-
-
-
-// function calculateAge (year) {
-//     return 2021 - year;
-// }
-
-// const myAge = calculateAge(1998);
-// console.log(myAge);
-
-
-// for(let lu of myArray){
-//     console.log(lu);
-// }
-
-let rank = "kapitan";
-let solder = "Ruben";
-
-if (rank == "general" && solder == "Иван") {
-    console.log("Привет Вань");
-}
-else if (rank == "lieutenant" || solder == "Ruben") {
-    console.log("Hi Ruben");
-}
-else if (rank == "kapitan" && (solder == "Петя" || solder == "Вася")) {
-    console.log("Hi");
-}
-else if (!rank && solder) {
-    console.log("ДУХ");
-}
-else if (rank && solder === ""){
-    console.log("Some one");
-}
-else {
-    console.log("staf");
-}
-
-
-
-// let hour = 19
-// if (hour <= 12) {
-//     console.log("ДОБРОЕ УТРО");
-// } 
-// else if (hour <= 18) {
-//     console.log("ДОБРЫЙ ДЕНЬ");
-// }
-// else {
-//     console.log("ДОБРЫЙ ВЕЧЕР");
-// }
-
-let solderCounter = 0;
-
-for (let rank in myPlatoon) {
-    solderCounter ++;
-    if (rank !== "lieutenant" && rank !== "sergeant2") {
-        continue;
+document.querySelectorAll(".change_input input").forEach(item => {
+    if (item.dataset.name === undefined) {
+        return true
     }
-    for (let paramKey in myPlatoon[rank]){
-        console.log(myPlatoon[rank][paramKey]);
-        break;
-    }  
-    // if (rank == "lieutenant") {
-    //     break;
-    // }    
+    item.addEventListener("input", event => {
+        if (item.value.trim() && item.value.trim() !== item.dataset.old_value) {
+            item.name = item.dataset.name;
+            event.target.parentElement.querySelector(".change_buttons").style.display="inline-block";
+        }
+        else {
+            item.removeAttribute("name");
+            event.target.parentElement.querySelector(".change_buttons").style.display="none";
+        }
+    });
+});
+
+function toggleLoader() {
+    const cover = document.getElementById("cover")
+    const loader = document.getElementById('loader')
+    loader.classList.toggle('hidden')
+    cover.classList.toggle('hidden')
 }
-console.log(solderCounter);
+
+document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item => {
+    item.addEventListener("click", event => {
+        let input = event.target.parentElement.parentElement.querySelector("input");
+        input.value = input.dataset.old_value;
+    });
+});
+
+document.querySelector(".settings form").addEventListener("submit", event => {
+    event.preventDefault()
+    let formData = new FormData(event.target);
+    sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
+        alert(result)
+        location.reload()
+    });
+})
+
+document.querySelector("#add_action form").addEventListener("submit", event => {
+    event.preventDefault()
+    toggleLoader()
+    let formData = new FormData(event.target)
+    sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
+        toggleLoader()
+        alert(result)
+        location.reload()
+    })
+})
+
+function getBase64Url(file) {
+    return new Promise((resolve, reject) => {
+        let reader = new FileReader();
+        reader.onload = () => {
+            resolve(reader.result);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+        console.log(reader)
+    })
+}
+
+function imageRender(imagesBox, index, Base64Url, inputElement) {
+    let div = document.createElement("div")
+    let i = document.createElement("i")
+    i.classList.add("fa-solid", "fa-xmark", "image_closer")
+    i.dataset.index = index
+    i.addEventListener("click", event => {
+        userTmpInputFiles.splice(Number(event.target.dataset.index), 1)
+        updateUserTmpInputFiles(imagesBox, inputElement)
+    })
+    div.style.backgroundImage = `url(${Base64Url})`
+    div.appendChild(i)
+    imagesBox.appendChild(div)
+}
+
+function updateUserTmpInputFiles(imagesBox, inputElement) {
+    const dataTransfer = new DataTransfer()
+    imagesBox.innerHTML = ""
+    let fileName, compressorResult
+    for (let index = 0; index < userTmpInputFiles.length; index++) {
+        dataTransfer.items.add(userTmpInputFiles[index])
+        getBase64Url(userTmpInputFiles[index]).then(base64Url => {
+            fileName = userTmpInputFiles[index].name.split('.')[0];
+            // imageRender(imagesBox, index, compressorResult.url, inputElement)
+            imagesCompressor(base64Url, fileName, "image/jpeg", 0.3, imagesBox, index, inputElement)
+        })
+    }
+    inputElement.files = dataTransfer.files
+}
+
+function imagesCompressor(base64Url, fileName, imageType, quality, imagesBox, index, inputElement) {
+    let image, file, canvas, ctx, newDataUrl;
+    image = new Image();
+    image.src = base64Url;
+    canvas = document.createElement("canvas");
+    canvas.width = image.width;
+    canvas.height = image.height;
+    ctx = canvas.getContext("2d");
+    ctx.drawImage(image, 0, 0, image.width, image.height);
+    newDataUrl = canvas.toDataURL(imageType, quality);
+    canvas.toBlob(function (blob) {
+        file = new File([blob], fileName + ".jpeg");
+        imageRender(imagesBox, index, newDataUrl, inputElement)
+    }, 'image/jpeg', 0.5);
+}
+
+
+function imagesCompressor1(file, quality, base64Url) {
+    let fileName = file.name.split('.')[0];
+    let img = new Image();
+    img.src = base64Url  //URL.createObjectURL(file);
+    img.onload = function(){
+        let canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(async function(blob){
+            console.info(blob.size);
+            let file = new File([blob], fileName + ".jpeg");
+        }, 'image/jpeg', 0.5);
+    }
+}
+
+document.querySelector("#add_action input[id='action_images']").addEventListener("change", event => {
+    userTmpInputFiles = [...userTmpInputFiles, ...event.target.files]
+    const imagesBox = event.target.parentElement.querySelector(".action_images")
+    updateUserTmpInputFiles(imagesBox, event.target)
+})
+
+function sendAPIRequest(url, data, callback) {
+    fetch(url, {
+        method: "post",
+        body: data
+    }).then(response => response.json().then(result => {
+        if (result.status === "ok") {
+            if (result.message) {
+                console.log(result.data);
+                callback(result.message);
+            } else {
+                callback(result.data);
+            }
+        }
+        else {
+            alert(result.message);
+        }
+    })).catch((error) => {
+        console.log(error);
+        alert("Внезапная ошибка");
+    })
+}
+
+document.querySelectorAll(".check_input, .check_target").forEach(item => {
+    item.addEventListener("input", event => {
+        let secondInputSelector = ".check_target";
+        if (item.classList.contains(".check_target")) {
+            secondInputSelector = ".check_input";
+        }
+        let secondInput = item.parentElement.querySelector(secondInputSelector);
+        if (!secondInput || !(secondInput = item.parentElement.parentElement.querySelector(secondInputSelector))) {
+            console.log("secondInput is undefined");
+            return true
+        }
+        if (item.value === secondInput.value) {
+            item.classList.remove("wrong_input");
+            item.classList.add("true_input");
+            secondInput.classList.remove("wrong_input");
+            secondInput.classList.add("true_input");
+        }
+        else {
+            item.classList.remove("true_input");
+            item.classList.add("wrong_input");
+            secondInput.classList.remove("true_input");
+            secondInput.classList.add("wrong_input");
+        }
+    })
+})
