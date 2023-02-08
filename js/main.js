@@ -8,8 +8,8 @@ let userTmpInputFiles = []
 document.querySelectorAll(".closer").forEach(item => {
     item.addEventListener("click", event => {
         event.target.parentElement.classList.remove("is_visible");
-    });
-});
+    })
+})
 
 document.querySelectorAll(".open_modal").forEach(item => {
     item.addEventListener("click", event => {
@@ -206,7 +206,6 @@ document.querySelectorAll(".check_input, .check_target").forEach(item => {
         }
         let secondInput = item.parentElement.querySelector(secondInputSelector);
         if (!secondInput || !(secondInput = item.parentElement.parentElement.querySelector(secondInputSelector))) {
-            console.log("secondInput is undefined");
             return true
         }
         if (item.value === secondInput.value) {

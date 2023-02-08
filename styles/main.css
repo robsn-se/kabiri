@@ -446,10 +446,7 @@ summary::marker {
         opacity: 1;
     }
 }
-#add_action {
-    width: 40%;
-    top: 50px;
-}
+
 .modal_window h4 {
     color: white;
 }
@@ -711,9 +708,9 @@ summary::marker {
     margin: auto;
     width: 75px;
     height: 75px;
-    border:10px solid rgba(13, 71, 161, 0.6);
+    border:10px solid rgb(107, 107, 107);
     border-radius: 50%;
-    border-left-color:#0D47A1;
+    border-left-color: #e5e0e0;
     animation: loader 1.3s linear infinite;
 }
 @keyframes loader {
