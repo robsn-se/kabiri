@@ -653,7 +653,12 @@ summary::marker {
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
 }
-
+.modal_window button[type="button"] {
+    font-size: 12px;
+    border-width: 1px;
+    padding: 5px 10px;
+    color: #75ea27;
+}
 .action_images {
     width: 95%;
     max-height: 200px;
