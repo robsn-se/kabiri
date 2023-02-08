@@ -67,6 +67,10 @@ document.querySelector("#add_action form").addEventListener("submit", event => {
     })
 })
 
+/**
+ * @param file {File}
+ * @returns {Promise<string>}
+ */
 function getBase64Url(file) {
     return new Promise((resolve, reject) => {
         let reader = new FileReader();
@@ -75,10 +79,15 @@ function getBase64Url(file) {
         };
         reader.onerror = reject;
         reader.readAsDataURL(file);
-        console.log(reader)
     })
 }
 
+/**
+ * @param imagesBox {Element}
+ * @param index {number}
+ * @param Base64Url {String}
+ * @param inputElement {Element}
+ */
 function imageRender(imagesBox, index, Base64Url, inputElement) {
     let div = document.createElement("div")
     let i = document.createElement("i")
@@ -93,53 +102,70 @@ function imageRender(imagesBox, index, Base64Url, inputElement) {
     imagesBox.appendChild(div)
 }
 
+/**
+ *
+ * @param imagesBox {Element}
+ * @param inputElement {Element}
+ */
 function updateUserTmpInputFiles(imagesBox, inputElement) {
     const dataTransfer = new DataTransfer()
     imagesBox.innerHTML = ""
-    let fileName, compressorResult
     for (let index = 0; index < userTmpInputFiles.length; index++) {
-        dataTransfer.items.add(userTmpInputFiles[index])
-        getBase64Url(userTmpInputFiles[index]).then(base64Url => {
-            fileName = userTmpInputFiles[index].name.split('.')[0];
-            // imageRender(imagesBox, index, compressorResult.url, inputElement)
-            imagesCompressor(base64Url, fileName, "image/jpeg", 0.3, imagesBox, index, inputElement)
+        imagesCompressor(userTmpInputFiles[index], "image/jpeg").then(compressedFile =>{
+            userTmpInputFiles[index] = compressedFile
+            console.log(compressedFile)
+            dataTransfer.items.add(userTmpInputFiles[index])
+            getBase64Url(userTmpInputFiles[index]).then(base64Url => {
+                imageRender(imagesBox, index, base64Url, inputElement)
+            })
         })
     }
     inputElement.files = dataTransfer.files
 }
 
-function imagesCompressor(base64Url, fileName, imageType, quality, imagesBox, index, inputElement) {
-    let image, file, canvas, ctx, newDataUrl;
-    image = new Image();
-    image.src = base64Url;
-    canvas = document.createElement("canvas");
-    canvas.width = image.width;
-    canvas.height = image.height;
-    ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0, image.width, image.height);
-    newDataUrl = canvas.toDataURL(imageType, quality);
-    canvas.toBlob(function (blob) {
-        file = new File([blob], fileName + ".jpeg");
-        imageRender(imagesBox, index, newDataUrl, inputElement)
-    }, 'image/jpeg', 0.5);
+/**
+ * The compressor of an image file, decreases file size by its quality
+ * @param file {File}
+ * @param imageType {String}
+ * @param quality {number}
+ * @returns {Promise<File>}
+ */
+async function imagesCompressor(file, imageType, quality = 0.2) {
+    console.log(file)
+    let fileName = file.name.split('.')[0]
+    let compressedFilePromise = null;
+    await readFileImage(file).then(image => {
+        let canvas = document.createElement('canvas')
+        canvas.width = image.width
+        canvas.height = image.height
+        let ctx = canvas.getContext('2d')
+        ctx.drawImage(image, 0, 0)
+        compressedFilePromise = new Promise(function (resolve) {
+            canvas.toBlob(function (blob) {
+                resolve(new File([blob], fileName + ".jpeg"))
+            }, imageType, quality)
+        });
+    })
+    return compressedFilePromise
 }
 
-
-function imagesCompressor1(file, quality, base64Url) {
-    let fileName = file.name.split('.')[0];
-    let img = new Image();
-    img.src = base64Url  //URL.createObjectURL(file);
-    img.onload = function(){
-        let canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        let ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-        canvas.toBlob(async function(blob){
-            console.info(blob.size);
-            let file = new File([blob], fileName + ".jpeg");
-        }, 'image/jpeg', 0.5);
-    }
+/**
+ * Takes an imageHtmlElement from an image file
+ * @param file {File}
+ * @returns {Promise<HTMLImageElement>}
+ */
+function readFileImage(file)
+{
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.src = URL.createObjectURL(file);
+        image.onload = () => {
+            resolve(image);
+        };
+        image.onerror = (el, err) => {
+            reject(err);
+        };
+    });
 }
 
 document.querySelector("#add_action input[id='action_images']").addEventListener("change", event => {
@@ -148,6 +174,12 @@ document.querySelector("#add_action input[id='action_images']").addEventListener
     updateUserTmpInputFiles(imagesBox, event.target)
 })
 
+/**
+ * The fetch API requester, Does a callback after a successful response
+ * @param url {String}
+ * @param data {String|number|Object|Array}
+ * @param callback {Function}
+ */
 function sendAPIRequest(url, data, callback) {
     fetch(url, {
         method: "post",
