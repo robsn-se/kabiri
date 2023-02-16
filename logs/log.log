@@ -1,0 +1,16 @@
+08-02-2023 20:09:15 ==> Поле type не корректно заполнено | /Users/denis_pm/PhpstormProjects/student_RUBEN_kabiri/models/main_model.php(53) 
+#0 /Users/denis_pm/PhpstormProjects/student_RUBEN_kabiri/controllers/cabinet_controller.php(19): validation('add_action', Array, true)
+#1 {main} 
+
+08-02-2023 20:31:28 ==> Поле title не заполнено<br>Поле location не заполнено<br>Поле type не заполнено | /Users/denis_pm/PhpstormProjects/student_RUBEN_kabiri/models/main_model.php(53) 
+#0 /Users/denis_pm/PhpstormProjects/student_RUBEN_kabiri/controllers/cabinet_controller.php(19): validation('add_action', Array, true)
+#1 {main} 
+
+08-02-2023 22:36:03 ==> Поле title не заполнено<br>Поле location не заполнено<br>Поле type не заполнено | /Users/denis_pm/PhpstormProjects/student_RUBEN_kabiri/models/main_model.php(53) 
+#0 /Users/denis_pm/PhpstormProjects/student_RUBEN_kabiri/controllers/cabinet_controller.php(19): validation('add_action', Array, true)
+#1 {main} 
+
+08-02-2023 23:04:55 ==> Поле title не заполнено<br>Поле location не заполнено<br>Поле type не заполнено | /Users/denis_pm/PhpstormProjects/student_RUBEN_kabiri/models/main_model.php(53) 
+#0 /Users/denis_pm/PhpstormProjects/student_RUBEN_kabiri/controllers/cabinet_controller.php(19): validation('add_action', Array, true)
+#1 {main} 
+

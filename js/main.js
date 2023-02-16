@@ -1,5 +1,9 @@
 let userTmpInputFiles = []
+<<<<<<< HEAD
 //
+=======
+
+>>>>>>> teacher
 // toggleLoader()
 // window.onload = function () {
 //     toggleLoader()
@@ -49,7 +53,7 @@ document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item =>
 
 document.querySelector(".settings form").addEventListener("submit", event => {
     event.preventDefault()
-    let formData = new FormData(event.target);
+    let formData = new FormData(event.target)
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
         alert(result)
         location.reload()
@@ -60,7 +64,13 @@ document.querySelector("#add_action form").addEventListener("submit", event => {
     event.preventDefault()
     toggleLoader()
     let formData = new FormData(event.target)
+<<<<<<< HEAD
     console.log(formData.getAll("action_images[]"))
+=======
+    for (const file of userTmpInputFiles) {
+        formData.append("file[]", file, file.name);
+    }
+>>>>>>> teacher
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
         toggleLoader()
         alert(result)
@@ -88,15 +98,16 @@ function getBase64Url(file) {
  * @param index {number}
  * @param Base64Url {String}
  * @param inputElement {Element}
+ * @param closerListener {Function}
  */
-function imageRender(imagesBox, index, Base64Url, inputElement) {
+function imageRender(imagesBox, index, Base64Url, inputElement, closerListener) {
     let div = document.createElement("div")
     let i = document.createElement("i")
     i.classList.add("fa-solid", "fa-xmark", "image_closer")
     i.dataset.index = index
     i.addEventListener("click", event => {
         userTmpInputFiles.splice(Number(event.target.dataset.index), 1)
-        updateUserTmpInputFiles(imagesBox, inputElement)
+        closerListener(imagesBox, inputElement)
     })
     div.style.backgroundImage = `url(${Base64Url})`
     div.appendChild(i)
@@ -109,18 +120,19 @@ function imageRender(imagesBox, index, Base64Url, inputElement) {
  * @param inputElement {Element}
  */
 function updateUserTmpInputFiles(imagesBox, inputElement) {
-    const dataTransfer = new DataTransfer()
     imagesBox.innerHTML = ""
     for (let index = 0; index < userTmpInputFiles.length; index++) {
         imagesCompressor(userTmpInputFiles[index], "image/jpeg").then(compressedFile =>{
             userTmpInputFiles[index] = compressedFile
+<<<<<<< HEAD
             dataTransfer.items.add(userTmpInputFiles[index])
+=======
+>>>>>>> teacher
             getBase64Url(userTmpInputFiles[index]).then(base64Url => {
-                imageRender(imagesBox, index, base64Url, inputElement)
+                imageRender(imagesBox, index, base64Url, inputElement, updateUserTmpInputFiles)
             })
         })
     }
-    inputElement.files = dataTransfer.files
 }
 
 /**
@@ -132,20 +144,18 @@ function updateUserTmpInputFiles(imagesBox, inputElement) {
  */
 async function imagesCompressor(file, imageType, quality = 0.2) {
     let fileName = file.name.split('.')[0]
-    let compressedFilePromise = null;
-    await readFileImage(file).then(image => {
-        let canvas = document.createElement('canvas')
-        canvas.width = image.width
-        canvas.height = image.height
-        let ctx = canvas.getContext('2d')
-        ctx.drawImage(image, 0, 0)
-        compressedFilePromise = new Promise(function (resolve) {
-            canvas.toBlob(function (blob) {
-                resolve(new File([blob], fileName + ".jpeg"))
-            }, imageType, quality)
-        });
+    let image = await readFileImage(file)
+    let canvas = document.createElement('canvas')
+    canvas.width = image.width
+    canvas.height = image.height
+    let ctx = canvas.getContext('2d')
+    ctx.drawImage(image, 0, 0)
+
+    return new Promise(function (resolve) {
+        canvas.toBlob(function (blob) {
+            resolve(new File([blob], fileName + ".jpeg", {type: imageType}))
+        }, imageType, quality)
     })
-    return compressedFilePromise
 }
 
 /**
@@ -153,8 +163,7 @@ async function imagesCompressor(file, imageType, quality = 0.2) {
  * @param file {File}
  * @returns {Promise<HTMLImageElement>}
  */
-function readFileImage(file)
-{
+function readFileImage(file) {
     return new Promise((resolve, reject) => {
         const image = new Image();
         image.src = URL.createObjectURL(file);
