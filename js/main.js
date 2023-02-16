@@ -1,5 +1,9 @@
 let userTmpInputFiles = []
+<<<<<<< HEAD
+//
+=======
 
+>>>>>>> teacher
 // toggleLoader()
 // window.onload = function () {
 //     toggleLoader()
@@ -60,9 +64,13 @@ document.querySelector("#add_action form").addEventListener("submit", event => {
     event.preventDefault()
     // toggleLoader()
     let formData = new FormData(event.target)
+<<<<<<< HEAD
+    console.log(formData.getAll("action_images[]"))
+=======
     for (const file of userTmpInputFiles) {
         formData.append("file[]", file, file.name);
     }
+>>>>>>> teacher
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
         // toggleLoader()
         alert(result)
@@ -116,6 +124,10 @@ function updateUserTmpInputFiles(imagesBox, inputElement) {
     for (let index = 0; index < userTmpInputFiles.length; index++) {
         imagesCompressor(userTmpInputFiles[index], "image/jpeg").then(compressedFile =>{
             userTmpInputFiles[index] = compressedFile
+<<<<<<< HEAD
+            dataTransfer.items.add(userTmpInputFiles[index])
+=======
+>>>>>>> teacher
             getBase64Url(userTmpInputFiles[index]).then(base64Url => {
                 imageRender(imagesBox, index, base64Url, inputElement, updateUserTmpInputFiles)
             })
