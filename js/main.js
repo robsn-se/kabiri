@@ -1,9 +1,9 @@
 let userTmpInputFiles = []
-
-toggleLoader()
-window.onload = function () {
-    toggleLoader()
-}
+//
+// toggleLoader()
+// window.onload = function () {
+//     toggleLoader()
+// }
 
 document.querySelectorAll(".closer").forEach(item => {
     item.addEventListener("click", event => {
@@ -60,6 +60,7 @@ document.querySelector("#add_action form").addEventListener("submit", event => {
     event.preventDefault()
     toggleLoader()
     let formData = new FormData(event.target)
+    console.log(formData.getAll("action_images[]"))
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
         toggleLoader()
         alert(result)
@@ -113,7 +114,6 @@ function updateUserTmpInputFiles(imagesBox, inputElement) {
     for (let index = 0; index < userTmpInputFiles.length; index++) {
         imagesCompressor(userTmpInputFiles[index], "image/jpeg").then(compressedFile =>{
             userTmpInputFiles[index] = compressedFile
-            console.log(compressedFile)
             dataTransfer.items.add(userTmpInputFiles[index])
             getBase64Url(userTmpInputFiles[index]).then(base64Url => {
                 imageRender(imagesBox, index, base64Url, inputElement)
@@ -131,7 +131,6 @@ function updateUserTmpInputFiles(imagesBox, inputElement) {
  * @returns {Promise<File>}
  */
 async function imagesCompressor(file, imageType, quality = 0.2) {
-    console.log(file)
     let fileName = file.name.split('.')[0]
     let compressedFilePromise = null;
     await readFileImage(file).then(image => {
