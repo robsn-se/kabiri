@@ -58,13 +58,13 @@ document.querySelector(".settings form").addEventListener("submit", event => {
 
 document.querySelector("#add_action form").addEventListener("submit", event => {
     event.preventDefault()
-    toggleLoader()
+    // toggleLoader()
     let formData = new FormData(event.target)
     for (const file of userTmpInputFiles) {
         formData.append("file[]", file, file.name);
     }
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
-        toggleLoader()
+        // toggleLoader()
         alert(result)
         location.reload()
     })

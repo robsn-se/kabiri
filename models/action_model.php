@@ -15,6 +15,20 @@ function addAction(mysqli $connect, array $data): string {
 
 }
 
+function saveImages(array $files, string $folderPath): array {
+    $imageUrls = [];
+    foreach ($files["name"] as $key => $fileName) {
+        if ($fileName && !$files["error"][$key]) {
+            $imageUrls[] = $imageUrl = $folderPath . "/" . basename($files["tmp_name"][$key]);
+            if (!move_uploaded_file($files["tmp_name"][$key], "../" . $imageUrl)) {
+                throw new Exception("Проблема с загрузкой файла {$fileName}");
+            }
+        }
+    }
+
+    return $imageUrls;
+}
+
 function getActions(mysqli $connect):array {
     $tables = mysqli_query($connect, "SELECT a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image', a.description, a.`date`, a.`address` FROM `actions` a
     LEFT JOIN `users` u ON u.`id` = a.`user`
