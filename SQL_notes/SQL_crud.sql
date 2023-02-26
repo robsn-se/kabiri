@@ -45,7 +45,7 @@ SELECT * FROM `comments` WHERE `action` = 1 ORDER BY `id` DESC LIMIT 5;
 -- LIMIT ограничение, (последние 5 комментариев);
 
 
-INSERT INTO `users` (`login`, `email`, `birthday`, `password`) VALUES('ssnkd', 'дима', '2003-09-05', 'jhjvjb');
+INSERT INTO `users` (`login`, `email`, `birthday`, `password`) VALUES ('ssnkd', 'дима', '2003-09-05', 'jhjvjb'), ('ssnkd', 'дима', '2003-09-05', 'jhjvjb');
 -- Вставить в "INSERT INTO"  значения "VALUES"
 
 

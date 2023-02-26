@@ -3,7 +3,6 @@ const EMAIL_PATTERN = "/[a-z\d\-_]{2,100}@[a-z\d\-_]{2,30}\.[a-z]{2,10}/";
 const LOGIN_PATTERN = "/[a-zA-Z\d\-_]{2,50}/";
 const BIRTHDAY_PATTERN = "/[0-9]{4}-[0-9]{2}-[0-9]{2}/";
 const PASSWORD_PATTERN = "/[a-zA-Z\d\-_]{2,30}/";
-
 const SHORT_STRING = "/[a-zа-я0-9\d\-\s]{5,200}/iu";
 
 

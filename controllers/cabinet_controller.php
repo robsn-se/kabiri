@@ -26,7 +26,7 @@ try {
                 );
                 break;
             case "add_action":
-                printData($_FILES);
+//                printData($_FILES);
                 printAnswer(
                     API_STATUS_OK,
                     addAction($connect, $_POST),

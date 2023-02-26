@@ -6,7 +6,6 @@ require_once "./models/main_model.php";
 require_once "./models/users_model.php";
 require_once "./models/action_model.php";
 
-//session_start(["cookie_lifetime" => 5]); время работы сессии
 session_start();
 $statusMessage = "";
 $actionsList = [];

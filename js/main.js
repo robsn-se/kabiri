@@ -1,9 +1,5 @@
 let userTmpInputFiles = []
-<<<<<<< HEAD
-//
-=======
 
->>>>>>> teacher
 // toggleLoader()
 // window.onload = function () {
 //     toggleLoader()
@@ -19,7 +15,7 @@ document.querySelectorAll(".open_modal").forEach(item => {
     item.addEventListener("click", event => {
         document.getElementById(event.target.dataset.modal_id).classList.add("is_visible");
     })
- });
+ })
 
 document.querySelectorAll(".change_input input").forEach(item => {
     if (item.dataset.name === undefined) {
@@ -34,8 +30,8 @@ document.querySelectorAll(".change_input input").forEach(item => {
             item.removeAttribute("name");
             event.target.parentElement.querySelector(".change_buttons").style.display="none";
         }
-    });
-});
+    })
+})
 
 function toggleLoader() {
     const cover = document.getElementById("cover")
@@ -46,10 +42,10 @@ function toggleLoader() {
 
 document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item => {
     item.addEventListener("click", event => {
-        let input = event.target.parentElement.parentElement.querySelector("input");
+        let input = event.target.parentElement.parentElement.querySelector("input")
         input.value = input.dataset.old_value;
-    });
-});
+    })
+})
 
 document.querySelector(".settings form").addEventListener("submit", event => {
     event.preventDefault()
@@ -57,20 +53,17 @@ document.querySelector(".settings form").addEventListener("submit", event => {
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
         alert(result)
         location.reload()
-    });
+    })
 })
 
 document.querySelector("#add_action form").addEventListener("submit", event => {
     event.preventDefault()
     // toggleLoader()
     let formData = new FormData(event.target)
-<<<<<<< HEAD
     console.log(formData.getAll("action_images[]"))
-=======
     for (const file of userTmpInputFiles) {
-        formData.append("file[]", file, file.name);
+        formData.append("file[]", file, file.name)
     }
->>>>>>> teacher
     sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
         // toggleLoader()
         alert(result)
@@ -124,10 +117,7 @@ function updateUserTmpInputFiles(imagesBox, inputElement) {
     for (let index = 0; index < userTmpInputFiles.length; index++) {
         imagesCompressor(userTmpInputFiles[index], "image/jpeg").then(compressedFile =>{
             userTmpInputFiles[index] = compressedFile
-<<<<<<< HEAD
-            dataTransfer.items.add(userTmpInputFiles[index])
-=======
->>>>>>> teacher
+            // dataTransfer.items.add(userTmpInputFiles[index])
             getBase64Url(userTmpInputFiles[index]).then(base64Url => {
                 imageRender(imagesBox, index, base64Url, inputElement, updateUserTmpInputFiles)
             })
@@ -142,7 +132,7 @@ function updateUserTmpInputFiles(imagesBox, inputElement) {
  * @param quality {number}
  * @returns {Promise<File>}
  */
-async function imagesCompressor(file, imageType, quality = 0.2) {
+async function imagesCompressor(file, imageType, quality = 0.1) {
     let fileName = file.name.split('.')[0]
     let image = await readFileImage(file)
     let canvas = document.createElement('canvas')

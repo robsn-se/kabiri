@@ -9,23 +9,41 @@ function addAction(mysqli $connect, array $data): string {
         "INSERT INTO `actions` SET `user` = '{$_SESSION["authorization"]["id"]}', " . createSQLSet($data, ",") . ";"
     );
     if ($actionId = mysqli_insert_id($connect)) {
+//        printData($_FILES);
+        $imagesUrl = saveImages($_FILES["file"], "../" . ACTION_IMAGES);
+        foreach ($imagesUrl as $key => $url) {
+            mysqli_query(
+                $connect,
+                "INSERT INTO `actions_images` SET `url` = '{$url}', `action`  = '{$actionId}';"
+            );
+        }
         return "Событие №{$actionId} успешно добавлено";
     }
     throw new Exception("Ошибка при добавлении события");
 
 }
 
+// На будущее д/з
+//function multiInsert(mysqli $connect, ) {
+//    mysqli_query(
+//        $connect,
+//        "INSERT INTO `actions` SET `user` = '{$_SESSION["authorization"]["id"]}', " . createSQLSet($data, ",") . ";"
+//    );
+//}
+
 function saveImages(array $files, string $folderPath): array {
     $imageUrls = [];
+    if (!isset($files["name"])) {
+        throw new Exception("Файлы не загружены");
+    }
     foreach ($files["name"] as $key => $fileName) {
         if ($fileName && !$files["error"][$key]) {
-            $imageUrls[] = $imageUrl = $folderPath . "/" . basename($files["tmp_name"][$key]);
-            if (!move_uploaded_file($files["tmp_name"][$key], "../" . $imageUrl)) {
+            $imageUrls[] = $imageUrl = $folderPath . "/" . $_SESSION["authorization"]["id"] . "_" . time() . "_" . $fileName; //расширение
+            if (!move_uploaded_file($files["tmp_name"][$key], $imageUrl)) {
                 throw new Exception("Проблема с загрузкой файла {$fileName}");
             }
         }
     }
-
     return $imageUrls;
 }
 

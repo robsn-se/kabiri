@@ -6,3 +6,4 @@ const API_STATUS_OK = "ok";
 const API_STATUS_ERROR = "error";
 const IMAGES_FOLDER = "images";
 const AVATAR_IMAGES = IMAGES_FOLDER . "/avatar";
+const ACTION_IMAGES = IMAGES_FOLDER . "/action_images";

@@ -82,10 +82,6 @@ function createSQLSet(array $fields, string $delimiter = ""): string {
     return substr($fieldsString, 0, -(strlen($delimiter) + 1));
 }
 
-
-
-
-
 function createConfirmationHash(array $userData): string {
     return hash("sha1", $userData["id"] . $userData["email"] . time());
 }
