@@ -74,7 +74,8 @@ WHERE a.`title` = 'авария';
 
 
 
-SELECT a.`title` AS 'action', u.`email` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image' FROM `actions` a
+SELECT a.`title` AS 'action', u.`email` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image'
+FROM `actions` a
 LEFT JOIN `users` u ON u.`id` = a.`user`
 LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
 WHERE a.`likes` = 1 OR u.`login` = 'ruben-se'
@@ -85,3 +86,10 @@ LIMIT 3;
 -- IS NULL - найти то значение, которое пустое
 -- IS NOT NULL- найти значение которое не пустое
 -- LIMIT 2, 3 ;- выбрать 3 значения, минуя первые 2  (пример с рейтингом)
+
+SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', GROUP_CONCAT(ai.`url`) AS 'images', a.description, a.`date`, a.`address`
+FROM `actions` a
+         LEFT JOIN `users` u ON u.`id` = a.`user`
+         LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
+WHERE a.`id` = 124
+ORDER BY a.`id` DESC;

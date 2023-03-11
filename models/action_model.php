@@ -9,7 +9,6 @@ function addAction(mysqli $connect, array $data): string {
         "INSERT INTO `actions` SET `user` = '{$_SESSION["authorization"]["id"]}', " . createSQLSet($data, ",") . ";"
     );
     if ($actionId = mysqli_insert_id($connect)) {
-//        printData($_FILES);
         $imagesUrl = saveImages($_FILES["file"], "../" . ACTION_IMAGES);
         foreach ($imagesUrl as $key => $url) {
             mysqli_query(
@@ -23,14 +22,10 @@ function addAction(mysqli $connect, array $data): string {
 
 }
 
-// На будущее д/з
-//function multiInsert(mysqli $connect, ) {
-//    mysqli_query(
-//        $connect,
-//        "INSERT INTO `actions` SET `user` = '{$_SESSION["authorization"]["id"]}', " . createSQLSet($data, ",") . ";"
-//    );
-//}
 
+/**
+ * @throws Exception
+ */
 function saveImages(array $files, string $folderPath): array {
     $imageUrls = [];
     if (!isset($files["name"])) {
@@ -48,8 +43,11 @@ function saveImages(array $files, string $folderPath): array {
 }
 
 function getActions(mysqli $connect):array {
-    $tables = mysqli_query($connect, "SELECT a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image', a.description, a.`date`, a.`address` FROM `actions` a
-    LEFT JOIN `users` u ON u.`id` = a.`user`
-    LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`;");
+    $tables = mysqli_query($connect, "SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image', a.description, a.`date`, a.`address`
+FROM `actions` a
+ LEFT JOIN `users` u ON u.`id` = a.`user`
+ LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
+GROUP BY a.`id`
+ORDER BY a.`id` DESC;");
     return mysqli_fetch_all($tables, MYSQLI_ASSOC);
 }
