@@ -63,5 +63,10 @@ const VALIDATION_RULES = [
             "required" => true,
             "pattern" => SHORT_STRING,
         ],
+    ],
+    "get_action_by_id" => [
+        "action_id" => [
+            "required" => true,
+        ]
     ]
 ];

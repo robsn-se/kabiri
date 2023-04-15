@@ -43,11 +43,21 @@ function saveImages(array $files, string $folderPath): array {
 }
 
 function getActions(mysqli $connect):array {
-    $tables = mysqli_query($connect, "SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image', a.description, a.`date`, a.`address`
+    $actions = mysqli_query($connect, "SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', ai.`url` AS 'image', a.description, a.`date`, a.`address`
 FROM `actions` a
  LEFT JOIN `users` u ON u.`id` = a.`user`
  LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
 GROUP BY a.`id`
 ORDER BY a.`id` DESC;");
-    return mysqli_fetch_all($tables, MYSQLI_ASSOC);
+    return mysqli_fetch_all($actions, MYSQLI_ASSOC);
+}
+
+function getActionByID(mysqli $connect, int $id):array {
+    $action = mysqli_query($connect, "SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', GROUP_CONCAT(ai.`url`) AS 'images', a.description, a.`date`, a.`address`
+FROM `actions` a
+         LEFT JOIN `users` u ON u.`id` = a.`user`
+         LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
+WHERE a.`id` = {$id}");
+    return mysqli_fetch_assoc($action);
+
 }

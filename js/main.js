@@ -1,37 +1,129 @@
 let userTmpInputFiles = []
 
-// toggleLoader()
-// window.onload = function () {
-//     toggleLoader()
-// }
-
-document.querySelectorAll(".closer").forEach(item => {
-    item.addEventListener("click", event => {
-        event.target.parentElement.classList.remove("is_visible");
+// if (document.readyState === "complete" || document.readyState === "interactive") {
+window.onload = function () {
+    document.querySelectorAll(".check_input, .check_target").forEach(item => {
+        item.addEventListener("input", event => {
+            let secondInputSelector = ".check_target"
+            if (item.classList.contains(".check_target")) {
+                secondInputSelector = ".check_input"
+            }
+            let secondInput = item.parentElement.querySelector(secondInputSelector)
+            if (!secondInput || !(secondInput = item.parentElement.parentElement.querySelector(secondInputSelector))) {
+                return true
+            }
+            if (item.value === secondInput.value) {
+                item.classList.remove("wrong_input")
+                item.classList.add("true_input")
+                secondInput.classList.remove("wrong_input")
+                secondInput.classList.add("true_input")
+            }
+            else {
+                item.classList.remove("true_input")
+                item.classList.add("wrong_input")
+                secondInput.classList.remove("true_input")
+                secondInput.classList.add("wrong_input")
+            }
+        })
     })
-})
 
-document.querySelectorAll(".open_modal").forEach(item => {
-    item.addEventListener("click", event => {
-        document.getElementById(event.target.dataset.modal_id).classList.add("is_visible");
+    document.querySelectorAll(".closer").forEach(item => {
+        item.addEventListener("click", event => {
+            event.target.parentElement.classList.remove("is_visible")
+        })
     })
- })
 
-document.querySelectorAll(".change_input input").forEach(item => {
-    if (item.dataset.name === undefined) {
-        return true
-    }
-    item.addEventListener("input", event => {
-        if (item.value.trim() && item.value.trim() !== item.dataset.old_value) {
-            item.name = item.dataset.name;
-            event.target.parentElement.querySelector(".change_buttons").style.display="inline-block";
+    document.querySelectorAll(".open_modal").forEach(item => {
+        item.addEventListener("click", event => {
+            if (event.target.dataset.modal_function !== undefined) {
+                console.log(event.target.dataset.modal_params)
+                console.log(event.target.dataset.modal_function)
+                let modalFunction = event.target.dataset.modal_function
+                modalFunction(event.target, ...JSON.parse(event.target.dataset.modal_params))
+            }
+            document.getElementById(event.target.dataset.modal_id).classList.add("is_visible")
+        })
+    })
+
+    document.querySelectorAll(".change_input input").forEach(item => {
+        if (item.dataset.name === undefined) {
+            return true
         }
-        else {
-            item.removeAttribute("name");
-            event.target.parentElement.querySelector(".change_buttons").style.display="none";
-        }
+        item.addEventListener("input", event => {
+            if (item.value.trim() && item.value.trim() !== item.dataset.old_value) {
+                item.name = item.dataset.name
+                event.target.parentElement.querySelector(".change_buttons").style.display="inline-block";
+            }
+            else {
+                item.removeAttribute("name");
+                event.target.parentElement.querySelector(".change_buttons").style.display="none";
+            }
+        })
     })
-})
+
+    document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item => {
+        item.addEventListener("click", event => {
+            let input = event.target.parentElement.parentElement.querySelector("input")
+            input.value = input.dataset.old_value;
+        })
+    })
+
+    document.querySelector(".settings form").addEventListener("submit", event => {
+        event.preventDefault()
+        let formData = new FormData(event.target)
+        sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
+            alert(result)
+            location.reload()
+        })
+    })
+
+    document.querySelector("#add_action form").addEventListener("submit", event => {
+        event.preventDefault()
+        // toggleLoader()
+        let formData = new FormData(event.target)
+        console.log(formData.getAll("action_images[]"))
+        for (const file of userTmpInputFiles) {
+            formData.append("file[]", file, file.name)
+        }
+        sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
+            // toggleLoader()
+            alert(result)
+            location.reload()
+        })
+    })
+
+    document.querySelector("#add_action input[id='action_images']").addEventListener("change", event => {
+        userTmpInputFiles = [...userTmpInputFiles, ...event.target.files]
+        const imagesBox = event.target.parentElement.querySelector(".action_images")
+        updateUserTmpInputFiles(imagesBox, event.target)
+    })
+}
+
+
+function buildAction(modalWindowObject, actionID) {
+    let data = {form_name: "get_action_by_id", action_id: actionID}
+    sendAPIRequest("controllers/cabinet_controller.php", JSON.stringify(data), result => {
+        console.log(result)
+        location.reload()
+    })
+    let body = `   
+    <h4>СОБЫТИЕ</h4>
+    <div>
+        <label for="action_images">Фото события</label>
+        <div class="action_images"></div>
+    </div>
+    <div>
+        <h3>Lorem </h3>
+        <h6><?= $oneAction["date"] ?></h6>
+        <p>
+            <?= $oneAction["description"] ?>
+        </p>
+        <h5><?= $oneAction["address"] ?></h5>
+    </div>
+    `
+}
+
+
 
 function toggleLoader() {
     const cover = document.getElementById("cover")
@@ -40,36 +132,7 @@ function toggleLoader() {
     cover.classList.toggle('hidden')
 }
 
-document.querySelectorAll(".change_buttons button:nth-child(2)").forEach(item => {
-    item.addEventListener("click", event => {
-        let input = event.target.parentElement.parentElement.querySelector("input")
-        input.value = input.dataset.old_value;
-    })
-})
 
-document.querySelector(".settings form").addEventListener("submit", event => {
-    event.preventDefault()
-    let formData = new FormData(event.target)
-    sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
-        alert(result)
-        location.reload()
-    })
-})
-
-document.querySelector("#add_action form").addEventListener("submit", event => {
-    event.preventDefault()
-    // toggleLoader()
-    let formData = new FormData(event.target)
-    console.log(formData.getAll("action_images[]"))
-    for (const file of userTmpInputFiles) {
-        formData.append("file[]", file, file.name)
-    }
-    sendAPIRequest("controllers/cabinet_controller.php", formData, result => {
-        // toggleLoader()
-        alert(result)
-        location.reload()
-    })
-})
 
 /**
  * @param file {File}
@@ -77,12 +140,12 @@ document.querySelector("#add_action form").addEventListener("submit", event => {
  */
 function getBase64Url(file) {
     return new Promise((resolve, reject) => {
-        let reader = new FileReader();
+        let reader = new FileReader()
         reader.onload = () => {
-            resolve(reader.result);
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
+            resolve(reader.result)
+        }
+        reader.onerror = reject
+        reader.readAsDataURL(file)
     })
 }
 
@@ -155,22 +218,17 @@ async function imagesCompressor(file, imageType, quality = 0.1) {
  */
 function readFileImage(file) {
     return new Promise((resolve, reject) => {
-        const image = new Image();
-        image.src = URL.createObjectURL(file);
+        const image = new Image()
+        image.src = URL.createObjectURL(file)
         image.onload = () => {
-            resolve(image);
+            resolve(image)
         };
         image.onerror = (el, err) => {
-            reject(err);
+            reject(err)
         };
     });
 }
 
-document.querySelector("#add_action input[id='action_images']").addEventListener("change", event => {
-    userTmpInputFiles = [...userTmpInputFiles, ...event.target.files]
-    const imagesBox = event.target.parentElement.querySelector(".action_images")
-    updateUserTmpInputFiles(imagesBox, event.target)
-})
 
 /**
  * The fetch API requester, Does a callback after a successful response
@@ -185,42 +243,20 @@ function sendAPIRequest(url, data, callback) {
     }).then(response => response.json().then(result => {
         if (result.status === "ok") {
             if (result.message) {
-                console.log(result.data);
-                callback(result.message);
+                console.log(result.data)
+                callback(result.message)
             } else {
-                callback(result.data);
+                console.log(result.data)
+                callback(result.data)
             }
         }
         else {
-            alert(result.message);
+            alert(result.message)
         }
     })).catch((error) => {
-        console.log(error);
-        alert("Внезапная ошибка");
+        console.log(error)
+        alert("Внезапная ошибка")
     })
 }
 
-document.querySelectorAll(".check_input, .check_target").forEach(item => {
-    item.addEventListener("input", event => {
-        let secondInputSelector = ".check_target";
-        if (item.classList.contains(".check_target")) {
-            secondInputSelector = ".check_input";
-        }
-        let secondInput = item.parentElement.querySelector(secondInputSelector);
-        if (!secondInput || !(secondInput = item.parentElement.parentElement.querySelector(secondInputSelector))) {
-            return true
-        }
-        if (item.value === secondInput.value) {
-            item.classList.remove("wrong_input");
-            item.classList.add("true_input");
-            secondInput.classList.remove("wrong_input");
-            secondInput.classList.add("true_input");
-        }
-        else {
-            item.classList.remove("true_input");
-            item.classList.add("wrong_input");
-            secondInput.classList.remove("true_input");
-            secondInput.classList.add("wrong_input");
-        }
-    })
-})
+

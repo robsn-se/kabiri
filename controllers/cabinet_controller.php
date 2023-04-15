@@ -32,6 +32,13 @@ try {
                     addAction($connect, $_POST),
                 );
                 break;
+            case "get_action_by_id":
+                printAnswer(
+                    API_STATUS_OK,
+                    null,
+                    getActionByID($connect, $_POST["action_id"])
+                );
+                break;
             default:
                 throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
         }

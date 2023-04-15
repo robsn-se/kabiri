@@ -91,5 +91,11 @@ SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', GROUP_CONC
 FROM `actions` a
          LEFT JOIN `users` u ON u.`id` = a.`user`
          LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
-WHERE a.`id` = 124
 ORDER BY a.`id` DESC;
+
+
+SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', GROUP_CONCAT(ai.`url`) AS 'images', a.description, a.`date`, a.`address`
+FROM `actions` a
+         LEFT JOIN `users` u ON u.`id` = a.`user`
+         LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
+WHERE a.`id` = 124
