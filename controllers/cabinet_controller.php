@@ -1,4 +1,7 @@
 <?php
+print_r($_POST);
+print_r($_GET);
+
 require_once "../config.php";
 require_once "../validation_rules.php";
 require_once "../main_params.php";
@@ -8,15 +11,18 @@ require_once "../models/action_model.php";
 
 //session_start(["cookie_lifetime" => 5]); время работы сессии
 session_start();
+//echo "check";
 $statusMessage = "";
 $actionsList = [];
 try {
     $connect = createConnect();
+    print_r($_POST);
     $actionsList = getActions($connect);
     if (isset($_POST["form_name"])) {
         $formName = $_POST["form_name"];
         unset($_POST["form_name"]);
-        validation($formName, $_POST, $formName != "setting");
+//        validation($formName, $_POST, $formName != "setting");
+        echo $formName;
         switch($formName) {
             case "setting":
                 printAnswer(
@@ -36,8 +42,13 @@ try {
                 printAnswer(
                     API_STATUS_OK,
                     null,
-                    getActionByID($connect, $_POST["action_id"])
+                   $_POST
                 );
+//                printAnswer(
+//                    API_STATUS_OK,
+//                    null,
+//                    getActionByID($connect, $_POST["action_id"])
+//                );
                 break;
             default:
                 throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");

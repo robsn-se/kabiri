@@ -39,7 +39,7 @@ window.onload = function () {
                 console.log(event.target.dataset.modal_params)
                 console.log(event.target.dataset.modal_function)
                 let modalFunction = event.target.dataset.modal_function
-                modalFunction(event.target, ...JSON.parse(event.target.dataset.modal_params))
+                window[event.target.dataset.modal_function](event.target, ...JSON.parse(event.target.dataset.modal_params))
             }
             document.getElementById(event.target.dataset.modal_id).classList.add("is_visible")
         })
@@ -104,8 +104,7 @@ function buildAction(modalWindowObject, actionID) {
     let data = {form_name: "get_action_by_id", action_id: actionID}
     sendAPIRequest("controllers/cabinet_controller.php", JSON.stringify(data), result => {
         console.log(result)
-        location.reload()
-    })
+    }, {"Content-Type:": "application/json"})
     let body = `   
     <h4>СОБЫТИЕ</h4>
     <div>
@@ -235,11 +234,13 @@ function readFileImage(file) {
  * @param url {String}
  * @param data {String|number|Object|Array}
  * @param callback {Function}
+ * @param headers {Object}
  */
-function sendAPIRequest(url, data, callback) {
+function sendAPIRequest(url, data, callback, headers = {}) {
     fetch(url, {
         method: "post",
-        body: data
+        body: data,
+        headers: headers
     }).then(response => response.json().then(result => {
         if (result.status === "ok") {
             if (result.message) {
