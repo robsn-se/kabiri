@@ -16,7 +16,7 @@
 <?php } ?>
 <div class="map_zone main_info">
     <h2>Последние события</h2>
-    <div id="map"></div>
+<!--    <div id="map"></div>-->
 </div>
 <div class="event_search">
     <form>

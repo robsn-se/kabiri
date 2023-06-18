@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/mesto.css">
     <!-- <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" /> -->
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=d9d0372b-fca6-4014-af33-08bc4bfc8b56&lang=ru_RU" type="text/javascript"></script>
+<!--    <script src="https://api-maps.yandex.ru/2.1/?apikey=d9d0372b-fca6-4014-af33-08bc4bfc8b56&lang=ru_RU" type="text/javascript"></script>-->
 </head>
 <body>
 <header>
@@ -28,11 +28,14 @@
     if ($statusMessage){
         echo "<script>alert(\"{$statusMessage}\");</script>";
     }
+    //echo '<pre>'; print_r($_SERVER); echo '</pre>';
     ?>
 </article>
 <div id="loader" class="hidden"></div>
 <div id="cover" class="hidden"></div>
 <script src="js/main.js"></script>
-<script src="js/yandex_map.js"></script>
+<script src="js/cabinet.js"></script>
+
+<!--<script src="js/yandex_map.js"></script>-->
 </body>
 </html>

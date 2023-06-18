@@ -119,7 +119,7 @@ function getTableItemsByFields(mysqli $connect, string $table, array $fields, st
 
 
 function printAnswer(string $status, ?string $message = null, array|string|int|null $data = null): void {
-    echo json_encode(["status" => $status, "message" => $message, "data" => $data]);
+    echo json_encode(["status" => $status, "message" => $message, "data" => $data], JSON_UNESCAPED_UNICODE);
 }
 
 function printError(string $message = "Что-то пошло не так", ?array $trace = null) {

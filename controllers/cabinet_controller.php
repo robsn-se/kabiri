@@ -1,6 +1,5 @@
 <?php
-print_r($_POST);
-print_r($_GET);
+session_start();
 
 require_once "../config.php";
 require_once "../validation_rules.php";
@@ -9,20 +8,15 @@ require_once "../models/main_model.php";
 require_once "../models/users_model.php";
 require_once "../models/action_model.php";
 
-//session_start(["cookie_lifetime" => 5]); время работы сессии
-session_start();
-//echo "check";
 $statusMessage = "";
 $actionsList = [];
 try {
     $connect = createConnect();
-    print_r($_POST);
     $actionsList = getActions($connect);
     if (isset($_POST["form_name"])) {
         $formName = $_POST["form_name"];
         unset($_POST["form_name"]);
-//        validation($formName, $_POST, $formName != "setting");
-        echo $formName;
+        validation($formName, $_POST, $formName != "setting");
         switch($formName) {
             case "setting":
                 printAnswer(
@@ -38,12 +32,6 @@ try {
                     addAction($connect, $_POST),
                 );
                 break;
-            case "get_action_by_id":
-                printAnswer(
-                    API_STATUS_OK,
-                    null,
-                   $_POST
-                );
 //                printAnswer(
 //                    API_STATUS_OK,
 //                    null,

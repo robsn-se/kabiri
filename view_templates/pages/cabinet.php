@@ -83,3 +83,5 @@
 <?php } else { ?>
     <strong>СТРАНИЦА НЕ ДОСТУПНА</strong>
 <?php } ?>
+<script src="js/cabinet.js"></script>
+
