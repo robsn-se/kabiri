@@ -25,33 +25,66 @@ function printData(mixed $data, bool $damp = false): void {
 /**
  * @throws Exception
  */
-function validation(string $formName, array $formData, bool $checkFieldExist = true): void {
+function validation(bool $skipCheckingEmptyRequests = false): ?string {
+    unset($_REQUEST["PHPSESSID"], $_REQUEST["__ddg1_"] );
+    if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+        $_REQUEST = $_REQUEST + json_decode(file_get_contents("php://input"), true);
+    }
+    if ($skipCheckingEmptyRequests && empty($_REQUEST)){
+        return null;
+    }
+
+    if (!isset($_REQUEST[VALIDATION_FORM_NAME])) {
+        throw new Exception("Неопределенная форма");
+    }
+
+    $formName = $_REQUEST[VALIDATION_FORM_NAME];
+    unset($_REQUEST[VALIDATION_FORM_NAME]);
+
     if (!isset(VALIDATION_RULES[$formName])) {
         throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
     }
-    $formRules = VALIDATION_RULES[$formName];
-    if ($checkFieldExist && count($formData) !== count($formRules)) {
+
+    if ($_SERVER["REQUEST_METHOD"] !== VALIDATION_RULES[$formName][VALIDATION_REQUEST_METHOD]) {
+        throw new Exception("НЕКОРРЕКТНЫЙ МЕТОД ЗАПРОСА");
+    }
+
+    $formFields = VALIDATION_RULES[$formName][VALIDATION_FORM_FIELDS];
+    if (VALIDATION_RULES[$formName][VALIDATION_FIELDS_COUNT_CHECK] && count($_REQUEST) !== count($formFields)) {
         throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
     }
+
     $statusMessage = [];
-    foreach (VALIDATION_RULES[$formName] as $fieldName => $fieldValue) {
-        if ($checkFieldExist && !isset($formData[$fieldName])) {
+    foreach (VALIDATION_RULES[$formName][VALIDATION_FORM_FIELDS] as $fieldName => $fieldValue) {
+        if (
+            isset($fieldValue[VALIDATION_FIELD_EXISTENCE])
+            && $fieldValue[VALIDATION_FIELD_EXISTENCE]
+            && !isset($_REQUEST[$fieldName])
+        ) {
             throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
         }
-        if (isset($fieldValue["required"]) && $fieldValue["required"] && !$formData[$fieldName]) {
+
+        if (
+            isset($fieldValue[VALIDATION_FIELD_REQUIRED])
+            && $fieldValue[VALIDATION_FIELD_REQUIRED]
+            && !$_REQUEST[$fieldName]
+        ) {
             $statusMessage[] = "Поле $fieldName не заполнено";
         }
+
         if (
             @$fieldValue["pattern"]
-            && @$formData[$fieldName]
-            && !preg_match($fieldValue["pattern"], $formData[$fieldName])
+            && @$_REQUEST[$fieldName]
+            && !preg_match($fieldValue["pattern"], $_REQUEST[$fieldName])
         ) {
             $statusMessage[] = "Поле $fieldName не корректно заполнено";
         }
     }
+
     if (!empty($statusMessage)) {
         throw new Exception(implode("<br>", $statusMessage));
     }
+    return $formName;
 }
 
 /**
@@ -106,7 +139,7 @@ function sendEmailConfirmation(array $userData, $hash): bool {
 }
 
 //создаем функцию getTableItemsByFields() получить элементы таблицы по полям, то есть получаем все данные о пользователе
-function getTableItemsByFields(mysqli $connect, string $table, array $fields, string $delimiter): array {
+function getTableItemsByFields(mysqli $connect, string $table, array $fields, string $delimiter = ""): array {
     $where = !empty($fields) ? (" WHERE " . createSQLSet($fields, $delimiter)) : "";
     $result = mysqli_query(
         $connect,
@@ -114,8 +147,6 @@ function getTableItemsByFields(mysqli $connect, string $table, array $fields, st
     );
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
-
-
 
 
 function printAnswer(string $status, ?string $message = null, array|string|int|null $data = null): void {

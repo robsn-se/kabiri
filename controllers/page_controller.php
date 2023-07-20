@@ -1,7 +1,10 @@
 <?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+require_once "./main_params.php";
 require_once "./config.php";
 require_once "./validation_rules.php";
-require_once "./main_params.php";
 require_once "./models/main_model.php";
 require_once "./models/users_model.php";
 require_once "./models/action_model.php";
@@ -12,30 +15,16 @@ $actionsList = [];
 try {
     $connect = createConnect();
     $actionsList = getActions($connect);
-    if (isset($_POST["form_name"])) {
-        $formName = $_POST["form_name"];
-        unset($_POST["form_name"]);
-        validation($formName, $_POST);
-        switch($formName) {
-            case "registration":
-                $statusMessage = userRegistration($connect, $_POST);
-                break;
-            case "authorization":
-                authorization($connect, $_POST);
-                break;
-            case "cabinet_exit":
-                cabinet_exit();
-                break;
-            case "get_action_by_id":
-                printAnswer(
-                    API_STATUS_OK,
-                    null,
-                    $_POST
-                );
-                break;
-            default:
-                throw new Exception("НЕИЗВЕСТНАЯ ФОРМА");
-        }
+    switch(validation(true)) {
+        case "registration":
+            $statusMessage = userRegistration($connect, $_REQUEST);
+            break;
+        case "authorization":
+            authorization($connect, $_REQUEST);
+            break;
+        case "cabinet_exit":
+            cabinet_exit();
+            break;
     }
 } catch (Throwable $e) {
     file_put_contents(

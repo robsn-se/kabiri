@@ -34,7 +34,7 @@
 <div id="loader" class="hidden"></div>
 <div id="cover" class="hidden"></div>
 <script src="js/main.js"></script>
-<script src="js/cabinet.js"></script>
+<!--<script src="js/cabinet.js"></script>-->
 
 <!--<script src="js/yandex_map.js"></script>-->
 </body>

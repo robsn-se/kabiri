@@ -53,11 +53,20 @@ ORDER BY a.`id` DESC;");
 }
 
 function getActionByID(mysqli $connect, int $id):array {
-    $action = mysqli_query($connect, "SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', GROUP_CONCAT(ai.`url`) AS 'images', a.description, a.`date`, a.`address`
-FROM `actions` a
-         LEFT JOIN `users` u ON u.`id` = a.`user`
-         LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
-WHERE a.`id` = {$id}");
-    return mysqli_fetch_assoc($action);
-
+    $action = mysqli_fetch_assoc(mysqli_query($connect, "
+        SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', a.description, a.`date`, a.`address`
+        FROM `actions` a
+        INNER JOIN `users` u ON u.`id` = a.`user`
+        WHERE a.`id` = {$id}
+    "));
+    $action["images"] = mysqli_fetch_all(mysqli_query($connect, "
+        SELECT * FROM `actions_images` WHERE `action` = {$id}
+    "), MYSQLI_ASSOC);
+    $action["comments"] = mysqli_fetch_all(mysqli_query($connect, "
+        SELECT c.*, u.`login` FROM `comments` c
+        INNER JOIN `users` u ON c.`user` = u.`id`
+        WHERE `action` = {$id}
+    "), MYSQLI_ASSOC);
+    return $action;
 }
+

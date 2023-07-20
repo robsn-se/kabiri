@@ -14,3 +14,32 @@
 #0 /Users/denis_pm/PhpstormProjects/student_RUBEN_kabiri/controllers/cabinet_controller.php(19): validation('add_action', Array, true)
 #1 {main} 
 
+27-06-2023 18:00:34 ==> Access denied for user 'u1571961_kaberi'@'178.176.72.237' (using password: YES) | C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10) 
+#0 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10): mysqli_connect('31.31.198.123', 'u1571961_kaberi', 'Ser-1988', 'u1571961_kaberi')
+#1 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\controllers\page_controller.php(13): createConnect()
+#2 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\index.php(1): require_once('C:\\Users\\RUBEN\\...')
+#3 {main} 
+
+27-06-2023 18:03:13 ==> Access denied for user 'u1571961_kaberi'@'178.176.72.237' (using password: YES) | C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10) 
+#0 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10): mysqli_connect('31.31.198.123', 'u1571961_kaberi', 'Ser-1988', 'u1571961_kaberi')
+#1 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\controllers\page_controller.php(13): createConnect()
+#2 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\index.php(1): require_once('C:\\Users\\RUBEN\\...')
+#3 {main} 
+
+27-06-2023 18:04:03 ==> Access denied for user 'u1571961_kaberi'@'178.176.72.237' (using password: YES) | C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10) 
+#0 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10): mysqli_connect('31.31.198.123', 'u1571961_kaberi', 'Ser-1988', 'u1571961_kaberi')
+#1 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\controllers\page_controller.php(13): createConnect()
+#2 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\index.php(1): require_once('C:\\Users\\RUBEN\\...')
+#3 {main} 
+
+27-06-2023 18:04:21 ==> Access denied for user 'u1571961_kaberi'@'178.176.72.237' (using password: YES) | C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10) 
+#0 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10): mysqli_connect('31.31.198.123', 'u1571961_kaberi', 'Ser-1988', 'u1571961_kaberi')
+#1 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\controllers\page_controller.php(13): createConnect()
+#2 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\index.php(1): require_once('C:\\Users\\RUBEN\\...')
+#3 {main} 
+
+27-06-2023 18:15:03 ==> Access denied for user 'u1571961_kaberi'@'178.176.72.237' (using password: YES) | C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10) 
+#0 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\models\main_model.php(10): mysqli_connect('31.31.198.123', 'u1571961_kaberi', 'Ser-1988', 'u1571961_kaberi')
+#1 C:\Users\RUBEN\Desktop\START  UP\kabiri_сайт\controllers\page_ajax_controller.php(10): createConnect()
+#2 {main} 
+

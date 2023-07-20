@@ -16,7 +16,8 @@
                 </div>
                 <div class="change_input">
                     <label for="login">Логин</label>
-                    <input id="login" tabindex="2" type="text" data-name="login" data-old_value="<?= $_SESSION["authorization"]["login"] ?>" value="<?= $_SESSION["authorization"]["login"] ?>">
+                    <input id="login" tabindex="2" type="text" data-name="login
+" data-old_value="<?= $_SESSION["authorization"]["login"] ?>" value="<?= $_SESSION["authorization"]["login"] ?>">
                     <div class="change_buttons">
                         <button class="save_button">Сохранить</button>
                         <button type="button" class="fa-solid fa-xmark"></button>

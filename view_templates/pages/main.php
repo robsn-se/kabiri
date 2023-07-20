@@ -45,19 +45,20 @@
 </ul>
 <div class="modal_window" id="action_modal_window">
     <i class="closer fa-solid fa-xmark"></i>
-    <div class="modal_body"></div>
-    <h4>СОБЫТИЕ</h4>
-    <div>
-        <label for="action_images">Фото события</label>
-        <div class="action_images"></div>
-    </div>
-    <div>
-        <h3>Lorem </h3>
-        <h6><?= $oneAction["date"] ?></h6>
-        <p>
-            <?= $oneAction["description"] ?>
-        </p>
-        <h5><?= $oneAction["address"] ?></h5>
+    <div class="modal_body">
+        <h4>СОБЫТИЕ</h4>
+        <div>
+            <label for="action_images">Фото события</label>
+            <div class="action_images"></div>
+        </div>
+        <div>
+            <h3>Lorem </h3>
+            <h6>Date</h6>
+            <p>
+                Event
+            </p>
+            <h5>Address</h5>
+        </div>
     </div>
 </div>
 <?php if (@!$_SESSION["authorization"]) { ?>

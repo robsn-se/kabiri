@@ -8,65 +8,88 @@ const SHORT_STRING = "/[a-zа-я0-9\d\-\s]{5,200}/iu";
 
 const VALIDATION_RULES = [
     "authorization" => [
-        "login" => [
-            "required" => true,
-            "pattern" => LOGIN_PATTERN,
+        VALIDATION_REQUEST_METHOD => "POST",
+        VALIDATION_FIELDS_COUNT_CHECK => true,
+        VALIDATION_FORM_FIELDS => [
+            "login" => [
+                VALIDATION_FIELD_REQUIRED => true,
+                VALIDATION_FIELD_PATTERN => LOGIN_PATTERN,
+            ],
+            "password" => [
+                VALIDATION_FIELD_REQUIRED => true,
+                VALIDATION_FIELD_PATTERN => PASSWORD_PATTERN,
+            ]
         ],
-        "password" => [
-            "required" => true,
-            "pattern" => PASSWORD_PATTERN,
-        ]
     ],
     "registration" => [
-        "email" => [
-            "required" => true,
-            "pattern" => EMAIL_PATTERN,
+        VALIDATION_REQUEST_METHOD => "POST",
+        VALIDATION_FIELDS_COUNT_CHECK => true,
+        VALIDATION_FORM_FIELDS => [
+            "email" => [
+                VALIDATION_FIELD_REQUIRED => true,
+                VALIDATION_FIELD_PATTERN => EMAIL_PATTERN,
+            ],
+            "login" => [
+                VALIDATION_FIELD_REQUIRED => true,
+                VALIDATION_FIELD_PATTERN => LOGIN_PATTERN,
+            ],
+            "birthday" => [
+                VALIDATION_FIELD_REQUIRED => true,
+                VALIDATION_FIELD_PATTERN => BIRTHDAY_PATTERN,
+            ],
+            "password" => [
+                VALIDATION_FIELD_REQUIRED => true,
+                VALIDATION_FIELD_PATTERN => PASSWORD_PATTERN
+            ]
         ],
-        "login" => [
-            "required" => true,
-            "pattern" => LOGIN_PATTERN,
-        ],
-        "birthday" => [
-            "required" => true,
-            "pattern" => BIRTHDAY_PATTERN,
-        ],
-        "password" => [
-            "required" => true,
-            "pattern" => PASSWORD_PATTERN
-        ]
     ],
-    "cabinet_exit" => [],
+    "cabinet_exit" => [
+        VALIDATION_REQUEST_METHOD => "POST",
+    ],
     "setting" => [
-        "email" => [
-            "pattern" => EMAIL_PATTERN,
+        VALIDATION_REQUEST_METHOD => "POST",
+        VALIDATION_FIELDS_COUNT_CHECK => true,
+        VALIDATION_FORM_FIELDS => [
+            "email" => [
+                VALIDATION_FIELD_PATTERN => EMAIL_PATTERN,
+            ],
+            "login" => [
+                VALIDATION_FIELD_PATTERN => LOGIN_PATTERN,
+            ],
+            "birthday" => [
+                VALIDATION_FIELD_PATTERN => BIRTHDAY_PATTERN,
+            ],
+            "password" => [
+                VALIDATION_FIELD_PATTERN => PASSWORD_PATTERN
+            ]
         ],
-        "login" => [
-            "pattern" => LOGIN_PATTERN,
-        ],
-        "birthday" => [
-            "pattern" => BIRTHDAY_PATTERN,
-        ],
-        "password" => [
-            "pattern" => PASSWORD_PATTERN
-        ]
     ],
     "add_action" => [
-        "title" => [
-            "required" => true,
-            "pattern" => SHORT_STRING,
-        ],
-        "description" => [],
-        "location" => [
-            "required" => true,
-        ],
-        "type" => [
-            "required" => true,
-            "pattern" => SHORT_STRING,
+        VALIDATION_REQUEST_METHOD => "POST",
+        VALIDATION_FIELDS_COUNT_CHECK => true,
+        VALIDATION_FORM_FIELDS => [
+            "title" => [
+                VALIDATION_FIELD_REQUIRED => true,
+                VALIDATION_FIELD_PATTERN => SHORT_STRING,
+            ],
+            "description" => [],
+            "location" => [
+                VALIDATION_FIELD_REQUIRED => true,
+            ],
+            "type" => [
+                VALIDATION_FIELD_REQUIRED => true,
+                VALIDATION_FIELD_PATTERN => SHORT_STRING,
+            ],
         ],
     ],
     "get_action_by_id" => [
-        "action_id" => [
-            "required" => true,
+        VALIDATION_REQUEST_METHOD => "GET",
+        VALIDATION_FIELDS_COUNT_CHECK => true,
+        VALIDATION_FORM_FIELDS => [
+            "action_id" => [
+                VALIDATION_FIELD_EXISTENCE => true,
+                VALIDATION_FIELD_REQUIRED => true,
+            ]
         ]
     ]
 ];

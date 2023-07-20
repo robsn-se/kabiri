@@ -11,7 +11,10 @@ window.onload = function () {
                 console.log(event.target.dataset.modal_params)
                 console.log(event.target.dataset.modal_function)
                 let modalFunction = event.target.dataset.modal_function
-                window[event.target.dataset.modal_function](event.target, ...JSON.parse(event.target.dataset.modal_params))
+                window[event.target.dataset.modal_function](
+                    document.getElementById(event.target.dataset.modal_id),
+                    ...JSON.parse(event.target.dataset.modal_params)
+                )
             }
             document.getElementById(event.target.dataset.modal_id).classList.add("is_visible")
         })
@@ -26,13 +29,22 @@ function toggleLoader() {
 }
 
 function buildAction(modalWindowObject, actionID) {
-    let data = new FormData()
-    data.append("form_name", "get_action_by_id")
-    data.append("action_id", actionID)
-    console.log(actionID)
-    sendAPIRequest("controllers/page_controller.php", data, result => {
+    getAPI("controllers/page_ajax_controller.php", {
+        form_name: "get_action_by_id",
+        action_id: actionID
+    }, result => {
         console.log(result)
-    }, {"Content-Type:": "application/json"})
+        console.log(modalWindowObject)
+        modalWindowObject.querySelector("h3").innerHTML = result.title
+        modalWindowObject.querySelector("h6").innerHTML = result.date
+        modalWindowObject.querySelector("p").innerHTML = result.description
+        modalWindowObject.querySelector("h5").innerHTML = result.address
+        let imageBox = modalWindowObject.querySelector(".action_images")
+        imageBox.innerHTML = ""
+        result.images.forEach(item => {
+            imageBox.innerHTML += `<img src="${item.url}" alt="${item.discription}">`
+        })
+    })
     let body = `   
     <h4>СОБЫТИЕ</h4>
     <div>
@@ -50,20 +62,37 @@ function buildAction(modalWindowObject, actionID) {
     `
 }
 
-/**
+function makeURL(url, params = null) {
+    return params
+        ? `${url}?${(new URLSearchParams(params)).toString()}`
+        : url;
+}
+
+function formDataToJSON(formData) {
+    return JSON.stringify(Object.fromEntries(formData))
+}
+
+
+/** 
  * The fetch API requester, Does a callback after a successful response
+ * @param method {String}
  * @param url {String}
- * @param data {String|number|Object|Array}
+ * @param body {String|number|Object|Array}
  * @param callback {Function}
- * @param headers {Object}
  */
-function sendAPIRequest(url, data, callback, headers = {}) {
-    console.log(data)
-    fetch(url, {
-        method: "post",
-        body: data,
-        // headers: headers
-    }).then(response => response.json()
+function sendAPIRequest(method, url, body, callback) {
+    console.log(body)
+    let requestObject = {
+        method: method,
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    }
+    if (body && (method === "POST" || method === "PUT")) {
+        requestObject.body = body
+        requestObject.headers['Content-Type'] = "application/json"
+    }
+    fetch(url, requestObject).then(response => response.json()
         .catch((error) => {
             console.error(error)
             alert("Внезапная ошибка")
@@ -85,5 +114,19 @@ function sendAPIRequest(url, data, callback, headers = {}) {
         alert("Внезапная ошибка")
     })
 }
+function getAPI(url, urlParams, callback) {
+     sendAPIRequest("GET", makeURL(url, urlParams),null, callback)
+}
 
+function postAPI(url, body, callback) {
+    sendAPIRequest("POST", makeURL(url), body, callback)
+}
+
+function putAPI(url, urlParams, body, callback) {
+    sendAPIRequest("PUT", makeURL(url, urlParams), body, callback)
+}
+
+function deleteAPI(url, urlParams, callback) {
+    sendAPIRequest("DELETE", makeURL(url, urlParams),null, callback)
+}
 

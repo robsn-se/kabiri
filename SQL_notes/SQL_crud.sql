@@ -13,7 +13,7 @@
   
   
   
-  SELECT * FROM `actions`;  
+SELECT * FROM `actions`;
 -- Выборка всех полей из таблиц
 
 
@@ -94,8 +94,21 @@ FROM `actions` a
 ORDER BY a.`id` DESC;
 
 
-SELECT a.`id`, a.`title`, u.`login` AS 'user', a.`likes` AS 'rating', GROUP_CONCAT(ai.`url`) AS 'images', a.description, a.`date`, a.`address`
+SELECT a.`id`,
+       a.`title`,
+       u.`login` AS 'user',
+       a.`likes` AS 'rating',
+       GROUP_CONCAT(ai.`url`) AS 'images',
+       GROUP_CONCAT(ai.`discription`) AS 'image_description',
+       a.description,
+       a.`date`,
+       a.`address`,
+       GROUP_CONCAT(c.`text`) AS 'comment_texts',
+       GROUP_CONCAT(SELECT `login` FROM `users` WHERE `id`= c.`user`) AS 'comment_users',
+       GROUP_CONCAT(c.`date`) AS 'comment_dates'
 FROM `actions` a
-         LEFT JOIN `users` u ON u.`id` = a.`user`
-         LEFT JOIN `actions_images` ai ON a.`id` = ai.`action`
+    INNER JOIN `comments` c ON c.`action` = a.`id`
+    INNER JOIN `users` u ON u.`id` = a.`user`
+    INNER JOIN `actions_images` ai ON a.`id` = ai.`action`
 WHERE a.`id` = 124
+
