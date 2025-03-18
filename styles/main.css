@@ -509,17 +509,31 @@ summary::marker {
 }
 
 #action_modal_window {
-    z-index: 2;
+    /* position: fixed; */
+    /* z-index: 2; */
     width: 42%;
-    top: 850px;
+    /* top: 850px; */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 50px;
+    left: 0;
+    margin: 27px 134px 27px 1px;
 }
 
 #action_modal_window img{
+    margin: 15px;
     width: 90px;
     height: 90px;
 }
 
+#action_modal_window h6{
+color: white;
+}
 
+#action_modal_window p{
+    color: white;
+}
 
 #add_action {
     z-index: 2;
@@ -740,5 +754,128 @@ summary::marker {
     100% {
         transform: rotate(360deg);
         -webkit-transform: rotate(360deg);
+    }
+}
+
+/* Медиазапросы для мобильных устройств и планшетов */
+
+/* Для экранов до 1024px (планшеты и большие мобильные устройства) */
+@media (max-width: 1024px) {
+    .heder_main_blok {
+        flex-direction: column;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .main_info h4 {
+        width: 80%; /* Увеличиваем ширину текста */
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    #map {
+        width: 100%; /* Расширяем карту на весь экран */
+        height: 400px; /* Уменьшаем высоту карты */
+    }
+
+    .social__icon {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+    }
+
+    .social__icon i {
+        font-size: 20px;
+    }
+}
+
+/* Для экранов до 768px (мобильные устройства) */
+@media (max-width: 768px) {
+    .heder_main_blok {
+        flex-direction: column;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .main_info h4 {
+        width: 90%; /* Еще больше увеличиваем ширину */
+    }
+
+    h1 {
+        font-size: 24px;
+        margin: 30px auto;
+    }
+
+    .social__icon {
+        width: 45px;
+        height: 45px;
+        margin: 5px;
+    }
+
+    .social__icon i {
+        font-size: 18px;
+    }
+
+    .event_search input {
+        width: 100%; /* Полная ширина поля ввода на мобильных устройствах */
+    }
+
+    .event_search button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .event_list {
+        width: 90%; /* Уменьшаем ширину списка */
+    }
+
+    #map {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+/* Для экранов до 480px (очень маленькие мобильные устройства) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+        margin: 20px auto;
+    }
+
+    .social__icon {
+        width: 40px;
+        height: 40px;
+        margin: 5px;
+    }
+
+    .social__icon i {
+        font-size: 16px;
+    }
+
+    .event_search input {
+        font-size: 14px;
+        padding-left: 20px;
+    }
+
+    .event_search button {
+        width: 35px;
+        height: 35px;
+    }
+
+    .event_list li {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .event_list li > img {
+        width: 100%; /* Сделаем изображение на весь экран */
+        max-width: 300px;
+    }
+
+    .event_list li > div:last-child {
+        padding: 10px;
     }
 }
